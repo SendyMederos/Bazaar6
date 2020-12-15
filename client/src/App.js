@@ -15,16 +15,15 @@ function App() {
   return (
     <Router>
     <div>
-      <Nav />
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        {/* <Route exact path="/" component={Homepage} />
         <Route exact path="/home" component={Homepage} />
         <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/wanted" component={Wanted} />
         <Route exact path="/product" component={Product} />
-        <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/checkout" component={Checkout} /> */}
       </Switch>
     </div>
     </Router>
