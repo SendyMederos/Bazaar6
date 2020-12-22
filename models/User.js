@@ -14,6 +14,9 @@ const UserSchema = new Schema({
         unique: true
 
     },
+    password: {
+        type: String
+    },
     location:
              {
                 street: {
@@ -46,6 +49,27 @@ const UserSchema = new Schema({
         }
     ]
 });
+
+// adds a method to a user document object to create a hashed password
+UserSchema.methods.generateHash = function(password) {
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
+}
+
+// adds a method to a user document object to check if provided password is correct
+UserSchema.methods.validPassword = function(password) {
+	return bcrypt.compareSync(password, this.password)
+}
+
+// middleware: before saving, check if password was changed (or new),
+// and if so, encrypt new password before saving:
+UserSchema.pre('save', function(next) {	
+	if(this.isModified('password')) {
+		this.password = this.generateHash(this.password)
+		next()
+	} else {
+	next()
+	}
+})
 
 const User = mongoose.model("User", UserSchema);
 
