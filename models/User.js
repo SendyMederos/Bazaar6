@@ -49,6 +49,7 @@ const UserSchema = new Schema({
     ]
 });
 
+
 // adds a method to a user document object to create a hashed password
 UserSchema.methods.generateHash = function(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
@@ -71,5 +72,6 @@ UserSchema.pre('save', function(next) {
 })
 
 const User = mongoose.model("User", UserSchema);
+
 
 module.exports = User;
