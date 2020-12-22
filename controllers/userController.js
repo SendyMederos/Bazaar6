@@ -1,4 +1,6 @@
 const db = require("../models")
+const jwtDecode = require('jwt-decode')
+const signToken = require('../auth').signToken
 
 module.exports = {
     findAll: function (req, res) {
@@ -32,5 +34,21 @@ module.exports = {
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    }
+    },
+    authenticate: (req, res) => {
+		db.User.findOne({email: req.body.email}, (err, user) => {
+			if(!user || !user.validPassword(req.body.password)) {
+				return res.json({success: false, message: "Invalid credentials."})
+			}
+			const token = signToken(user)
+			res.json({success: true, message: "Token attached.", token})
+		})
+    },
+    show: async (req, res) => {
+		let userProfile = jwtDecode(req.params.id)		
+		let joke = jokes[Math.floor(Math.random() * jokes.length)]
+		let doc = await User.find({email: userProfile.email}).lean()		
+		doc[0].joke = joke						
+		res.json(doc)
+	}
 };

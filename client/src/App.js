@@ -7,8 +7,8 @@ import Signup from "./pages/signup";
 import Wanted from "./pages/wanted";
 import Product from "./pages/product";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import API from "./utils/ThirdPAPI";
-import LocalAPI from "./utils/UserAPI";
+// import API from "./utils/API";
+// import LocalAPI from "./utils/LocalAPI";
 
 
 
