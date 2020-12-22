@@ -17,12 +17,6 @@ const ProductSchema = new Schema({
     type: String,
     unique: true 
   },
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Post"
-    }
-  ]
 });
 
 const Product = mongoose.model("Product", ProductSchema);
