@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MiniDrawer from '../../components/MiniDrawer/index';
-import ImgCarousel from "../../Carousel"
+import ImgCarousel from "../../components/Carousel"
 
 function Homepage() {
     return (
