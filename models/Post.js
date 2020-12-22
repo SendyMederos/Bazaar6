@@ -6,12 +6,15 @@ const PostSchema = new Schema({
     postNumber: {
         type: Number,
     },
-    postee: [
+    product:{
+            type: Schema.Types.ObjectId,
+            ref: "Product"
+    },
+    postee: 
         {
             type: Schema.Types.ObjectId,
             ref: "User"
-        }
-    ],
+        },
     viewers: [
         {
             type: Schema.Types.ObjectId,
