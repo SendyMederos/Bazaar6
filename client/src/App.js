@@ -11,7 +11,6 @@ import API from "./utils/API";
 const fs = require("fs");
 const util = require("util");
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -59,6 +58,18 @@ class App extends React.Component {
         <Route exact path="/checkout" component={Checkout} /> */}
         </Switch>
       </div>
+// The app will not render correctly until you setup a Route component.
+// Refer to the Basic Example documentation if you need to.
+// (https://reacttraining.com/react-router/web/example/basic)
+
+  return (
+    <Router>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+      </Switch>
+    </div>
+
     </Router>
   )};
 }
