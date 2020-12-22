@@ -1,5 +1,7 @@
 module.exports = {
-    User: require("./User")
+    User: require("./User"),
+    Order: require("./Order"),
+    Post: require("./Post"),
+    Product: require("./Product")
 }
-  };
   
