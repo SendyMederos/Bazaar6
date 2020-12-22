@@ -1,5 +1,5 @@
-
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     firstName: {
@@ -32,7 +32,7 @@ const UserSchema = new Schema({
                 },
                 postcode:
                 {
-                    type: Number
+                    type: String
                 },
             },
     orders: [
@@ -41,18 +41,14 @@ const UserSchema = new Schema({
             Ref: "Order"
         }
     ],
-    posts: [
+    products: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Post"
+            ref: "Products"
         }
     ]
 });
 
-<<<<<<< HEAD
-export const User = mongoose.model("User", UserSchema);
-
-=======
 // adds a method to a user document object to create a hashed password
 UserSchema.methods.generateHash = function(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
@@ -75,5 +71,5 @@ UserSchema.pre('save', function(next) {
 })
 
 const User = mongoose.model("User", UserSchema);
->>>>>>> 2734c9538828df743158e5a40f273b979ea64bfa
 
+module.exports = User;

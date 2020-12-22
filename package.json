@@ -24,12 +24,9 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "esm": "^3.2.25",
-=======
     "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
->>>>>>> 2734c9538828df743158e5a40f273b979ea64bfa
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "if-env": "^1.0.4",
