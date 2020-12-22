@@ -1,5 +1,5 @@
-
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     firstName: {
@@ -32,7 +32,7 @@ const UserSchema = new Schema({
                 },
                 postcode:
                 {
-                    type: Number
+                    type: String
                 },
             },
     orders: [
@@ -41,10 +41,10 @@ const UserSchema = new Schema({
             Ref: "Order"
         }
     ],
-    posts: [
+    products: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Post"
+            ref: "Products"
         }
     ]
 });
@@ -74,3 +74,4 @@ UserSchema.pre('save', function(next) {
 const User = mongoose.model("User", UserSchema);
 
 
+module.exports = User;
