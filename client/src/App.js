@@ -20,9 +20,9 @@ function App() {
   return (<Router>
     <div>
       <Switch>
-        {/* <Route exact path="/" component={Homepage} />
+        <Route exact path="/" component={Homepage} />
         <Route exact path="/home" component={Homepage} />
-        <Route exact path="/posting" component={Posting} />
+        {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/wanted" component={Wanted} />

@@ -33,6 +33,12 @@ export default function FullWidthGrid() {
                         <Grid item xs={12}>
                             <MediaCard />
                         </Grid>
+                        <Grid item xs={12}>
+                            <MediaCard />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <MediaCard />
+                        </Grid>
                         <Grid item xs={12} sm={6}>
                             <Paper className={classes.paper}>xs=12 sm=6</Paper>
                         </Grid>
