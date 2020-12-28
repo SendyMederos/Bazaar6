@@ -1,17 +1,25 @@
-import faker from "faker"
-const db = require ("./models")
+import faker from "faker";
+const mongoose = require("mongoose");
+//import { db } from "../models/User";
+const db = require ("../models");
+// const productAPI = require ("../client/src/utils/ProductAPI")
+// const userAPI = require ("../client/src/utils/UserAPI")
 // import { User } from "./models/User"
 // import { Product } from "./models/Product"
 
+mongoose.connect(
+    process.env.MONGODB_URI ||
+    "mongodb://localhost/bazaar6"
+  );
 
-export const seedUsers = async () => {
+export const runSeed = async () => {
     try {
         console.log("working")
         const products =[];
         const users=[];
         const quantity = 5;
         for (let i = 0; i < quantity; i++){
-            users.push({
+            products.push({
                     productName: faker.commerce.productName(),
                     description: faker.commerce.productDescription(),
                     price: faker.commerce.price(),
@@ -33,15 +41,40 @@ export const seedUsers = async () => {
                         state: faker.address.state(),
                         postcode: faker.address.zipCode(),
                     }
+                    
                     })
-            
         }
         console.log(users)
         console.log(products)
+        
+        db.User
+        .remove({})
+        .then(() => db.User.collection.insertMany(users))
+        .then(data => {
+            console.log(data.result.n + " users inserted!");
+            process.exit(0);
+        })
+        .catch(err => {
+                console.error(err);
+                process.exit(1);
+              });
 
-    } catch (error) {
+        db.Product
+              .remove({})
+              .then(() => db.Product.collection.insertMany(products))
+              .then(data => {
+                  console.log(data.result.n + " products inserted!");
+                  process.exit(0);
+              })
+              .catch(err => {
+                      console.error(err);
+                      process.exit(1);
+                    });
+
+    }catch (error) {
         console.log(error)
     }
 }
 
-seedUsers();
+
+runSeed();
