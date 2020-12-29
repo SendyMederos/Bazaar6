@@ -117,7 +117,7 @@ export default function MiniDrawer({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            Bazaar6
           </Typography>
         </Toolbar>
       </AppBar>
