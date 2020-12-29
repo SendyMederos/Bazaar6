@@ -3,7 +3,7 @@ import React from 'react';
 export  function Signin() {
 
     return (<form>
-        <h3> Sing Into your account</h3>
+        <h4> Log Into your account</h4>
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
@@ -25,6 +25,7 @@ export  function Signin() {
 export function Signup() {
 
     return (<form>
+        <h4> Sign up and get the best of us </h4>
         <div className="form-row" >
             <div className="form-group col-md-6">
                 <label for="firstname">First Name</label>
