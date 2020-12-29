@@ -17,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import TransitionsModal from '../Modal'
 
 const drawerWidth = 240;
 
@@ -80,6 +81,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  navrightmenu: {
+    marginLeft: "auto",
+  }
 }));
 
 export default function MiniDrawer({ children }) {
@@ -116,9 +120,14 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
+          <Typography variant="h4" >
+            Bazaar6
           </Typography>
+
+          <div className={classes.navrightmenu} >
+            <TransitionsModal />
+          </div>
+
         </Toolbar>
       </AppBar>
       <Drawer
