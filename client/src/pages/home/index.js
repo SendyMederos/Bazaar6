@@ -4,7 +4,7 @@ import ImgCarousel from "../../components/Carousel"
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Grid, Container, Button } from '@material-ui/core/';
-import MediaCard from '../../components/Card';
+import Card from '../../components/Card';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,14 +30,23 @@ export default function FullWidthGrid() {
                         <Grid item xs={12}>
                             <ImgCarousel className={classes.imgCarousel} />
                         </Grid>
-                        <Grid item xs={12}>
-                            <MediaCard />
+                        <Grid item xs={12} sm={4}>
+                            <Card />
                         </Grid>
-                        <Grid item xs={12}>
-                            <MediaCard />
+                        <Grid item xs={12} sm={4}>
+                            <Card />
                         </Grid>
-                        <Grid item xs={12}>
-                            <MediaCard />
+                        <Grid item xs={12} sm={4}>
+                            <Card />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <Card />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <Card />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <Card />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Paper className={classes.paper}>xs=12 sm=6</Paper>
