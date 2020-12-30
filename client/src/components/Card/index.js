@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export default function Card(props) {
+export function MediaCard(props) {
 
   return (
       <div className="wrapper">
