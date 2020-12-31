@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Checkout from "./pages/checkout";
 import Dashboard from "./pages/dashboard";
-import { HomePage } from "./pages/home";
+import HomePage from "./pages/home";
 import Posting from "./pages/posting";
 import Signup from "./pages/signup";
 import Wanted from "./pages/wanted";
@@ -20,8 +20,8 @@ function App() {
   return (<Router>
     <div>
       <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/home" component={Homepage} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/home" component={HomePage} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/" component={HomePage} />

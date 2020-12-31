@@ -3,9 +3,24 @@ const jwtDecode = require('jwt-decode')
 const auth = require('../auth')
 const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
-const jwt_encryption_key = auth.jwt_encryption_key
-const jwt_config = auth.jwt_config
-const authCookie = auth.cookie
+
+const jwt_config = {
+    algorithm: "HS256",
+    expiresIn: 20000,
+};
+
+const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
+
+console.log(process.env.JWT_ENCRYPTION_KEY)
+
+const authCookie = {
+    cookie_name: "bazaar6_cookie",
+    cookie_config: {
+        maxAge: 24 * 60 * 60,
+        httpOnly: true,
+        secure: false,
+    }
+};
 
 module.exports = {
     findAll: function (req, res) {
@@ -46,20 +61,26 @@ module.exports = {
     createUser: async (req, res) => {
         try {
             const createdUser = await db.User.create({
-                ...req.body
+                ...req.body.user
             });
             const getUserCredentials = (user) => {
                 const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
-                const cookie = { cookieName: authCookie.cookie_name, cookieConfig: authCookie.cookie_config };
+                const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
                 return { token, cookie };
             };
             const { cookie, token } = getUserCredentials(createdUser);
-            res.cookie(cookie.cookieName, token, { ...cookie.cookieConfig });
+            const removeUser = async () => {
+                await db.User
+                    .findById({ _id: createdUser._id })
+                    .then(dbModel => dbModel.remove())
+                    .catch(err => res.status(422).json(err));
+            }
+            await removeUser()
+            res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
                 user: { createdUser },
                 message: { content: "Successfully created user" },
             });
-            res.status(201).send("HEYYYY IT WORKED")
         } catch (error) {
             res.status(500).send({
                 message: {

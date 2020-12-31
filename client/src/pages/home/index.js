@@ -25,13 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export function HomePage() {
-    //const classes = useStyles();
-
-    const checkCookie = () => {
-        
-    }
-
+export default function HomePage() {
     return (
         <>
             <MiniDrawer>

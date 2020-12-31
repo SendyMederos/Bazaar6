@@ -19,19 +19,26 @@ const cookie = {
 	}
 };
 
-function getUserCredentials(user) {
-	const token = jsonwebtoken.sign({ user }, jwt_encryption_key, jwt_config);
-	const cookie = { cookie_name, cookie_config };
-	return { token, cookie };
-};
-// res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
-// res.status(200).send({
-// 	user: uiUser,
-// 	message: { content: "Successfully retreived user" },
-// });
+const validateUser = (req, res, next) => {
+	if (req.originalUrl !== "/api/users/signup") {
+		try {
+			jwt.verify(req.cookies["bazaar6_cookie"], jwt_encryption_key)
+			const decodedToken = jwt.decode(req.cookies["bazaar6_cookie"], jwt_encryption_key)
+			console.log(decodedToken.user._id)
+			req.user_id = decodedToken.user._id
+			next()
+		}
+		catch (err) {
+			console.log(err.message)
+			res.status(401).send("Unauthorized")
+		}
+	} else {
+		next()
+	}
+}
 
 module.exports = {
-	getUserCredentials,
+	validateUser,
 	jwt_config,
 	jwt_encryption_key,
 	cookie
