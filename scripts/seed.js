@@ -1,11 +1,7 @@
 import faker from "faker";
-const mongoose = require("mongoose");
-//import { db } from "../models/User";
+const mongoose = require("mongoose");git 
 const db = require ("../models");
-// const productAPI = require ("../client/src/utils/ProductAPI")
-// const userAPI = require ("../client/src/utils/UserAPI")
-// import { User } from "./models/User"
-// import { Product } from "./models/Product"
+
 
 mongoose.connect(
     process.env.MONGODB_URI ||
@@ -24,6 +20,7 @@ export const runSeed = async () => {
                     description: faker.commerce.productDescription(),
                     price: faker.commerce.price(),
                     image: faker.image.technics(),
+                    category: faker.commerce.department(),
                 })
             
         }
