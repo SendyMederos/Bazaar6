@@ -1,42 +1,38 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User.js')
 
-// Note this is the supper secret for signing the JWT
-// this should be acquired via .env or a microservice
-const JWT_SECRET  = 'thisismysecretkey'
+const jwt_config = {
+	algorithm: "HS256",
+	expiresIn: 20000,
+};
 
-// function for creating tokens
-function signToken(user) {
-	// toObject() returns a basic js object 
-	// comprised of data from db. Delete password before creating jwt
-	const userData = user.toObject()
-	delete userData.password
-	return jwt.sign(userData, JWT_SECRET)
-}
+const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
 
-// function for verifying tokens
-function verifyToken(req, res, next) {
-	// grab token from either headers, req.body, or query string
-	const token = req.get('token') || req.body.token || req.query.token
-	// if no token present, deny access
-	if(!token) return res.json({success: false, message: "No token provided"})
-	// otherwise, try to verify token
-	jwt.verify(token, JWT_SECRET, (err, decodedData) => {
-		// if problem with token verification, deny access
-		if(err) return res.json({success: false, message: "Invalid token."})
-		// otherwise, search for user by id that was embedded in token
-		User.findById(decodedData._id, (err, user) => {
-			// if no user, deny access
-			if(!user) return res.json({success: false, message: "Invalid token."})
-			// otherwise, add user to req object
-			req.user = user
-			// go on to process the route:
-			next()
-		})
-	})
-}
+console.log(process.env.JWT_ENCRYPTION_KEY)
+
+const cookie = {
+	cookie_name: "bazaar6-cookie",
+	cookie_config: {
+		maxAge: 24 * 60 * 60,
+		httpOnly: true,
+		secure: false,
+	}
+};
+
+function getUserCredentials(user) {
+	const token = jsonwebtoken.sign({ user }, jwt_encryption_key, jwt_config);
+	const cookie = { cookie_name, cookie_config };
+	return { token, cookie };
+};
+// res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
+// res.status(200).send({
+// 	user: uiUser,
+// 	message: { content: "Successfully retreived user" },
+// });
 
 module.exports = {
-	signToken,
-	verifyToken
+	getUserCredentials,
+	jwt_config,
+	jwt_encryption_key,
+	cookie
 }
