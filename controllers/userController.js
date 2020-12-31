@@ -1,6 +1,11 @@
 const db = require("../models")
 const jwtDecode = require('jwt-decode')
-const signToken = require('../auth').signToken
+const auth = require('../auth')
+const signToken = auth.signToken
+const jwt = require('jsonwebtoken')
+const jwt_encryption_key = auth.jwt_encryption_key
+const jwt_config = auth.jwt_config
+const authCookie = auth.cookie
 
 module.exports = {
     findAll: function (req, res) {
@@ -13,12 +18,6 @@ module.exports = {
     findById: function (req, res) {
         db.User
             .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-    create: function (req, res) {
-        db.User
-            .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -36,19 +35,38 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     authenticate: (req, res) => {
-		db.User.findOne({email: req.body.email}, (err, user) => {
-			if(!user || !user.validPassword(req.body.password)) {
-				return res.json({success: false, message: "Invalid credentials."})
-			}
-			const token = signToken(user)
-			res.json({success: true, message: "Token attached.", token})
-		})
+        db.User.findOne({ email: req.body.email }, (err, user) => {
+            if (!user || !user.validPassword(req.body.password)) {
+                return res.json({ success: false, message: "Invalid credentials." })
+            }
+            const token = signToken(user)
+            res.json({ success: true, message: "Token attached.", token })
+        })
     },
-    show: async (req, res) => {
-		let userProfile = jwtDecode(req.params.id)		
-		let joke = jokes[Math.floor(Math.random() * jokes.length)]
-		let doc = await User.find({email: userProfile.email}).lean()		
-		doc[0].joke = joke						
-		res.json(doc)
-	}
-};
+    createUser: async (req, res) => {
+        try {
+            const createdUser = await db.User.create({
+                ...req.body
+            });
+            const getUserCredentials = (user) => {
+                const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
+                const cookie = { cookieName: authCookie.cookie_name, cookieConfig: authCookie.cookie_config };
+                return { token, cookie };
+            };
+            const { cookie, token } = getUserCredentials(createdUser);
+            res.cookie(cookie.cookieName, token, { ...cookie.cookieConfig });
+            res.status(201).send({
+                user: { createdUser },
+                message: { content: "Successfully created user" },
+            });
+            res.status(201).send("HEYYYY IT WORKED")
+        } catch (error) {
+            res.status(500).send({
+                message: {
+                    content: "An error occured creating user",
+                    info: error.message,
+                },
+            });
+        }
+    }
+}

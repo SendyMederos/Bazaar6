@@ -3,7 +3,7 @@ export default {
 
    /// saves a user 
     saveUser: function(userData) {
-      console.log()
+      console.log("running")
       return axios.post("/api/users", userData);
     },
       // Gets all users

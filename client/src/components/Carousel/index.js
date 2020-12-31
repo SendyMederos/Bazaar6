@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Grid, Container, Button } from '@material-ui/core'
+import MediaCard from '../Card'
 
 const useStyles = makeStyles({
     paper: {

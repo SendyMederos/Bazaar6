@@ -4,7 +4,7 @@ const verifyToken = require('../../auth').verifyToken
 
 router.route("/")
     .get(userController.findAll)
-    .post(userController.create);
+    .post(userController.createUser);
 
 router.route("/:id")
     .get(userController.findById)
@@ -13,10 +13,5 @@ router.route("/:id")
 
 router.route('/authenticate')
     .post(userController.authenticate)
-
-router.route('/secret')
-    .get(userController.show)
-
-router.use(verifyToken)
 
 module.exports = router;
