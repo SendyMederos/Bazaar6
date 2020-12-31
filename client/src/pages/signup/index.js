@@ -29,10 +29,10 @@ export default function FullWidthGrid() {
     const SubmitUser = () => {
         console.log("submitUser")
         const user = {
-            firstName: "Evan3",
-            lastName: "Motte3",
-            email: "em@gmail.com3",
-            password: "1233",
+            firstName: "Evan123456",
+            lastName: "56",
+            email: "emow456@gmail.com",
+            password: "1234123456",
             location: {
                 street: "main st",
                 city: "pineville",
