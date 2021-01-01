@@ -11,7 +11,7 @@ class ApexChart extends React.Component {
             series: [props.amount],
             options: {
                 chart: {
-                    height: 350,
+                    maxHeight: 350,
                     type: 'radialBar',
                     toolbar: {
                         show: false

@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export default {
 
    /// saves a user 
@@ -18,7 +19,10 @@ export default {
       deleteUser: function(id) {
         return axios.delete("/api/users" + id);
       },
-      update: function() {
-        return axios.put("/api/users/:id")
+      updateBudget: function(budget) {
+        return axios.put("/api/users/budget", budget)
+      },
+      getBudget: function() {
+        return axios.get("/api/users/budget")
       }
 };
