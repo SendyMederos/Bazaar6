@@ -26,11 +26,12 @@ function App() {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/" component={HomePage} />
         <Route exact path="/home" component={HomePage} />
+        <Route exact path="/product" component={Product} />
         {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/wanted" component={Wanted} />
-        <Route exact path="/product" component={Product} />
+        
         <Route exact path="/checkout" component={Checkout} /> */}
       </Switch>
     </div>
