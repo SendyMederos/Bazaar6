@@ -11,8 +11,6 @@ const jwt_config = {
 
 const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
 
-console.log(process.env.JWT_ENCRYPTION_KEY)
-
 const authCookie = {
     cookie_name: "bazaar6_cookie",
     cookie_config: {
@@ -38,7 +36,10 @@ module.exports = {
     },
     update: function (req, res) {
         db.User
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .findOneAndUpdate({ _id: req.user._id },
+                {
+                    setBudget: parseInt(req.body)
+                })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -48,15 +49,6 @@ module.exports = {
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    },
-    authenticate: (req, res) => {
-        db.User.findOne({ email: req.body.email }, (err, user) => {
-            if (!user || !user.validPassword(req.body.password)) {
-                return res.json({ success: false, message: "Invalid credentials." })
-            }
-            const token = signToken(user)
-            res.json({ success: true, message: "Token attached.", token })
-        })
     },
     createUser: async (req, res) => {
         try {
@@ -69,13 +61,13 @@ module.exports = {
                 return { token, cookie };
             };
             const { cookie, token } = getUserCredentials(createdUser);
-            const removeUser = async () => {
-                await db.User
-                    .findById({ _id: createdUser._id })
-                    .then(dbModel => dbModel.remove())
-                    .catch(err => res.status(422).json(err));
-            }
-            await removeUser()
+            // const removeUser = async () => {
+            //     await db.User
+            //         .findById({ _id: createdUser._id })
+            //         .then(dbModel => dbModel.remove())
+            //         .catch(err => res.status(422).json(err));
+            // }
+            // await removeUser()
             res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
                 user: { createdUser },
@@ -85,6 +77,32 @@ module.exports = {
             res.status(500).send({
                 message: {
                     content: "An error occured creating user",
+                    info: error.message,
+                },
+            });
+        }
+    },
+    login: async (req, res) => {
+        try {
+            const findUser = await db.User.findOne({
+                email: req.body.email,
+                password: req.body.password
+            });
+            const getUserCredentials = (user) => {
+                const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
+                const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
+                return { token, cookie };
+            };
+            const { cookie, token } = getUserCredentials(findUser);
+            res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
+            res.status(201).send({
+                user: { findUser },
+                message: { content: "Successfully logged in" },
+            });
+        } catch (error) {
+            res.status(500).send({
+                message: {
+                    content: "An error occured logging in",
                     info: error.message,
                 },
             });

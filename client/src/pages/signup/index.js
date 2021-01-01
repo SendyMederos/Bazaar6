@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { Grid, Container, Button } from '@material-ui/core/';
 import MediaCard from '../../components/Card';
 import { createUser } from '../../services/http/authHttp'; 
+import { Info } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,10 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FullWidthGrid() {
     const classes = useStyles();
-
-    const checkCookie = () => {
-        
-    }
 
     const SubmitUser = () => {
         console.log("submitUser")

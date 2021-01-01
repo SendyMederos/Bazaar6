@@ -11,7 +11,7 @@ const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key"
 console.log(process.env.JWT_ENCRYPTION_KEY)
 
 const cookie = {
-	cookie_name: "bazaar6-cookie",
+	cookie_name: "bazaar6_cookie",
 	cookie_config: {
 		maxAge: 24 * 60 * 60,
 		httpOnly: true,
@@ -20,7 +20,7 @@ const cookie = {
 };
 
 const validateUser = (req, res, next) => {
-	if (req.originalUrl !== "/api/users/signup") {
+	if (req.originalUrl !== "/api/users/signup" && req.originalUrl !== "/api/users/login") {
 		try {
 			jwt.verify(req.cookies["bazaar6_cookie"], jwt_encryption_key)
 			const decodedToken = jwt.decode(req.cookies["bazaar6_cookie"], jwt_encryption_key)

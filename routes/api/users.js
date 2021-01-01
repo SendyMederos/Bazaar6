@@ -13,4 +13,7 @@ router.route("/:id")
 router.route('/signup')
     .post(userController.createUser)
 
+router.route('/login')
+    .post(userController.login)
+
 module.exports = router;
