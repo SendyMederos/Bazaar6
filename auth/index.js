@@ -20,7 +20,7 @@ const cookie = {
 };
 
 const validateUser = (req, res, next) => {
-	if (req.originalUrl !== "/api/users/signup") {
+	if (req.originalUrl !== "/api/users/signup" && req.originalUrl !== "/api/users/login") {
 		try {
 			jwt.verify(req.cookies["bazaar6_cookie"], jwt_encryption_key)
 			const decodedToken = jwt.decode(req.cookies["bazaar6_cookie"], jwt_encryption_key)

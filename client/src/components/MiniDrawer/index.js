@@ -18,8 +18,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import TransitionsModal from '../Modal'
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 
 const drawerWidth = 240;
+
+const icons = [<AccountBoxIcon />, <PageviewIcon />, <PostAddIcon />, <FeaturedPlayListIcon /> ]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -150,18 +156,9 @@ export default function MiniDrawer({ children }) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Account', 'Product Search', 'Post Product', 'Wanted Ads'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{icons[index]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

@@ -47,7 +47,15 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Products"
         }
-    ]
+    ],
+    setBudget: {
+        type: Number,
+        default: 0
+    },
+    amountSpent: {
+        type: Number,
+        default: 0
+    }
 });
 
 
