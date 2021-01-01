@@ -11,42 +11,49 @@ import { GridCarousel } from '../../components/GridCarousel'
 import OrdersList from '../../components/OrdersList'
 import UserAPI from '../../utils/UserAPI'
 
-function Dashboard() {
+function Dashboard(props) {
 
-    const setBudget = (budget) => {
+    const [ budget, setBudget] = useState()
+    const [ spent, setSpent] = useState()
 
+    useEffect(() => {
+        getBudget()
+    }, [])
+
+    const getBudget = () => {
+        UserAPI.getBudget()
     }
 
-
-
-
+    const updateBudget = () => {
+        UserAPI.updateBudget({"budget": 500})
+    }
 
     return (
 
         <MiniDrawer>
             <Container maxWidth="xl">
                 <Grid container spacing={5}>
-                    <Grid item xs={12} sm={4}>
-                        <Paper item xs={12} sm={4}>
+                    <Grid item xs={12} md={12} sm={4} lg={4}>
+                        <Paper>
                             <ApexChart
                                 amount={75}
                             />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={8}>
+                    <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
                             <OrdersList />
                         </Paper>
                     </Grid>
                 </Grid>
                 <Grid container spacing={5}>
-                    <Grid item xs={12} sm={8}>
+                    <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
                             <OrdersList />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Paper item xs={12} sm={4}>
+                    <Grid item xs={12} md={12} sm={4} lg={4}>
+                        <Paper>
                             <ApexChart
                                 amount={75}
                             />

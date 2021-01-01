@@ -7,7 +7,7 @@ router.route("/")
 
 router.route("/:id")
     .get(userController.findById)
-    .put(userController.update)
+    //.put(userController.update)
     .delete(userController.remove);
 
 router.route('/signup')
@@ -15,5 +15,9 @@ router.route('/signup')
 
 router.route('/login')
     .post(userController.login)
+
+router.route("/budget")
+    .put(userController.updateBudget)
+    //.get(userController.getBudget)
 
 module.exports = router;

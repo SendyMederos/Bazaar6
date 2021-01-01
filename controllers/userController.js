@@ -3,6 +3,8 @@ const jwtDecode = require('jwt-decode')
 const auth = require('../auth')
 const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser')
+const jsonParser = bodyParser.json()
 
 const jwt_config = {
     algorithm: "HS256",
@@ -34,18 +36,18 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    update: function (req, res) {
+    updateBudget: function (req, res) {
         db.User
-            .findOneAndUpdate({ _id: req.user._id },
+            .findOneAndUpdate({ _id: req.user_id },
                 {
-                    setBudget: parseInt(req.body)
+                    setBudget: parseInt(req.body.budget)
                 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
         db.User
-            .findById({ _id: req.params.id })
+            .findById({ _id: req.user._id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
