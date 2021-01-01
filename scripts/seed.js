@@ -1,5 +1,5 @@
 import faker from "faker";
-const mongoose = require("mongoose");git 
+const mongoose = require("mongoose");
 const db = require ("../models");
 
 
@@ -13,7 +13,7 @@ export const runSeed = async () => {
         console.log("working")
         const products =[];
         const users=[];
-        const quantity = 5;
+        const quantity = 20;
         for (let i = 0; i < quantity; i++){
             products.push({
                     productName: faker.commerce.productName(),

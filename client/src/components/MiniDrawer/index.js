@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navrightmenu: {
     marginLeft: "auto",
+    cursor:"pointer"
   }
 }));
 
@@ -120,7 +121,7 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h4" >
+          <Typography variant="h4" className="cursor-pointer" >
             Bazaar6
           </Typography>
 
