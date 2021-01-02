@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserIdContext } from '../../utils/Store';
-import MiniDrawer from '../../components/MiniDrawer/index';
+    import MiniDrawer from '../../components/MiniDrawer/index';
 import Paper from '@material-ui/core/Paper';
 import { Grid, Container, Button } from '@material-ui/core/';
 import ApexChart from '../../components/BudgetChart'
@@ -11,7 +10,6 @@ function Dashboard(props) {
 
     const [budget, setBudget] = useState()
     const [spent, setSpent] = useState()
-    const [userId, setUserId] = useContext(UserIdContext)
 
     // useEffect(() => {
     //     getBudget()

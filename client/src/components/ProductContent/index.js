@@ -19,12 +19,11 @@ const useStyles = makeStyles(() => ({
         transition: "0.4s ease"
     },
     middlebottom: {
-        position: "relative",
+        position: "absolute",
+        margin: "auto",
+        left:-50,
         bottom: 0,
-
     }
-
-
 }));
 
 
@@ -34,8 +33,8 @@ export default function ProductContent() {
     //  product context
     return (
 
-        <Grid container spacing={2}>
-            <Grid item className="m-2">
+        <Grid container spacing={2} className="m-2 ml-2">
+            <Grid item  >
                 <PictsSlideshow />
             </Grid>
             <Grid item xs={12} sm container>
@@ -54,19 +53,11 @@ export default function ProductContent() {
                             onMouseLeave={(e) => { e.target.style.background = "white"; e.target.style.color = "black" }}>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                              Add to cart
-                             </button>
-
+                        </button>
                     </Grid>
                 </Grid>
-                <Grid item xs container direction="column" >
-
-                    
-                        <Grid item >
-                            <Typography variant="h4" className="mr-2">
-                                Price : $19.00
-                    </Typography>
-                        </Grid>
-                        <Grid item className={classes.middlebottom}>
+                <Grid item xs={4} sm container className="position-relative">
+                    <Grid item className={classes.middlebottom}>
                         <Typography variant="h6" >
                             Seller : { }
                         </Typography>
@@ -75,11 +66,14 @@ export default function ProductContent() {
                             onMouseLeave={(e) => { e.target.style.background = "white"; e.target.style.color = "black" }}>
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                              Contact Seller
-                             </button>
+                        </button>
                     </Grid>
-
                 </Grid>
-
+                <Grid item >
+                    <Typography variant="h4" className="mr-2">
+                        Price : $19.00
+                    </Typography>
+                </Grid>
             </Grid>
         </Grid>
     )
