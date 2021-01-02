@@ -5,7 +5,6 @@ const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
-const Store = require('../client/src/utils/Store')
 
 const jwt_config = {
     algorithm: "HS256",
@@ -22,8 +21,6 @@ const authCookie = {
         secure: false,
     }
 };
-
-const [userId, setUserId] = useContext(UserIdContext)
 
 module.exports = {
     findAll: function (req, res) {
@@ -69,9 +66,6 @@ module.exports = {
                 ...req.body.user
             });
             const getUserCredentials = (user) => {
-
-                setUserId({user_id: user._id})
-
                 const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
                 const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
                 return { token, cookie };
