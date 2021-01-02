@@ -5,6 +5,7 @@ const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
+const Store = require('../client/src/utils/Store')
 
 const jwt_config = {
     algorithm: "HS256",
@@ -22,6 +23,8 @@ const authCookie = {
     }
 };
 
+const [userId, setUserId] = useContext(UserIdContext)
+
 module.exports = {
     findAll: function (req, res) {
         db.User
@@ -36,7 +39,15 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    getBudget: function(req, res) {
+        console.log("we're in the controller")
+        db.User
+            .findOne({_id: req.user_id})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     updateBudget: function (req, res) {
+        console.log("hello")
         db.User
             .findOneAndUpdate({ _id: req.user_id },
                 {
@@ -58,6 +69,7 @@ module.exports = {
                 ...req.body.user
             });
             const getUserCredentials = (user) => {
+                setUserId({user_id: user._id})
                 const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
                 const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
                 return { token, cookie };
