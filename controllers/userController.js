@@ -4,7 +4,6 @@ const auth = require('../auth')
 const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
-const jsonParser = bodyParser.json()
 
 const jwt_config = {
     algorithm: "HS256",
@@ -32,23 +31,15 @@ module.exports = {
     },
     findById: function (req, res) {
         db.User
-            .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-    getBudget: function(req, res) {
-        console.log("we're in the controller")
-        db.User
-            .findOne({_id: req.user_id})
+            .findById({ _id: req.user_id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     updateBudget: function (req, res) {
-        console.log("hello")
         db.User
             .findOneAndUpdate({ _id: req.user_id },
                 {
-                    setBudget: parseInt(req.body.budget)
+                    budget: parseInt(req.body.budget)
                 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -71,13 +62,13 @@ module.exports = {
                 return { token, cookie };
             };
             const { cookie, token } = getUserCredentials(createdUser);
-            const removeUser = async () => {
-                await db.User
-                    .findById({ _id: createdUser._id })
-                    .then(dbModel => dbModel.remove())
-                    .catch(err => res.status(422).json(err));
-            }
-            await removeUser()
+            // const removeUser = async () => {
+            //     await db.User
+            //         .findById({ _id: createdUser._id })
+            //         .then(dbModel => dbModel.remove())
+            //         .catch(err => res.status(422).json(err));
+            // }
+            // await removeUser()
             res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
                 user: { createdUser },
