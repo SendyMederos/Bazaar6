@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
     return (
         <>
-            <MiniDrawer>
-            </MiniDrawer>
+            <MiniDrawer/>
             <GridCarousel items={listData} />
+
+           
         </>
     )
 }

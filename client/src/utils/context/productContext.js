@@ -1,13 +1,10 @@
 import React from "react";
 
 const ProductContext = React.createContext({
-  productName: "",
-  description: "",
-  price:"",
-  image:[],
-  category:"",
+  product:{},
+  products:[],
   saveProduct: () => {},
   seeProduct:  () => {}
 });
 
-export default LanguageContext;
+export default ProductContext;
