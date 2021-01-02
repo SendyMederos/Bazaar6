@@ -3,6 +3,9 @@ const jwtDecode = require('jwt-decode')
 const auth = require('../auth')
 const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser')
+const jsonParser = bodyParser.json()
+const Store = require('../client/src/utils/Store')
 
 const jwt_config = {
     algorithm: "HS256",
@@ -20,6 +23,8 @@ const authCookie = {
     }
 };
 
+const [userId, setUserId] = useContext(UserIdContext)
+
 module.exports = {
     findAll: function (req, res) {
         db.User
@@ -34,18 +39,26 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    update: function (req, res) {
+    getBudget: function(req, res) {
+        console.log("we're in the controller")
         db.User
-            .findOneAndUpdate({ _id: req.user._id },
+            .findOne({_id: req.user_id})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    updateBudget: function (req, res) {
+        console.log("hello")
+        db.User
+            .findOneAndUpdate({ _id: req.user_id },
                 {
-                    setBudget: parseInt(req.body)
+                    setBudget: parseInt(req.body.budget)
                 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
         db.User
-            .findById({ _id: req.params.id })
+            .findById({ _id: req.user._id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -56,7 +69,9 @@ module.exports = {
                 ...req.body.user
             });
             const getUserCredentials = (user) => {
-                console.log(user)
+
+                setUserId({user_id: user._id})
+
                 const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
                 const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
                 return { token, cookie };
