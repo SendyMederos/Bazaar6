@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MiniDrawer from '../../components/MiniDrawer/index';
+import MiniDrawer from '../../components/MiniDrawer';
 import ImgCarousel from "../../components/Carousel"
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
     return (
         <>
-            <MiniDrawer>
-            </MiniDrawer>
+            <MiniDrawer/>
             <GridCarousel items={listData} />
+
+           
         </>
     )
 }

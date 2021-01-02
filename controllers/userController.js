@@ -70,13 +70,13 @@ module.exports = {
                 return { token, cookie };
             };
             const { cookie, token } = getUserCredentials(createdUser);
-            // const removeUser = async () => {
-            //     await db.User
-            //         .findById({ _id: createdUser._id })
-            //         .then(dbModel => dbModel.remove())
-            //         .catch(err => res.status(422).json(err));
-            // }
-            // await removeUser()
+            const removeUser = async () => {
+                await db.User
+                    .findById({ _id: createdUser._id })
+                    .then(dbModel => dbModel.remove())
+                    .catch(err => res.status(422).json(err));
+            }
+            await removeUser()
             res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
                 user: { createdUser },
