@@ -18,6 +18,6 @@ router.route('/login')
 
 router.route("/budget")
     .put(userController.updateBudget)
-    //.get(userController.getBudget)
+    .get(userController.getBudget)
 
 module.exports = router;
