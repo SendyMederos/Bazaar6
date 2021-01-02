@@ -4,8 +4,6 @@ const auth = require('../auth')
 const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
-const jsonParser = bodyParser.json()
-const Store = require('../client/src/utils/Store')
 
 const jwt_config = {
     algorithm: "HS256",
@@ -22,8 +20,6 @@ const authCookie = {
         secure: false,
     }
 };
-
-const [userId, setUserId] = useContext(UserIdContext)
 
 module.exports = {
     findAll: function (req, res) {
@@ -69,21 +65,18 @@ module.exports = {
                 ...req.body.user
             });
             const getUserCredentials = (user) => {
-
-                setUserId({user_id: user._id})
-
                 const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
                 const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
                 return { token, cookie };
             };
             const { cookie, token } = getUserCredentials(createdUser);
-            const removeUser = async () => {
-                await db.User
-                    .findById({ _id: createdUser._id })
-                    .then(dbModel => dbModel.remove())
-                    .catch(err => res.status(422).json(err));
-            }
-            await removeUser()
+            // const removeUser = async () => {
+            //     await db.User
+            //         .findById({ _id: createdUser._id })
+            //         .then(dbModel => dbModel.remove())
+            //         .catch(err => res.status(422).json(err));
+            // }
+            // await removeUser()
             res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
                 user: { createdUser },
