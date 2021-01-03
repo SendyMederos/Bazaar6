@@ -1,5 +1,12 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User.js')
+const _ = require("lodash")
+
+const publicRoutes = [
+	"/api/users/signup",
+	"/api/users/login",
+	"/blob"
+]
 
 const jwt_config = {
 	algorithm: "HS256",
@@ -20,7 +27,8 @@ const cookie = {
 };
 
 const validateUser = (req, res, next) => {
-	if (req.originalUrl !== "/api/users/signup" && req.originalUrl !== "/api/users/login") {
+
+	if (!_.includes(publicRoutes, req.originalUrl)) {
 		try {
 			jwt.verify(req.cookies["bazaar6_cookie"], jwt_encryption_key)
 			const decodedToken = jwt.decode(req.cookies["bazaar6_cookie"], jwt_encryption_key)
