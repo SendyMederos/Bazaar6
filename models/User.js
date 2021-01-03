@@ -48,7 +48,7 @@ const UserSchema = new Schema({
             ref: "Products"
         }
     ],
-    setBudget: {
+    budget: {
         type: Number,
         default: 0
     },

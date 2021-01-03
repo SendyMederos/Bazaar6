@@ -22,8 +22,7 @@ export default {
       updateBudget: function(budget) {
         return axios.put("/api/users/budget", budget)
       },
-      getBudget: function() {
-        console.log("we're in user api")
-        return axios.get("/api/users/budget")
+      getUser: function() {
+        return axios.get("/api/users")
       }
 };

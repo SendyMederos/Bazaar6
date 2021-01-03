@@ -22,10 +22,13 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
+import CreateIcon from '@material-ui/icons/Create';
+import StoreIcon from '@material-ui/icons/Store';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 const drawerWidth = 240;
 
-const icons = [<AccountBoxIcon />, <PageviewIcon />, <PostAddIcon />, <FeaturedPlayListIcon /> ]
+const icons = [<AccountBoxIcon />, <StoreIcon />, <PostAddIcon />, <StorefrontIcon />, <CreateIcon /> ]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -157,7 +160,7 @@ export default function MiniDrawer({ children }) {
         </div>
         <Divider />
         <List>
-          {['Account', 'Product Search', 'Post Product', 'Wanted Ads'].map((text, index) => (
+          {['Account', 'Products', 'Wanted Ads', 'Post Product', 'Post Wanted Ad' , ].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{icons[index]}</ListItemIcon>
               <ListItemText primary={text} />

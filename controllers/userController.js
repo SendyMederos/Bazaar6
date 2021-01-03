@@ -31,23 +31,15 @@ module.exports = {
     },
     findById: function (req, res) {
         db.User
-            .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-    getBudget: function(req, res) {
-        console.log("we're in the controller")
-        db.User
-            .findOne({_id: req.user_id})
+            .findById({ _id: req.user_id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     updateBudget: function (req, res) {
-        console.log("hello")
         db.User
             .findOneAndUpdate({ _id: req.user_id },
                 {
-                    setBudget: parseInt(req.body.budget)
+                    budget: parseInt(req.body.budget)
                 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
