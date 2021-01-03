@@ -47,7 +47,7 @@ export default function Signing() {
     // }
 
     function notamember() {
-        setAmember(true)
+        setAmember(!amember)
     }
     function login() {
        
