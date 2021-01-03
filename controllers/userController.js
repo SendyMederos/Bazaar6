@@ -77,7 +77,7 @@ module.exports = {
         } catch (error) {
             res.status(500).send({
                 message: {
-                    content: "An error occured creating user",
+                    content: "An error occurred creating user",
                     info: error.message,
                 },
             });
@@ -103,7 +103,7 @@ module.exports = {
         } catch (error) {
             res.status(500).send({
                 message: {
-                    content: "An error occured logging in",
+                    content: "An error occurred logging in",
                     info: error.message,
                 },
             });
