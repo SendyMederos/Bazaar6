@@ -1,28 +1,47 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import UserContext from "../../utils/context/userContext";
+
+
 
 export  function Signin() {
+    const { user, notamember, signup, login } = useContext(UserContext);
 
     return (<form>
         <h4> Log Into your account</h4>
-        <div class="form-group">
+        <div className="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-        <div class="form-group">
+        <div className="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" />
+            <input type="password" className="form-control" id="password" />
         </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+        <div className="form-group form-check">
+            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+            <label className="form-check-label" for="exampleCheck1">Remember Me</label>
+            <p className="float-right"> Don't have an account Yet?    </p>
         </div>
-        <button type="submit" class="btn btn-dark">Sign in</button>
+       
+        <button type="submit" className="btn btn-dark"
+             onClick={login}
+             onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
+             onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
+                Sign in
+        </button>
+        
+        <button type="submit" className="btn btn-dark float-right"
+            onClick={notamember}
+            onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
+            onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
+                Sign up
+        </button>
     </form>
     )
 }
 
 export function Signup() {
+    const { user, signup, notamember } = useContext(UserContext);
 
     return (<form>
         <h4> Sign up and get the best of us </h4>
@@ -46,33 +65,50 @@ export function Signup() {
             <input type="password" className="form-control" id="password" />
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" />
+            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
         </div>
-        <div class="form-group">
+        <div className="form-group">
             <label for="inputAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+            <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
+        <div className="form-row">
+            <div className="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" />
+                <input type="text" className="form-control" id="inputCity" />
             </div>
-            <div class="form-group col-md-4">
+            <div className="form-group col-md-4">
                 <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
+                <select id="inputState" className="form-control">
                     <option selected>Choose...</option>
                     <option>...</option>
                 </select>
             </div>
-            <div class="form-group col-md-2">
+            <div className="form-group col-md-2">
                 <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip" />
+                <input type="text" className="form-control" id="inputZip" />
+            </div>
+           
+        </div>
+        <div className="form-row col-12">
+            <div className="col-12">
+            <p className="float-right"> Have an account already? </p>
             </div>
         </div>
+        <button type="submit" className="btn btn-dark"
+            onClick={signup}
+            onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
+            onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
+               Create Account
+        </button>
 
-        <button type="submit" className="btn btn-dark">Sign Up</button>
+        <button type="submit" className="btn btn-dark float-right"
+             onClick={notamember}
+             onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
+             onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
+                Sign in
+        </button>
     </form >
     )
 }

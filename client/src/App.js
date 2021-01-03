@@ -4,6 +4,7 @@ import Dashboard from "./pages/dashboard";
 import HomePage from "./pages/home";
 import Posting from "./pages/posting";
 import Signup from "./pages/signup";
+import Signing from "./pages/signing";
 import Wanted from "./pages/wanted";
 import Product from "./pages/product";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/product" component={Product} />
+        <Route exact path="/signing" component={Signing} />
         {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
