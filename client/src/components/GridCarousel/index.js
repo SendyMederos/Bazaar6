@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import { MediaCard } from "../Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 import "./carousel.css";
 
@@ -42,8 +40,8 @@ const Arrow = ({ text, className }) => {
 	</div>)
 }
 
-const ArrowLeft = (<FontAwesomeIcon icon={faAngleLeft}/>)
-const ArrowRight = (<FontAwesomeIcon icon={faAngleRight}/>)
+const ArrowLeft = Arrow({ text: "<", className: "arrow-prev" })
+const ArrowRight = Arrow({ text: ">", className: "arrow-next" })
 
 const selected = (items[0] || { name: 'item0' }).name
 
@@ -55,10 +53,10 @@ export const GridCarousel = (props) => {
 		setSelectedState(key)
 	}
 
-	const marginOffset = props.offset || "70px";
+	const marginOffset = props.offset || "78px";
 
 	return (<>
-		<div className="grid-carousel" style={{ marginLeft: marginOffset, translate: 0, transition: 0, }}>
+		<div className="grid-carousel" style={{ marginLeft: marginOffset }}>
 			<ScrollMenu
 				data={Grid(items, selectedState)}
 				arrowLeft={ArrowLeft}

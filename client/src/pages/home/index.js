@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import MiniDrawer from '../../components/MiniDrawer/index';
 import ImgCarousel from "../../components/Carousel"
 import { makeStyles } from '@material-ui/core/styles';
-import JumboAd from '../../components/Jumbotron'
-import LearnModal from '../../components/LearnModal'
+//import JumboAd from '../../components/Jumbotron'
+//import LearnModal from '../../components/LearnModal'
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -31,7 +31,7 @@ export default function HomePage() {
     return (
         <>
             <MiniDrawer>
-                <JumboAd />
+                
             </MiniDrawer>
             <div className={classes.root}>
                 <Grid container spacing={3}>

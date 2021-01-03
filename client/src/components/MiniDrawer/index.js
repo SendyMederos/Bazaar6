@@ -25,7 +25,7 @@ import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import CreateIcon from '@material-ui/icons/Create';
 import StoreIcon from '@material-ui/icons/Store';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-
+import './style.css'
 const drawerWidth = 240;
 
 const icons = [<AccountBoxIcon />, <StoreIcon />, <PostAddIcon />, <StorefrontIcon />, <CreateIcon /> ]
@@ -85,15 +85,27 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
+    
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+   
+
   },
   navrightmenu: {
     marginLeft: "auto",
     cursor:"pointer"
+  },
+  menucolor:{
+    backgroundColor: "black",
+  },
+  bottomDrawer:{
+      overflowX: "hidden",  
+      overflowY: "hidden",
+      position: "relative"
   }
+
 }));
 
 export default function MiniDrawer({ children }) {
@@ -118,7 +130,7 @@ export default function MiniDrawer({ children }) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.menucolor}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -167,11 +179,16 @@ export default function MiniDrawer({ children }) {
             </ListItem>
           ))}
         </List>
+        <div className={classes.bottomDrawer}>
+          <img src="https://etc.usf.edu/clipart/81700/81739/81739_aster_turbin_md.gif"/>
+          </div>
       </Drawer>
-      <main className={classes.content}>
+      <main className={classes.content} >
+     
         <div className={classes.toolbar} />
+        
         {children}
       </main>
-    </div>
+     </div>
   );
 }

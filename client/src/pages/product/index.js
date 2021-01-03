@@ -7,8 +7,7 @@ export default function Product() {
     return (
         <>
             <MiniDrawer>
-
-                <Paper className="m-5">
+                <Paper className="m-2 d-flex">
 
                     <ProductContent />
                     
