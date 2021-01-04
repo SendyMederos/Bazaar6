@@ -101,9 +101,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "black",
   },
   bottomDrawer:{
-      overflowX: "hidden",  
-      overflowY: "hidden",
-      position: "relative"
+    
+      position: "relative",
+      marginLeft: "-468px"
+
   }
 
 }));
@@ -180,7 +181,7 @@ export default function MiniDrawer({ children }) {
           ))}
         </List>
         <div className={classes.bottomDrawer}>
-          <img src="https://etc.usf.edu/clipart/81700/81739/81739_aster_turbin_md.gif"/>
+          <img src="https://i.pinimg.com/originals/2f/0a/01/2f0a017d4e120c6fd8c3f062554c27ea.jpg"/>
           </div>
       </Drawer>
       <main className={classes.content} >
