@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -26,169 +26,200 @@ import CreateIcon from '@material-ui/icons/Create';
 import StoreIcon from '@material-ui/icons/Store';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import './style.css'
+import {Link} from "react-router-dom";
+
 const drawerWidth = 240;
 
-const icons = [<AccountBoxIcon />, <StoreIcon />, <PostAddIcon />, <StorefrontIcon />, <CreateIcon /> ]
+
+const links = [
+	{
+		name: "Account",
+		icon: (<AccountBoxIcon />),
+		to: "/account"
+	},
+	{
+		name: "Products",
+		icon: (<StoreIcon />),
+		to: "/products"
+	},
+	{
+		name: "Wanted Ads",
+		icon: (<PostAddIcon />),
+		to: "/wanted"
+	},
+	{
+		name: "Posting",
+		icon: (<StorefrontIcon />),
+		to: "/posting"
+	},
+	{
+		name: "Post Wanted Ad",
+		icon: (<CreateIcon />),
+		to: "/wanted/ads"
+	}
+]
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-   
+	root: {
+		display: 'flex',
+	},
+	appBar: {
+		zIndex: theme.zIndex.drawer + 1,
+		transition: theme.transitions.create(['width', 'margin'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+	},
+	appBarShift: {
+		marginLeft: drawerWidth,
+		width: `calc(100% - ${drawerWidth}px)`,
+		transition: theme.transitions.create(['width', 'margin'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	},
+	menuButton: {
+		marginRight: 36,
+	},
+	hide: {
+		display: 'none',
+	},
+	drawer: {
+		width: drawerWidth,
+		flexShrink: 0,
+		whiteSpace: 'nowrap',
+	},
+	drawerOpen: {
+		width: drawerWidth,
+		transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	},
+	drawerClose: {
+		transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		overflowX: 'hidden',
+		width: theme.spacing(7) + 1,
+		[theme.breakpoints.up('sm')]: {
+			width: theme.spacing(9) + 1,
+		},
+	},
+	toolbar: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'flex-end',
+		padding: theme.spacing(0, 1),
+		// necessary for content to be below app bar
+		...theme.mixins.toolbar,
 
-  },
-  navrightmenu: {
-    marginLeft: "auto",
-    cursor:"pointer"
-  },
-  menucolor:{
-    backgroundColor: "black",
-  },
-  bottomDrawer:{
-      overflowX: "hidden",  
-      overflowY: "hidden",
-      position: "relative"
-  }
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3),
+
+
+	},
+	navrightmenu: {
+		marginLeft: "auto",
+		cursor: "pointer"
+	},
+	menucolor: {
+		backgroundColor: "black",
+	},
+	bottomDrawer: {
+		overflowX: "hidden",
+		overflowY: "hidden",
+		position: "relative"
+	}
 
 }));
 
-export default function MiniDrawer({ children }) {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+export default function MiniDrawer({children}) {
+	const classes = useStyles();
+	const theme = useTheme();
+	const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar className={classes.menucolor}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h4" className="cursor-pointer" >
-            Bazaar6
-          </Typography>
+	return (
+		<div className={classes.root}>
+			<CssBaseline/>
+			<AppBar
+				position="fixed"
+				className={clsx(classes.appBar, {
+					[classes.appBarShift]: open,
+				})}
+			>
+				<Toolbar className={classes.menucolor}>
+					<IconButton
+						color="inherit"
+						aria-label="open drawer"
+						onClick={handleDrawerOpen}
+						edge="start"
+						className={clsx(classes.menuButton, {
+							[classes.hide]: open,
+						})}
+					>
+						<MenuIcon/>
+					</IconButton>
+					<Typography variant="h4" className="cursor-pointer">
+						Bazaar6
+					</Typography>
 
-          <div className={classes.navrightmenu} >
-            <TransitionsModal />
-          </div>
+					<div className={classes.navrightmenu}>
+						<TransitionsModal/>
+					</div>
 
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['Account', 'Products', 'Wanted Ads', 'Post Product', 'Post Wanted Ad' , ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{icons[index]}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <div className={classes.bottomDrawer}>
-          <img src="https://etc.usf.edu/clipart/81700/81739/81739_aster_turbin_md.gif"/>
-          </div>
-      </Drawer>
-      <main className={classes.content} >
-     
-        <div className={classes.toolbar} />
-        
-        {children}
-      </main>
-     </div>
-  );
+				</Toolbar>
+			</AppBar>
+			<Drawer
+				variant="permanent"
+				className={clsx(classes.drawer, {
+					[classes.drawerOpen]: open,
+					[classes.drawerClose]: !open,
+				})}
+				classes={{
+					paper: clsx({
+						[classes.drawerOpen]: open,
+						[classes.drawerClose]: !open,
+					}),
+				}}
+			>
+				<div className={classes.toolbar}>
+					<IconButton onClick={handleDrawerClose}>
+						{theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+					</IconButton>
+				</div>
+				<Divider/>
+				<List>
+					{links.map(link => (
+						<Link to={link.to}>
+							<ListItem button key={link.name}>
+								<ListItemIcon>{link.icon}</ListItemIcon>
+								<ListItemText primary={link.name}/>
+							</ListItem>
+						</Link>
+					))}
+				</List>
+				<div className={classes.bottomDrawer}>
+					<img src="https://etc.usf.edu/clipart/81700/81739/81739_aster_turbin_md.gif"/>
+				</div>
+			</Drawer>
+			<main className={classes.content}>
+
+				<div className={classes.toolbar}/>
+
+				{children}
+			</main>
+		</div>
+	);
 }

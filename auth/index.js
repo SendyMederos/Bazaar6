@@ -5,7 +5,8 @@ const _ = require("lodash")
 const publicRoutes = [
 	"/api/users/signup",
 	"/api/users/login",
-	"/blob"
+	"/blob",
+	"/favicon.ico"
 ]
 
 const jwt_config = {
@@ -26,9 +27,14 @@ const cookie = {
 	}
 };
 
-const validateUser = (req, res, next) => {
+function validateUser (req, res, next) {
 
-	if (!_.includes(publicRoutes, req.originalUrl)) {
+	let isUploadRequest = req.originalUrl.startsWith("/uploads")
+	let isPublicRoute = _.includes(publicRoutes, req.originalUrl)
+
+	if (isPublicRoute || isUploadRequest) {
+		next()
+	} else {
 		try {
 			jwt.verify(req.cookies["bazaar6_cookie"], jwt_encryption_key)
 			const decodedToken = jwt.decode(req.cookies["bazaar6_cookie"], jwt_encryption_key)
@@ -40,8 +46,6 @@ const validateUser = (req, res, next) => {
 			console.log(err.message)
 			res.status(401).send("Unauthorized")
 		}
-	} else {
-		next()
 	}
 }
 

@@ -53,16 +53,16 @@ export const GridCarousel = (props) => {
 		setSelectedState(key)
 	}
 
-	const marginOffset = props.offset || "78px";
-
 	return (<>
-		<div className="grid-carousel" style={{ marginLeft: marginOffset }}>
+		<div className="grid-carousel">
 			<ScrollMenu
 				data={Grid(items, selectedState)}
 				arrowLeft={ArrowLeft}
 				arrowRight={ArrowRight}
 				selected={selectedState}
 				onSelect={onSelect}
+				translate={-1}
+				wheel={false}
 			/>
 		</div>
 	</>);
