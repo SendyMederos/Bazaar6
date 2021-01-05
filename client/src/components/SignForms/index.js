@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import UserContext from "../../utils/context/userContext";
 import "./style.css"
 
 export function Signin() {
 
     const { user, notamember, signup, login } = useContext(UserContext);
+
 
     return (<form>
 		    <h4> Log Into your account</h4>
@@ -31,7 +32,7 @@ export function Signin() {
                 Sign in
         </button>
 
-        <button type="submit" className="btn btn-dark float-right"
+        <button type="button" className="btn btn-dark float-right"
             onClick={notamember}
             onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
             onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
@@ -42,8 +43,10 @@ export function Signin() {
 }
 
 export function Signup() {
-    const { user, signup, notamember } = useContext(UserContext);
 
+    const { user, signup, notamember } = useContext(UserContext);
+    const states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+    const optionStates = states.map((state, i) => { return (<option key={i} value={state}> {state} </option>)})
     return (<form>
         <h4> Sign up and get the best of us </h4>
         <div className="form-row">
@@ -82,8 +85,7 @@ export function Signup() {
             <div className="form-group col-md-4">
                 <label htmlFor="inputState">State</label>
                 <select name="inputState" id="inputState" className="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+                    {optionStates}
                 </select>
             </div>
             <div className="form-group col-md-2">
@@ -104,7 +106,7 @@ export function Signup() {
                Create Account
         </button>
 
-        <button type="submit" className="btn btn-dark float-right"
+        <button type="button" className="btn btn-dark float-right"
              onClick={notamember}
              onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>

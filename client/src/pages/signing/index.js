@@ -6,21 +6,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import UserContext from "../../utils/context/userContext";
 
 
-
 const useStyles = makeStyles(() => ({
-
-
-
 
 }));
 
-
-
-
 export default function Signing() {
 
-    const [amember, setAmember] = useState(false);
-    const [user, setUser] = useState({});
+    const [amember, setAmember] = useState();
+    var  user ={};
+   
 
     const classes = useStyles();
 
@@ -48,14 +42,29 @@ export default function Signing() {
     function notamember() {
         setAmember(!amember)
     }
-    function login() {
-       
+   async  function signup (e) {
+       e.preventDefault()
+       user = {
+            firstName: e.target.fristname.value,
+            lastName: e.target.lastname.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
+            location: {
+                street: e.target.inputAddress.value + e.target.inputAddress2.value,
+                city: e.target.inputCity.value,
+                state: e.target.inputState.value,
+                postcode: e.target.inputZip.value,
+            }
+        }
+        console.log(user)
+        alert(user)
     }
-    function signup() {
+    function login() {
+
      }
 
     return (
-        <UserContext.Provider value={{ user, login, signup, notamember }}>
+    <UserContext.Provider value={{ login, signup, notamember }}>
             <div style={{ width: "100%" }}>
                 <div className="row">
                     <div className="col-12 backbox">
@@ -69,6 +78,6 @@ export default function Signing() {
                     </div>
                 </div>
             </div>
-        </UserContext.Provider>
+         </UserContext.Provider>
     )
 }

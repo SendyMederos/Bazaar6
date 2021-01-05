@@ -1,7 +1,6 @@
 import React from "react";
 
 const UserContext = React.createContext({
-	user: {},
 	login: () => {},
 	signup: () => {},
 	notamember: () => {},
