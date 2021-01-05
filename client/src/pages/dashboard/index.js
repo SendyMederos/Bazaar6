@@ -14,7 +14,6 @@ function Dashboard(props) {
 
     const [budget, setBudget] = useState(0)
     const [spent, setSpent] = useState(0)
-    const [percentage, setPercentage] = useState(0)
     let inputBudget = ""
 
     useEffect(() => {
@@ -41,10 +40,6 @@ function Dashboard(props) {
     const handleFormSubmit = async () => {
         await updateBudget(inputBudget)
         getBudget()
-    }
-
-    const percentBudget = () => {
-        setPercentage(spent / budget)
     }
 
     return (
