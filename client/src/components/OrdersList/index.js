@@ -40,7 +40,7 @@ const rows = [
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
-    height: 327
+    height: 418
   },
 });
 
