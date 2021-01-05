@@ -21,15 +21,18 @@ function App() {
 // Refer to the Basic Example documentation if you need to.
 // (https://reacttraining.com/react-router/web/example/basic)
   return (<Router>
+     <Switch>
+    <Route exact path="/" component={Signing} />
+    <Route path="/signing" component={Signing} />
     <Layout>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
+     
+        
         <Route path="/home" component={HomePage} />
         <Route path="/signup" component={Signup} />
         <Route path="/dashboard" component={Dashboard} />
 
         <Route path="/product" component={Product} />
-        <Route path="/signing" component={Signing} />
+        
         <Route path="/posting" component={Posting} />
 
         <Route component={ Error404 } />
@@ -40,8 +43,9 @@ function App() {
         <Route exact path="/wanted" component={Wanted} />
         
         <Route exact path="/checkout" component={Checkout} /> */}
-      </Switch>
+     
     </Layout>
+    </Switch>
   </Router>
   )
 };

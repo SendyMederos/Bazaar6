@@ -121,7 +121,6 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: theme.spacing(3),
 
-
 	},
 	navrightmenu: {
 		marginLeft: "auto",
@@ -178,7 +177,7 @@ export default function MiniDrawer({children}) {
 					</Typography>
 
 					<div className={classes.navrightmenu}>
-						<TransitionsModal/>
+						
 					</div>
 
 				</Toolbar>
@@ -202,7 +201,7 @@ export default function MiniDrawer({children}) {
 					</IconButton>
 				</div>
 				<Divider/>
-				<List>
+				<List >
 					{links.map(link => (
 						<Link to={link.to}>
 							<ListItem button key={link.name}>
