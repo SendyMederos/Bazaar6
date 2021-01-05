@@ -101,7 +101,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "black",
   },
   bottomDrawer:{
-    
+      overflowX: "hidden",
+      overflowY: "hidden",
       position: "relative",
       marginLeft: "-468px"
 
