@@ -3,7 +3,7 @@ import ScrollMenu from "react-horizontal-scrolling-menu";
 import { MediaCard } from "../Card";
 
 import "./carousel.css";
-
+//<i class="fa fa-arrow-circle-left fa-3x"></i>
 const items = [
 	{ name: "item0" },
 	{ name: "item1" },
