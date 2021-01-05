@@ -206,7 +206,7 @@ export default function MiniDrawer({children}) {
 						<Link to={link.to}>
 							<ListItem button key={link.name}>
 								<ListItemIcon>{link.icon}</ListItemIcon>
-								<ListItemText primary={link.name}/>
+								<ListItemText style={{color: 'forestgreen'}} primary={link.name}/>
 							</ListItem>
 						</Link>
 					))}
