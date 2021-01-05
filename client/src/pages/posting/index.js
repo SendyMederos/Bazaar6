@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import MiniDrawer from '../../components/MiniDrawer'
 
 import "../../styles/upload.css"
 
@@ -117,6 +118,8 @@ export const Posting = (props) => {
 	)
 
 	return (
+	<>
+		<MiniDrawer>
 		<section style={{ maxWidth: "680px", width: "100%" }}>
 
 			<div className="box has-advanced-upload">
@@ -143,6 +146,7 @@ export const Posting = (props) => {
 				</div>
 			</div>
 		</section>
-	)
+		</MiniDrawer>
+	</>)
 
 }
