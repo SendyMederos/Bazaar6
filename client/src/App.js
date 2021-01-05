@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import Checkout from "./pages/checkout";
+import React from "react"
+//import Checkout from "./pages/checkout";
 import Dashboard from "./pages/dashboard";
 import HomePage from "./pages/home";
 import Signup from "./pages/signup";
 import Signing from "./pages/signing";
-import Wanted from "./pages/wanted";
+//import Wanted from "./pages/wanted";
 import Product from "./pages/product";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Error404} from "./pages/errors/404";

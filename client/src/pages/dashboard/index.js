@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import MiniDrawer from '../../components/MiniDrawer/index';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import { Grid, Container, Button } from '@material-ui/core/';
+import { Grid, Container} from '@material-ui/core/';
 import BudgetForm from '../../components/BudgetForm'
 import BudgetInfo from '../../components/BudgetInfo'
-import ApexChart from '../../components/BudgetChart'
 import OrdersList from '../../components/OrdersList';
 import UserAPI from '../../utils/UserAPI';
 import GaugeChart from 'react-gauge-chart';
