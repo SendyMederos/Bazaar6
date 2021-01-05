@@ -39,12 +39,12 @@ const links = [
 	{
 		name: "Posting",
 		icon: (<StorefrontIcon />),
-		to: "/postingProd"
+		to: "/post-product"
 	},
 	{
 		name: "Post Wanted Ad",
 		icon: (<PostAddIcon  />),
-		to: "/postingWanted"
+		to: "/post-wanted"
 	}
 ]
 
