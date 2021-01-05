@@ -16,17 +16,17 @@ export default function PictsSlideshow () {
             <Fade>
                 <div className="each-fade">
                     <div className="image-container" >
-                        <img src={fadeImages[0]} style={{width:"500px"}} />
+                        <img src={fadeImages[0]} alt="" style={{width:"500px"}} />
                     </div>
                 </div>
                 <div className="each-fade">
                     <div className="image-container" >
-                        <img src={fadeImages[1]} style={{width:"500px"}}/>
+                        <img src={fadeImages[1]} alt="" style={{width:"500px"}}/>
                     </div>
                 </div>
                 <div className="each-fade">
-                    <div className="image-container" style={{width:"500px"}}>
-                        <img src={fadeImages[2]} />
+                    <div className="image-container"  style={{width:"500px"}}>
+                        <img src={fadeImages[2]} alt="" />
                     </div>
                 </div>
             </Fade>

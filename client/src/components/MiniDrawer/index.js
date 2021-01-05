@@ -15,13 +15,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import TransitionsModal from '../Modal'
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import PageviewIcon from '@material-ui/icons/Pageview';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import CreateIcon from '@material-ui/icons/Create';
 import StoreIcon from '@material-ui/icons/Store';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -212,7 +207,7 @@ export default function MiniDrawer({children}) {
 					))}
 				</List>
 				<div className={classes.bottomDrawer}>
-					<img src="https://i.pinimg.com/originals/2f/0a/01/2f0a017d4e120c6fd8c3f062554c27ea.jpg"/>
+					<img src="https://i.pinimg.com/originals/2f/0a/01/2f0a017d4e120c6fd8c3f062554c27ea.jpg" alt=""/>
 				</div>
 			</Drawer>
 			<main className={classes.content}>
