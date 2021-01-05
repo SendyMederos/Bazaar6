@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import Checkout from "./pages/checkout";
+import React from "react"
+//import Checkout from "./pages/checkout";
 import Dashboard from "./pages/dashboard";
 import HomePage from "./pages/home";
 import Signup from "./pages/signup";

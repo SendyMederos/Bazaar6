@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { createUser } from '../../services/http/authHttp';
+import React, { useState } from "react";
+//import { createUser, login } from '../../services/http/authHttp';
 import { Signup, Signin } from '../../components/SignForms';
-import Container from '@material-ui/core/Container';
 import "./style.css"
 import { makeStyles } from '@material-ui/core/styles';
 import UserContext from "../../utils/context/userContext";
