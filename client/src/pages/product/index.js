@@ -6,13 +6,9 @@ import Paper from '@material-ui/core/Paper';
 export default function Product() {
     return (
         <>
-            <MiniDrawer>
-                <Paper className="m-2 d-flex">
-
-                    <ProductContent />
-                    
-                    </Paper>
-            </MiniDrawer>
+            <Paper className="m-2 d-flex">
+                <ProductContent />
+            </Paper>
         </>
     )
 }

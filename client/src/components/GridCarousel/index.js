@@ -20,15 +20,15 @@ const items = [
 	{ name: "item12" },
 ];
 
-const GridItem = ({ text, selected }) => {
-	return (<div className={`grid-item ${selected ? 'active' : ''}`}>
-		{text}
-	</div>)
-};
+// const GridItem = ({ text, selected }) => {
+// 	return (<div className={`grid-item ${selected ? 'active' : ''}`}>
+// 		{text}
+// 	</div>)
+// };
 
 const Grid = (items, selected) => {
 	return items.map( (item, index) => {
-		const { name } = item;
+		// const { name } = item;
 		//return (<GridItem text={name} key={name} selected={selected} />)
 		return (<MediaCard key={index} />)
 	});
