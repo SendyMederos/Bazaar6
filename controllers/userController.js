@@ -1,9 +1,6 @@
 const db = require("../models")
-const jwtDecode = require('jwt-decode')
 const auth = require('../auth')
-const signToken = auth.signToken
 const jwt = require('jsonwebtoken')
-const bodyParser = require('body-parser')
 
 const jwt_config = {
     algorithm: "HS256",

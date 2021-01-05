@@ -15,10 +15,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import BallotIcon from '@material-ui/icons/Ballot';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import CreateIcon from '@material-ui/icons/Create';
-import StoreIcon from '@material-ui/icons/Store';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import './style.css'
 import {Link} from "react-router-dom";
@@ -30,27 +29,22 @@ const links = [
 	{
 		name: "Account",
 		icon: (<AccountBoxIcon />),
-		to: "/account"
-	},
-	{
-		name: "Products",
-		icon: (<StoreIcon />),
-		to: "/products"
+		to: "/Dashboard"
 	},
 	{
 		name: "Wanted Ads",
-		icon: (<PostAddIcon />),
+		icon: (<BallotIcon />),
 		to: "/wanted"
 	},
 	{
 		name: "Posting",
 		icon: (<StorefrontIcon />),
-		to: "/posting"
+		to: "/post-product"
 	},
 	{
 		name: "Post Wanted Ad",
-		icon: (<CreateIcon />),
-		to: "/wanted/ads"
+		icon: (<PostAddIcon  />),
+		to: "/post-wanted"
 	}
 ]
 

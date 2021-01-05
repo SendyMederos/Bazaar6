@@ -2,23 +2,25 @@ import React from 'react';
 import "./style.css"
 
 export function Signin({ setisLoggingIn, handleFormChange, handleFinish }) {
+
     return (<div>
-            <h4> Log Into your account</h4>
-            <div className="form-group">
-                <label htmlFor="email">Email address</label>
-                <input onChange={(e) => handleFormChange(e.target.value, 'email')} type="email" className="form-control" id="email" aria-describedby="emailHelp"/>
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
-            </div>
-            <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input onChange={(e) => handleFormChange(e.target.value, 'password')} type="password" className="form-control" id="password"/>
-            </div>
-            <div className="form-group form-check">
-                <input  type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                <label className="form-check-label" htmlFor="exampleCheck1">Remember Me</label>
-                <p className="float-right"> Don't have an account Yet? </p>
-            </div>
+		    <h4> Log Into your account</h4>
+		    <div className="form-group">
+			    <label htmlFor="email">Email address</label>
+			    <input onChange={(e) => handleFormChange(e.target.value, 'email')} type="email" className="form-control" id="email" aria-describedby="emailHelp"/>
+			    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
+				    else.</small>
+		    </div>
+		    <div className="form-group">
+			    <label htmlFor="password">Password</label>
+			    <input onChange={(e) => handleFormChange(e.target.value, 'password')} type="password" className="form-control" id="password"/>
+		    </div>
+		    <div className="form-group form-check">
+			    <input  type="checkbox" className="form-check-input" id="exampleCheck1"/>
+			    <label className="form-check-label" htmlFor="exampleCheck1">Remember Me</label>
+			    <p className="float-right"> Don't have an account Yet? </p>
+		    </div>
+
         <button  className="btn btn-dark"
              onClick={handleFinish}
              onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
@@ -37,7 +39,7 @@ export function Signin({ setisLoggingIn, handleFormChange, handleFinish }) {
 export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
     const states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
     const optionStates = states.map((state, i) => { return (<option key={i} value={state}> {state} </option>)})
-    return (<div>
+    return ( <div>
         <h4> Sign up and get the best of us </h4>
         <div className="form-row">
             <div className="form-group col-md-6">
