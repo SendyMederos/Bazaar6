@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MiniDrawer from '../../components/MiniDrawer/index';
 import Paper from '@material-ui/core/Paper';
-import { Grid, Container} from '@material-ui/core/';
+import { Grid, Container } from '@material-ui/core/';
 import BudgetForm from '../../components/BudgetForm'
 import BudgetInfo from '../../components/BudgetInfo'
 import OrdersList from '../../components/OrdersList';
@@ -33,7 +33,7 @@ function Dashboard(props) {
 
     const handleInputChange = (event) => {
         inputBudget = event.target.value
-      };
+    };
 
     const handleFormSubmit = async () => {
         await updateBudget(inputBudget)
@@ -46,9 +46,9 @@ function Dashboard(props) {
                 <Grid container spacing={5}>
                     <Grid item xs={12} md={12} sm={4} lg={4}>
                         {budget === 0 ?
-                            <BudgetForm 
-                            onClick={handleFormSubmit}
-                            onChange={handleInputChange}
+                            <BudgetForm
+                                onClick={handleFormSubmit}
+                                onChange={handleInputChange}
                             />
                             :
                             <Paper align="center">

@@ -55,7 +55,6 @@ export default function Signing() {
     const handleFinish = async () => {
         const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
         !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
-        console.log(valueToSend)
     }
 
     return (
