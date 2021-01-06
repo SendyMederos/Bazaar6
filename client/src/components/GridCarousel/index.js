@@ -4,8 +4,6 @@ import { MediaCard } from "../Card";
 
 import "./carousel.css";
 
-
-
 const items = [
 	{ name: "item0" },
 	{ name: "item1" },
@@ -32,7 +30,8 @@ const Grid = (items, selected) => {
 	return items.map( (item, index) => {
 		// const { name } = item;
 		//return (<GridItem text={name} key={name} selected={selected} />)
-		return (<MediaCard key={index} />)
+		console.log(item)
+		return (<MediaCard key={index} product={item} />)
 	});
 }
 
@@ -47,8 +46,9 @@ const ArrowRight = Arrow({ text: <i class="fa fa-arrow-circle-right fa-3x"></i>,
 
 const selected = (items[0] || { name: 'item0' }).name
 
-export const GridCarousel = (props) => {
-
+export const GridCarousel = ({items}) => {
+   console.log(items)
+   console.log("hello")
 	let [ selectedState, setSelectedState ] = useState(selected)
 
 	const onSelect = (key) => {
