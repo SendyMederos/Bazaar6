@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Signup, Signin } from '../../components/SignForms';
 import "./style.css"
 import { makeStyles } from '@material-ui/core/styles';
-import UserContext from "../../utils/context/userContext";
-import { sign } from "jsonwebtoken";
-import { keys } from "@material-ui/core/styles/createBreakpoints";
+import { createUser, login } from '../../services/http/authHttp'; 
+
+
 
 
 
@@ -28,38 +28,51 @@ export default function Signing() {
         password: '',
     });
 
-    const [signUpForm, setSignUpForm] =useState({
+    const [signUpForm, setSignUpForm] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: '',
-  
-            street: '',
-            state: '',
-            zip: '',
-            city: '',
-   
+        street: '',
+        state: '',
+        zip: '',
+        city: ''
     });
 
-
     const handleFormChange = (value, key) => {
-        
+
         isLoggingIn
-        ? setLoginForm({
-            ...loginForm,
-            [key]: value
-        }) :
-        setSignUpForm({
-            ...signUpForm,
-            [key] : value,
-        })
-        
-       
+            ? setLoginForm({
+                ...loginForm,
+                [key]: value
+            }) :
+            setSignUpForm({
+                ...signUpForm,
+                [key]: value,
+            })
     }
 
-    const handleFinish = () => {
-        const valueToSend = isLoggingIn ? loginForm : signUpForm;
+    const formatData = ({ firstName, lastName, email, password, street, state, zip, city }) => {
+        return {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            location: {
+                street: street,
+                city: city,
+                state: state,
+                postcode: zip,
+                
+            }
+        }
+    }
 
+    const handleFinish = async () => {
+        const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
+        await !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
+        setLoginForm("")
+        setSignUpForm("")
     }
 
 
@@ -75,15 +88,15 @@ export default function Signing() {
                         <h1 className="align-center"> BAZAAR6</h1>
                         {isLoggingIn ?
                             <Signin
-                            handleFinish={handleFinish}
-                            handleFormChange={handleFormChange}
-                            loginForm={loginForm}
+                                handleFinish={handleFinish}
+                                handleFormChange={handleFormChange}
+                                loginForm={loginForm}
                                 setisLoggingIn={() => setisLoggingIn(!isLoggingIn)} /> :
-                                 <Signup 
-                                 handleFinish={handleFinish} 
-                                 handleFormChange={handleFormChange}
-                                 signUpForm={signUpForm}
-                                 setisLoggingIn={() => setisLoggingIn(!isLoggingIn)} />}
+                            <Signup
+                                handleFinish={handleFinish}
+                                handleFormChange={handleFormChange}
+                                signUpForm={signUpForm}
+                                setisLoggingIn={() => setisLoggingIn(!isLoggingIn)} />}
                     </div>
                 </div>
                 <div className="col-2 right">

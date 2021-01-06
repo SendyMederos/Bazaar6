@@ -48,6 +48,12 @@ const UserSchema = new Schema({
             ref: "Products"
         }
     ],
+    wantedPosts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Post"
+        }
+    ],
     budget: {
         type: Number,
         default: 0

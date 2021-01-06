@@ -3,24 +3,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-    postNumber: {
-        type: Number,
+    // postNumber: {
+    //     type: Number,
+    // },
+    productName: {
+        type: String,
     },
-    product:{
-            type: Schema.Types.ObjectId,
-            ref: "Product"
+    price:
+    {
+        type: Number
     },
-    postee: 
-        {
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        },
-    viewers: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        }
-    ],
+    category: {
+        type: String
+    },
+    notes: {
+        type: String
+    }
 });
 
 const Post = mongoose.model("Post", PostSchema);
