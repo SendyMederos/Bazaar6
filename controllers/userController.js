@@ -55,7 +55,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     createUser: async (req, res) => {
-        console.log("hi controler")
         try {
             const createdUser = await db.User.create({
                 ...req.body.user
@@ -83,7 +82,7 @@ module.exports = {
             })
                 .then(res => {
                     if (res === null) {
-                        res.status(500).send("User doesn't exist")
+                        res.status(500).send()
                     } else {
                         const { cookie, token } = getUserCredentials(findUser);
                         res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
