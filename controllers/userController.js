@@ -12,7 +12,9 @@ const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key"
 const authCookie = {
     cookie_name: "bazaar6_cookie",
     cookie_config: {
+
         maxAge: 24 * 60 * 60 * 60,
+
         httpOnly: true,
         secure: false,
     }
