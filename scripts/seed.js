@@ -14,18 +14,18 @@ export const runSeed = async () => {
         const products =[];
         const users=[];
         const quantity = 20;
-        for (let i = 0; i < 120; i++){
+        for (let i = 0; i < 100; i++){
             products.push({
                     productName: faker.commerce.productName(),
                     description: faker.commerce.productDescription(),
                     price: faker.commerce.price(),
-                    image: faker.image.technics(),
+                    image: faker.image.nature(),
                     category: faker.commerce.department(),
                 })
             
         }
 
-        for (let i = 0; i < 5; i++){
+        for (let i = 0; i < quantity; i++){
             users.push( 
                     {
                     firstName: faker.name.firstName(),
