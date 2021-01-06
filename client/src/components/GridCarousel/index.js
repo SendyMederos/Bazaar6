@@ -4,6 +4,8 @@ import { MediaCard } from "../Card";
 
 import "./carousel.css";
 
+
+
 const items = [
 	{ name: "item0" },
 	{ name: "item1" },

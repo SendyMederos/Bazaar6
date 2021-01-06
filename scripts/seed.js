@@ -14,7 +14,7 @@ export const runSeed = async () => {
         const products =[];
         const users=[];
         const quantity = 20;
-        for (let i = 0; i < quantity; i++){
+        for (let i = 0; i < 50; i++){
             products.push({
                     productName: faker.commerce.productName(),
                     description: faker.commerce.productDescription(),
@@ -25,7 +25,7 @@ export const runSeed = async () => {
             
         }
 
-        for (let i = 0; i < quantity; i++){
+        for (let i = 0; i < 5; i++){
             users.push( 
                     {
                     firstName: faker.name.firstName(),
