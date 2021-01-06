@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Signup, Signin } from '../../components/SignForms';
 import "./style.css"
-import { createUser, login } from '../../services/http/authHttp'; 
+import { createUser, login } from '../../services/http/authHttp';
 
 export default function Signing() {
 
     const [isLoggingIn, setisLoggingIn] = useState(false);
+    const [isValid, setIsValid] = useState()
 
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -47,15 +48,14 @@ export default function Signing() {
                 city: city,
                 state: state,
                 postcode: zip,
-                
+
             }
         }
     }
 
     const handleFinish = async () => {
-        const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
-        !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
-        console.log(valueToSend)
+            const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
+            !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
     }
 
     return (
@@ -76,6 +76,7 @@ export default function Signing() {
                                 signUpForm={signUpForm}
                                 setisLoggingIn={() => setisLoggingIn(!isLoggingIn)} />}
                     </div>
+                    {isValid === false ? <h1>User doesn't exist</h1> : ""}
                 </div>
                 <div className="col-2 right">
                     <img className="" src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />

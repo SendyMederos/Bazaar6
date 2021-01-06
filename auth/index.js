@@ -16,8 +16,6 @@ const jwt_config = {
 
 const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
 
-console.log(process.env.JWT_ENCRYPTION_KEY)
-
 const cookie = {
 	cookie_name: "bazaar6_cookie",
 	cookie_config: {
@@ -38,7 +36,6 @@ function validateUser (req, res, next) {
 		try {
 			jwt.verify(req.cookies["bazaar6_cookie"], jwt_encryption_key)
 			const decodedToken = jwt.decode(req.cookies["bazaar6_cookie"], jwt_encryption_key)
-			console.log(decodedToken.user._id)
 			req.user_id = decodedToken.user._id
 			next()
 		}

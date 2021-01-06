@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const jwt_config = {
     algorithm: "HS256",
-    expiresIn: 20000,
+    expiresIn: "1h",
 };
 
 const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
@@ -80,13 +80,19 @@ module.exports = {
             const findUser = await db.User.findOne({
                 email: req.body.email,
                 password: req.body.password
-            });
-            const { cookie, token } = getUserCredentials(findUser);
-            res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
-            res.status(201).send({
-                user: { findUser },
-                message: { content: "Successfully logged in" },
-            });
+            })
+                .then(res => {
+                    if (res === null) {
+                        res.status(500).send("User doesn't exist")
+                    } else {
+                        const { cookie, token } = getUserCredentials(findUser);
+                        res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
+                        res.status(201).send({
+                            user: { findUser },
+                            message: { content: "Successfully logged in" },
+                        });
+                    }
+                })
         } catch (error) {
             res.status(500).send({
                 message: {
