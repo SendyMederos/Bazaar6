@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.css';
 
-export function MediaCard(props) {
-
+export function MediaCard({product}) {
+console.log(product)
 	return (
 		<div className="wrapper">
 			<div className="card">
