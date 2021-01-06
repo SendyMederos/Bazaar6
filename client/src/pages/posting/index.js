@@ -1,12 +1,51 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import MiniDrawer from '../../components/MiniDrawer'
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 
 import "../../styles/upload.css"
 
 const uploadAddress = "http://localhost:8080/upload"
 
+
+const useStyles = makeStyles((theme) => ({
+
+	root: {
+	  display: 'flex',
+	  marginLeft: "auto",
+	  marginRight: "auto",
+	  textAlign: "center",
+	  boxSizing: "border-box",
+	  backgroundColor: "white",
+	  border: "10%",
+	  borderRadius: "10%",
+	  padding: "10%",
+	  fontFamily: "Arial, Helvetica"
+  
+  
+	},
+	input: {
+	  width: "100%"
+	}
+  }))
+
 export const Posting = (props) => {
+	const classes = useStyles();
+
+	const handleSubmit = (evt) => {
+	  evt.preventDefault();
+	  alert(`Submitting Name ${productName}`)
+	  fetch('/api/products', {
+		method: 'POST',
+		body: JSON.stringify({ productName, price, category, description, image }),
+		headers: { 'Content-Type': 'application/json'}
+	  })
+  
+	}
+	const [productName, setProductName] = useState("");
+	const [price, setPrice] = useState("");
+	const [category, setCategory] = useState("");
+	const [description, setDescription] = useState("");
+	const [image, setImage] = useState("");
 
 	// Maintains state for error messages from the API service
 	const [ errorMessage, setErrorMessage ] = useState("")
@@ -102,7 +141,11 @@ export const Posting = (props) => {
 	// Define the base view for upload receipts
 	const waitingForUploadView = (
 		<>
-			<input name="file-uploader" {...getInputProps()} />
+			<input 
+				name="file-uploader" {...getInputProps()}
+				type="file"
+				value={image}
+				onChange={e => setImage(e.target.value)} />
 			<label htmlFor="file-uploader">
 				<strong>Choose a file</strong>
 				<span> or drag it here</span>
@@ -119,7 +162,56 @@ export const Posting = (props) => {
 
 	return (
 	<>
-		<MiniDrawer>
+	<div className={classes.root} >
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label>Product Name:</label>
+        <input
+            className={classes.input}
+            type="text"
+            value={productName}
+            onChange={e => setProductName(e.target.value)}
+          />
+
+      </div>
+      <div className="form-group">
+      <label>Selling Price:</label>
+        <input
+            className={classes.input}
+            type="text"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
+          />
+      </div>
+      <div className="form-group">
+      <label>Product Category:</label>
+        <select 
+          className={classes.input}
+          type="text"
+          value={category}
+          onChange={e => setCategory(e.target.value)}
+          >
+            <option selected value="select-category">Select Category</option>
+            <option value="electronics">Electronics</option>
+            <option value="appliances">Appliances</option>
+            <option value="lawn-and-garden">Lawn and Garden</option>
+            <option value="furniture">Furniture</option>
+            <option value="auto-parts">Auto Parts</option>
+            <option value="tools">Tools</option>
+            <option value="video-games">Video Games</option>
+          </select>
+      </div>
+	  <div className="form-group">
+      <label >Product Description:</label>
+        <textarea
+            className={classes.input}
+            type="text"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+      </div>
+	  <div className="form-group">
+      <label >Product Image:</label>
 		<section style={{ maxWidth: "680px", width: "100%" }}>
 
 			<div className="box has-advanced-upload">
@@ -146,7 +238,9 @@ export const Posting = (props) => {
 				</div>
 			</div>
 		</section>
-		</MiniDrawer>
+		</div>
+		</form>
+    </div>
 	</>)
 
 }

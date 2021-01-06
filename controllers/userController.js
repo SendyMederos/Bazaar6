@@ -18,6 +18,12 @@ const authCookie = {
     }
 };
 
+const getUserCredentials = (user) => {
+    const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
+    const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
+    return { token, cookie };
+};
+
 module.exports = {
     findAll: function (req, res) {
         db.User
@@ -49,15 +55,11 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     createUser: async (req, res) => {
+        console.log("hi controler")
         try {
             const createdUser = await db.User.create({
                 ...req.body.user
             });
-            const getUserCredentials = (user) => {
-                const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
-                const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
-                return { token, cookie };
-            };
             const { cookie, token } = getUserCredentials(createdUser);
             res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
@@ -79,11 +81,6 @@ module.exports = {
                 email: req.body.email,
                 password: req.body.password
             });
-            const getUserCredentials = (user) => {
-                const token = jwt.sign({ user }, jwt_encryption_key, jwt_config);
-                const cookie = { cookie_name: authCookie.cookie_name, cookie_config: authCookie.cookie_config };
-                return { token, cookie };
-            };
             const { cookie, token } = getUserCredentials(findUser);
             res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
             res.status(201).send({
