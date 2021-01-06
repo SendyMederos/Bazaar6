@@ -36,12 +36,6 @@ const UserSchema = new Schema({
             type: String
         },
     },
-    orders: [
-        {
-            type: Schema.Types.ObjectId,
-            Ref: "Order"
-        }
-    ],
     products: [
         {
             type: Schema.Types.ObjectId,
@@ -52,6 +46,12 @@ const UserSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: "Post"
+        }
+    ],
+    wishList: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: products
         }
     ],
     budget: {

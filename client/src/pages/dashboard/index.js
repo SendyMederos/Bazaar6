@@ -12,6 +12,8 @@ function Dashboard(props) {
 
     const [budget, setBudget] = useState(0)
     const [spent, setSpent] = useState(0)
+    const [wishlist, setWishlist] = useState([])
+    const [products, setProducts] = useState([])
     let inputBudget = ""
 
     useEffect(() => {
@@ -38,6 +40,16 @@ function Dashboard(props) {
     const handleFormSubmit = async () => {
         await updateBudget(inputBudget)
         getBudget()
+    }
+
+    const getWishlist = () => {
+        UserAPI.getWishlist()
+        .then(res => setWishlist(res.data.wishList))
+    }
+
+    const getPostedProducts = () => {
+        UserAPI.getProducts()
+        .then(res => setProducts(res.data.products))
     }
 
     return (
@@ -67,7 +79,9 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
-                            <OrdersList />
+                            <OrdersList 
+                                wishlist={wishlist}
+                            />
                         </Paper>
                     </Grid>
                 </Grid>
