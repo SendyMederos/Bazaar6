@@ -26,7 +26,6 @@ function App() {
     <Switch>
       <Route exact path="/" component={Signing} />
       <Route path="/signing" component={Signing} />
-      <Route path="/signup" component={Signup} />
       <Layout>
       <Route path="/home" component={HomePage} />
       <Route path="/dashboard" component={Dashboard} />
@@ -35,7 +34,7 @@ function App() {
       <Route path="/post-wanted" component={PostWanted} />
       <Route path="/wanted" component={Wanted} />
       </Layout>
-      <Route component={Error404} />
+      <Route path="/*" component={Error404} />
       {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
