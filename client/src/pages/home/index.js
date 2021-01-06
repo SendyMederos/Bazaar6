@@ -9,40 +9,48 @@ import Paper from '@material-ui/core/Paper';
 import { MediaCard } from '../../components/Card';
 import { GridCarousel } from "../../components/GridCarousel";
 import {getCategoryProducts, getProducts} from "../../utils/ProductAPI";
-import _ from 'underscore'
+import _ from "underscore";
 
-const groceries = []
-const getGroupedProducts= (category) => {
-    getCategoryProducts(category).then(res => console.log(res))
+
+let filterProd = [];
+
+const getGroupedProducts= () => {
     getProducts().then(res => {
-        console.log(_.groupBy(res.data, res.data.category))
+        console.log(res) 
+        filterProd = _.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5)
+        console.log(filterProd)
     })
 }
 
+
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         flexGrow: 1,
+//     },
+//     imgCarousel: {
+//         padding: theme.spacing(0),
+//         justifyContent: 'center',
+//         textAlign: 'center',
+//         color: theme.palette.text.secondary,
+//     },
+// }));
+
 export default function HomePage() {
+    // const classes = useStyles();
     useEffect(() =>  {
-        getGroupedProducts(category)
+        getGroupedProducts()
     }, [])
     return (
         <>
                 <Grid item xs={10}>
+                    {/* {   this is the ADDs carousel} */}
+                </Grid>
 
-                </Grid>
-                <Grid item xs={12}>
-                    <GridCarousel items={listData} />
-                </Grid>
-                <Grid item xs={12}>
-                    <GridCarousel items={listData} />
-                </Grid>
-                <Grid item xs={12}>
-                    <GridCarousel items={listData} />
-                </Grid>
-                <Grid item xs={12}>
-                    <GridCarousel items={listData} />
-                </Grid>
-                <Grid item xs={12}>
-                    <GridCarousel items={listData} />
-                </Grid>
+                {filterProd.map(category => {
+                   return <Grid item xs={12}>
+                             <GridCarousel items={category} />
+                          </Grid>
+                })}
 
                 {/*<div className={classes.root}>
                 <Grid container spacing={3}>
