@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {makeStyles, useTheme} from '@material-ui/core/styles';
+import { saveWanted } from '../../utils/WantedAPI';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -30,14 +31,20 @@ export function PostWanted(props) {
   
   const classes = useStyles();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
+  const saveWantedAd = (productName, targetPrice, category, addNotes) => {
+    saveWanted({ 
+      "productName": productName,
+      "price": targetPrice,
+      "category": category,
+      "notes": addNotes  
+  })
+}
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     alert(`Submitting Name ${productName}`)
-    fetch('/api/products', {
-      method: 'POST',
-      body: JSON.stringify({ productName, targetPrice, category, addNotes }),
-      headers: { 'Content-Type': 'application/json'}
-    })
+    saveWantedAd()
+
 
   }
   return (

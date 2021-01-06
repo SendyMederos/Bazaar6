@@ -33,7 +33,7 @@ function App() {
       <Route path="/post-wanted" component={PostWanted} />
       <Route path="/wanted" component={Wanted} />
       </Layout>
-      <Route component={Error404} />
+      <Route path="/*" component={Error404} />
       {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />

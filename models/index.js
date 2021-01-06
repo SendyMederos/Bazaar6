@@ -3,5 +3,6 @@ module.exports = {
     Order: require("./Order"),
     Post: require("./Post"),
     Product: require("./Product"),
+    Wanted: require("./Wanted"),
 }
   
