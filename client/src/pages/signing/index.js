@@ -1,23 +1,7 @@
 import React, { useState } from "react";
-//import { createUser, login } from '../../services/http/authHttp';
 import { Signup, Signin } from '../../components/SignForms';
 import "./style.css"
-import { makeStyles } from '@material-ui/core/styles';
 import { createUser, login } from '../../services/http/authHttp'; 
-
-
-
-
-
-const useStyles = makeStyles(() => ({
-
-
-
-
-}));
-
-
-
 
 export default function Signing() {
 
@@ -70,15 +54,9 @@ export default function Signing() {
 
     const handleFinish = async () => {
         const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
-        await !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
-        setLoginForm("")
-        setSignUpForm("")
+        !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
+        console.log(valueToSend)
     }
-
-
-    const classes = useStyles();
-
-
 
     return (
         <div style={{ width: "100%" }}>

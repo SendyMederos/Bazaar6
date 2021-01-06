@@ -1,5 +1,4 @@
-import React, {useContext} from 'react';
-import UserContext from "../../utils/context/userContext";
+import React from 'react';
 import "./style.css"
 
 export function Signin({ setisLoggingIn, handleFormChange, handleFinish }) {
@@ -26,9 +25,8 @@ export function Signin({ setisLoggingIn, handleFormChange, handleFinish }) {
              onClick={handleFinish}
              onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
-                Sign in
+                Log in
         </button>
-
         <button  className="btn btn-dark float-right"
               onClick={setisLoggingIn}
             onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
@@ -38,10 +36,10 @@ export function Signin({ setisLoggingIn, handleFormChange, handleFinish }) {
     </div>
     )
 }
-
 export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
-
-    return (<div>
+    const states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+    const optionStates = states.map((state, i) => { return (<option key={i} value={state}> {state} </option>)})
+    return ( <div>
         <h4> Sign up and get the best of us </h4>
         <div className="form-row">
             <div className="form-group col-md-6">
@@ -64,7 +62,6 @@ export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
             <label htmlFor="password">Password</label>
             <input onChange={(e) => handleFormChange(e.target.value, 'password')} name="password" type="password" className="form-control" id="password" />
         </div>
-
         <div className="form-group">
             <label htmlFor="inputAddress">Address</label>
             <input onChange={(e) => handleFormChange(e.target.value, 'street')} name="inputAddress" type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
@@ -81,15 +78,14 @@ export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
             <div className="form-group col-md-4">
                 <label htmlFor="inputState">State</label>
                 <select onChange={(e) => handleFormChange(e.target.value, 'state')} name="inputState" id="inputState" className="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+                    <option key="99" value="select">Select a State</option>
+                    {optionStates}
                 </select>
             </div>
             <div className="form-group col-md-2">
                 <label htmlFor="inputZip">Zip</label>
                 <input onChange={(e) => handleFormChange(e.target.value, 'zip')} name="inputZip" type="text" className="form-control" id="inputZip" />
             </div>
-
         </div>
         <div className="form-row col-12">
             <div className="col-12">
@@ -102,12 +98,11 @@ export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
             onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
                Create Account
         </button>
-
         <button  className="btn btn-dark float-right"
              onClick={setisLoggingIn}
              onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
-                Sign in
+                Log in
         </button>
         </div>
     )
