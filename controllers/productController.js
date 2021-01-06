@@ -3,8 +3,8 @@ const db = require("../models")
 module.exports = {
     findAll: function (req, res) {
         db.Product
-            .find(req.query)
-            .sort({ date: -1 })
+            .find({})
+            .sort({ category: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

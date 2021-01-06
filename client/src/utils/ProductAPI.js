@@ -7,6 +7,8 @@ export const saveProduct = (userData) => {
 }
 
 export const getProducts = () => {
+  console.log("axios")
+
   return axios.get(`${path}`)
 }
 

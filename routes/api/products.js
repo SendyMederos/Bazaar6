@@ -2,7 +2,8 @@ const router = require("express").Router();
 const productController = require("../../controllers/productController");
 
 router.route("/")
-    .post(productController.create);
+    .post(productController.create)
+    .get(productController.findAll);
 
 router.route("/:category")
     .get(productController.findByCategory)

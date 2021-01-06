@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 //import NewImage from "../../components/ProductUpload";
 import { MediaCard } from '../../components/Card';
 import { GridCarousel } from "../../components/GridCarousel";
-import {getCategoryProducts} from "../../utils/ProductAPI";
+import {getCategoryProducts, getProducts} from "../../utils/ProductAPI";
 
 const groceries = []
 const listData = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
@@ -16,6 +16,11 @@ const category = "Garden"
 const getGroupedProducts= (category) => {
 
     getCategoryProducts(category).then(res => console.log(res))
+    getProducts().then(res => {
+        console.log(res) 
+        let productArray = [res.data]
+        console.log(_.groupBy(productArray, res.data.category))})
+
 }
 
 
@@ -34,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
     const classes = useStyles();
     useEffect(() =>  {
+        
         getGroupedProducts(category)
     }, [])
     return (
