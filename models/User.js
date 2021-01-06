@@ -51,7 +51,7 @@ const UserSchema = new Schema({
     wishList: [
         {
             type: Schema.Types.ObjectId,
-            ref: products
+            ref: "Products"
         }
     ],
     budget: {
