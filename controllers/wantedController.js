@@ -2,43 +2,32 @@ const db = require("../models")
 
 module.exports = {
     findAll: function (req, res) {
-        db.Product
+        db.Wanted
             .find(req.query)
             .sort({ date: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    findByCategory: function (req, res) {
-        try{
-        console.log(req.params.category)
-        db.Product
-            .find({ category: req.params.category})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-        } catch {
-            console.log("ERR")
-        }
-    },
     findById: function (req, res) {
-        db.Product
+        db.Wanted
             .findById(req.user_id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-        db.Product
+        db.Wanted
             .create(req.user_id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
-        db.Product
+        db.Wanted
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
-        db.Product
+        db.Wanted
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))

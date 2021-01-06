@@ -12,7 +12,7 @@ const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key"
 const authCookie = {
     cookie_name: "bazaar6_cookie",
     cookie_config: {
-        maxAge: 24 * 60 * 60,
+        maxAge: 24 * 60 * 60 * 60,
         httpOnly: true,
         secure: false,
     }
@@ -55,7 +55,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     createUser: async (req, res) => {
-        console.log("hi controler")
         try {
             const createdUser = await db.User.create({
                 ...req.body.user
@@ -83,7 +82,7 @@ module.exports = {
             })
                 .then(res => {
                     if (res === null) {
-                        res.status(500).send("User doesn't exist")
+                        res.status(500).send()
                     } else {
                         const { cookie, token } = getUserCredentials(findUser);
                         res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
