@@ -2,7 +2,6 @@ import React from "react"
 //import Checkout from "./pages/checkout";
 import Dashboard from "./pages/dashboard";
 import HomePage from "./pages/home";
-import Signup from "./pages/signup";
 import Signing from "./pages/signing";
 import { PostWanted } from "./pages/postWanted";
 import { Wanted } from "./pages/wanted";
@@ -26,7 +25,6 @@ function App() {
     <Switch>
       <Route exact path="/" component={Signing} />
       <Route path="/signing" component={Signing} />
-      <Route path="/signup" component={Signup} />
       <Layout>
       <Route path="/home" component={HomePage} />
       <Route path="/dashboard" component={Dashboard} />
