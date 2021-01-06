@@ -7,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import AcUnitIcon from '@material-ui/icons/AcUnit';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -27,8 +26,8 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
+function createData(name, price, id) {
+  return { name, price, id };
 }
 
 const rows = [
@@ -40,12 +39,15 @@ const rows = [
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
-    height: 418
+    height: 418,
+    maxHeight: 418
   },
 });
 
-export default function OrdersList() {
+export default function OrdersList(props) {
   const classes = useStyles();
+
+  //const rows = props.wishlist.map(e => createData(e))
 
   return (
     <TableContainer component={Paper}>
@@ -60,9 +62,9 @@ export default function OrdersList() {
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
-              <StyledTableCell align="left"><AcUnitIcon /></StyledTableCell>
-              <StyledTableCell align="center">{row.calories}</StyledTableCell>
-              <StyledTableCell align="center">{row.fat}</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
+              <StyledTableCell align="center">{row.name}</StyledTableCell>
+              <StyledTableCell align="center">{row.price}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
