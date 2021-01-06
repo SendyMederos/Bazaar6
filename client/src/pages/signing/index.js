@@ -1,37 +1,17 @@
 import React, { useState } from "react";
-//import { createUser, login } from '../../services/http/authHttp';
 import { Signup, Signin } from '../../components/SignForms';
 import "./style.css"
-<<<<<<< HEAD
-=======
-import { makeStyles } from '@material-ui/core/styles';
 import { createUser, login } from '../../services/http/authHttp'; 
 
-
-
-
-
-const useStyles = makeStyles(() => ({
-
-
-
-
-}));
-
-
->>>>>>> cdc15a93dc8b4371ca091b4aa40b3b12bc1f67a9
-
-
 export default function Signing() {
+
     const [isLoggingIn, setisLoggingIn] = useState(false);
+
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: '',
     });
-<<<<<<< HEAD
-=======
 
->>>>>>> cdc15a93dc8b4371ca091b4aa40b3b12bc1f67a9
     const [signUpForm, setSignUpForm] = useState({
         firstName: '',
         lastName: '',
@@ -40,23 +20,6 @@ export default function Signing() {
         street: '',
         state: '',
         zip: '',
-<<<<<<< HEAD
-        city: '',
-    });
-    const handleFormChange = (value, keys) => {
-        isLoggingIn ?
-         setLoginForm({
-                ...loginForm,
-                [keys]: value
-            }) :
-            setSignUpForm({
-                ...signUpForm,
-                 [keys]: value,
-            })
-    }
-    const handleFinish = () => {
-        const valueToSend = isLoggingIn ? loginForm : signUpForm;
-=======
         city: ''
     });
 
@@ -91,18 +54,17 @@ export default function Signing() {
 
     const handleFinish = async () => {
         const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
-        await !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
-        setLoginForm("")
-        setSignUpForm("")
->>>>>>> cdc15a93dc8b4371ca091b4aa40b3b12bc1f67a9
+        !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
+        console.log(valueToSend)
     }
+
     return (
         <div style={{ width: "100%" }}>
             <div className="row">
                 <div className="col-12 backbox">
                     <div className="forms">
                         <h1 className="align-center"> BAZAAR6</h1>
-                        {!isLoggingIn ?
+                        {isLoggingIn ?
                             <Signin
                                 handleFinish={handleFinish}
                                 handleFormChange={handleFormChange}

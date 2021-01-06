@@ -1,6 +1,7 @@
 import http from './index'
 
 export const createUser = async (createdUser) => {
+  console.log("http")
   const {
     data: { user },
   } = await http.post("/users/signup", { user: createdUser });

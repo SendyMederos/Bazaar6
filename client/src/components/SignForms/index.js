@@ -25,7 +25,7 @@ export function Signin({ setisLoggingIn, handleFormChange, handleFinish }) {
              onClick={handleFinish}
              onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
-                Sign in
+                Log in
         </button>
         <button  className="btn btn-dark float-right"
               onClick={setisLoggingIn}
@@ -78,6 +78,7 @@ export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
             <div className="form-group col-md-4">
                 <label htmlFor="inputState">State</label>
                 <select onChange={(e) => handleFormChange(e.target.value, 'state')} name="inputState" id="inputState" className="form-control">
+                    <option key="99" value="select">Select a State</option>
                     {optionStates}
                 </select>
             </div>
@@ -101,7 +102,7 @@ export function Signup({ setisLoggingIn, handleFormChange, handleFinish }) {
              onClick={setisLoggingIn}
              onMouseEnter={(e) => { e.target.style.background = "white"; e.target.style.color = "black"}}
              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white"}}>
-                Sign in
+                Log in
         </button>
         </div>
     )
