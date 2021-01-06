@@ -2,9 +2,8 @@ import axios from "axios";
 export default {
 
    /// saves a user 
-    savePost: function(userData) {
-      console.log()
-      return axios.post("/api/posts", userData);
+    savePost: function(postData) {
+      return axios.post("/api/posts", postData);
     },
       // Gets all users
       getPosts: function() {

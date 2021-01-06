@@ -2,6 +2,24 @@ import React, { useState } from "react";
 //import { createUser, login } from '../../services/http/authHttp';
 import { Signup, Signin } from '../../components/SignForms';
 import "./style.css"
+<<<<<<< HEAD
+=======
+import { makeStyles } from '@material-ui/core/styles';
+import { createUser, login } from '../../services/http/authHttp'; 
+
+
+
+
+
+const useStyles = makeStyles(() => ({
+
+
+
+
+}));
+
+
+>>>>>>> cdc15a93dc8b4371ca091b4aa40b3b12bc1f67a9
 
 
 export default function Signing() {
@@ -10,6 +28,10 @@ export default function Signing() {
         email: '',
         password: '',
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> cdc15a93dc8b4371ca091b4aa40b3b12bc1f67a9
     const [signUpForm, setSignUpForm] = useState({
         firstName: '',
         lastName: '',
@@ -18,6 +40,7 @@ export default function Signing() {
         street: '',
         state: '',
         zip: '',
+<<<<<<< HEAD
         city: '',
     });
     const handleFormChange = (value, keys) => {
@@ -33,6 +56,45 @@ export default function Signing() {
     }
     const handleFinish = () => {
         const valueToSend = isLoggingIn ? loginForm : signUpForm;
+=======
+        city: ''
+    });
+
+    const handleFormChange = (value, key) => {
+
+        isLoggingIn
+            ? setLoginForm({
+                ...loginForm,
+                [key]: value
+            }) :
+            setSignUpForm({
+                ...signUpForm,
+                [key]: value,
+            })
+    }
+
+    const formatData = ({ firstName, lastName, email, password, street, state, zip, city }) => {
+        return {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            location: {
+                street: street,
+                city: city,
+                state: state,
+                postcode: zip,
+                
+            }
+        }
+    }
+
+    const handleFinish = async () => {
+        const valueToSend = await isLoggingIn ? loginForm : formatData(signUpForm);
+        await !isLoggingIn ? createUser(valueToSend) : login(valueToSend)
+        setLoginForm("")
+        setSignUpForm("")
+>>>>>>> cdc15a93dc8b4371ca091b4aa40b3b12bc1f67a9
     }
     return (
         <div style={{ width: "100%" }}>
