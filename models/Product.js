@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-  imageName: {
-    type: String,
-    default: "none",
-    required: true
-  },
-  imageData: {
+  // imageName: {
+  //   type: String,
+  //   default: "none",
+  //   required: true
+  // },
+  productName: {
     type: String,
     required: true
   },
@@ -24,6 +24,10 @@ const ProductSchema = new Schema({
     type: String,
     required: false
   },
+  image: {
+    type: String,
+    required: false
+  }
 });
 
 const Product = mongoose.model("Product", ProductSchema);

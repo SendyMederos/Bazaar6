@@ -26,14 +26,7 @@ const items = [
 // 	</div>)
 // };
 
-const Grid = (items, selected) => {
-	return items.map( (item, index) => {
-		// const { name } = item;
-		//return (<GridItem text={name} key={name} selected={selected} />)
-		console.log(item)
-		return (<MediaCard key={index} product={item} />)
-	});
-}
+
 
 const Arrow = ({ text, className }) => {
 	return (<div className={className}>
@@ -44,12 +37,20 @@ const Arrow = ({ text, className }) => {
 const ArrowLeft = Arrow({ text: <i class="fa fa-arrow-circle-left fa-3x"></i>, className: "arrow-prev" })
 const ArrowRight = Arrow({ text: <i class="fa fa-arrow-circle-right fa-3x"></i>, className: "arrow-next" })
 
-const selected = (items[0] || { name: 'item0' }).name
+
 
 export const GridCarousel = ({items}) => {
-   console.log(items)
-   console.log("hello")
+
 	let [ selectedState, setSelectedState ] = useState(selected)
+
+	const selected = (items[0] || { name: 'item0' }).name
+
+	const Grid = (items, selected) => {
+		return items.map( (item, index) => {
+
+			return (<MediaCard key={index} product={item} />)
+		});
+	}
 
 	const onSelect = (key) => {
 		setSelectedState(key)

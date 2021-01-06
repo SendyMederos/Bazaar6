@@ -8,19 +8,11 @@ import Paper from '@material-ui/core/Paper';
 //import NewImage from "../../components/ProductUpload";
 import { MediaCard } from '../../components/Card';
 import { GridCarousel } from "../../components/GridCarousel";
-import {getCategoryProducts, getProducts} from "../../utils/ProductAPI";
+import { getCategoryProducts, getProducts } from "../../utils/ProductAPI";
 import _ from "underscore";
 
 
-let filterProd = [];
 
-const getGroupedProducts= () => {
-    getProducts().then(res => {
-        console.log(res) 
-        filterProd = _.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5)
-        console.log(filterProd)
-    })
-}
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -37,22 +29,32 @@ const getGroupedProducts= () => {
 
 export default function HomePage() {
     // const classes = useStyles();
-    useEffect(() =>  {
+    useEffect(() => {
         getGroupedProducts()
     }, [])
+
+    let [filterProd, setfilterProd] = useState([]);
+
+    const getGroupedProducts = () => {
+        getProducts().then(res => {
+            console.log(res)
+            setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
+            console.log(filterProd)
+        })
+    }
     return (
         <>
-                <Grid item xs={10}>
-                    {/* {   this is the ADDs carousel} */}
+            <Grid item xs={10}>
+                {/* {   this is the ADDs carousel} */}
+            </Grid>
+
+            {filterProd.map(category => {
+                return <Grid item xs={12}>
+                    <GridCarousel items={category} />
                 </Grid>
+            })}
 
-                {filterProd.map(category => {
-                   return <Grid item xs={12}>
-                             <GridCarousel items={category} />
-                          </Grid>
-                })}
-
-                {/*<div className={classes.root}>
+            {/*<div className={classes.root}>
                 <Grid container spacing={3}>
 
                 </Grid>
