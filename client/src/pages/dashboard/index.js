@@ -41,7 +41,6 @@ function Dashboard(props) {
     }
 
     return (
-        <MiniDrawer>
             <Container maxWidth="xl">
                 <Grid container spacing={5}>
                     <Grid item xs={12} md={12} sm={4} lg={4}>
@@ -83,7 +82,6 @@ function Dashboard(props) {
                     </Grid>
                 </Grid>
             </Container>
-        </MiniDrawer>
     );
 }
 
