@@ -7,6 +7,12 @@ const validateUser = require('./auth').validateUser
 const bodyParser = require('body-parser')
 const app = express();
 const PORT = process.env.PORT || 8080;
+const fs = require("fs")
+
+const { UploadsPath } = require("./utils/constants")
+
+if (!fs.existsSync(UploadsPath))
+  fs.mkdirSync(UploadsPath)
 
 require('dotenv').config({ silent: true })
 require('./auth')
@@ -19,6 +25,7 @@ app.use(cors({
   origin: ["http://localhost:3000"],
 }))
 app.use(cookieParser())
+app.use(bodyParser.raw({ limit: "100mb" }))
 app.use(bodyParser.json())
 app.use(validateUser)
 app.use(routes)

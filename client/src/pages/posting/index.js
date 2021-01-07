@@ -1,60 +1,54 @@
-import React, { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import React, {useCallback, useState} from "react";
+import {useDropzone} from "react-dropzone";
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 
 import "../../styles/upload.css"
+import {Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem} from "reactstrap";
 
-const uploadAddress = "http://localhost:8080/upload"
+const uploadAddress = "http://localhost:8080/uploads"
 
 
 const useStyles = makeStyles((theme) => ({
 
 	root: {
-	  display: 'flex',
-	  marginLeft: "auto",
-	  marginRight: "auto",
-	  textAlign: "center",
-	  boxSizing: "border-box",
-	  backgroundColor: "white",
-	  border: "10%",
-	  borderRadius: "10%",
-	  padding: "10%",
-	  fontFamily: "Arial, Helvetica"
-  
-  
+		display: 'flex',
+		marginLeft: "auto",
+		marginRight: "auto",
+		textAlign: "center",
+		boxSizing: "border-box",
+		backgroundColor: "white",
+		border: "10%",
+		borderRadius: "10%",
+		padding: "10%",
+		fontFamily: "Arial, Helvetica"
+
+
 	},
 	input: {
-	  width: "100%"
+		width: "100%"
 	}
-  }))
+}))
 
 export const Posting = (props) => {
 	const classes = useStyles();
 
-	const handleSubmit = (evt) => {
-	  evt.preventDefault();
-	  alert(`Submitting Name ${productName}`)
-	  fetch('/api/products', {
-		method: 'POST',
-		body: JSON.stringify({ productName, price, category, description, image }),
-		headers: { 'Content-Type': 'application/json'}
-	  })
-  
-	}
+
+	const [ fileToUpload, setFileToUpload ] = useState(null)
+	const [ filename, setFilename ] = useState(null)
+
 	const [productName, setProductName] = useState("");
 	const [price, setPrice] = useState("");
 	const [category, setCategory] = useState("");
 	const [description, setDescription] = useState("");
-	const [image, setImage] = useState("");
 
 	// Maintains state for error messages from the API service
-	const [ errorMessage, setErrorMessage ] = useState("")
+	const [errorMessage, setErrorMessage] = useState("")
 
 	// Maintains state for whether or not the file was successfully uploaded
-	const [ uploaded, setUploaded ] = useState(false)
+	const [uploaded, setUploaded] = useState(false)
 
 	// Maintains state for whether or not 'fetch' is currently uploading
-	const [ uploading, setUploading ] = useState(false)
+	const [uploading, setUploading] = useState(false)
 
 	// Define the 'onDrop' event handler to handle user file drops
 	// NOTE: Must be named 'onDrop' to work with Dropzone
@@ -69,9 +63,16 @@ export const Posting = (props) => {
 		let file = acceptedFiles[0]
 
 		// Convert the file into an array buffer
-		let payload = await file.arrayBuffer()
+		setFileToUpload(await file.arrayBuffer())
+		setFilename(file.name)
 
-		// Clear out any old error message and set
+	}, [])
+
+	const onSubmit = async () => {
+
+		const cookie = document.cookie;
+
+		// Clear out any old error message and setX
 		// the component to 'uploading' state before
 		// performing a fetch
 		setErrorMessage("")
@@ -81,10 +82,14 @@ export const Posting = (props) => {
 		// a response back
 		let response = await fetch(uploadAddress, {
 			method: "POST",
-			body: payload,
+			body: fileToUpload,
 			headers: {
 				"Content-Type": "application/octet-stream",
-				"X-Bazaar-Filename": file.name
+				"X-Bazaar-Filename": filename,
+				"X-Bazaar-Name": productName,
+				"X-Bazaar-Price": price,
+				"X-Bazaar-Category": category,
+				"X-Bazaar-Description": description,
 			}
 		})
 
@@ -125,27 +130,30 @@ export const Posting = (props) => {
 			setUploading(false)
 		}, 2000)
 
-	}, [])
+	}
 
 	// Prepare Dropzone and grab our helpers from the initialization
-	const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ onDrop })
+	const {acceptedFiles, getRootProps, getInputProps} = useDropzone({
+		onDrop,
+		disabled: fileToUpload != null
+	})
 
 	// If we wanna display the files that were currently
 	// uploaded we can utilize this variable below.
 	const files = acceptedFiles.map(file => (
-		<li key={file.path}>
+		<ListGroupItem key={file.path}>
 			{file.path} - {file.size} bytes
-		</li>
+		</ListGroupItem>
 	))
 
 	// Define the base view for upload receipts
 	const waitingForUploadView = (
 		<>
-			<input 
-				name="file-uploader" {...getInputProps()}
+			<input
+				{...getInputProps()}
+				name="file-uploader"
 				type="file"
-				value={image}
-				onChange={e => setImage(e.target.value)} />
+			/>
 			<label htmlFor="file-uploader">
 				<strong>Choose a file</strong>
 				<span> or drag it here</span>
@@ -161,86 +169,100 @@ export const Posting = (props) => {
 	)
 
 	return (
-	<>
-	<div className={classes.root} >
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Product Name:</label>
-        <input
-            className={classes.input}
-            type="text"
-            value={productName}
-            onChange={e => setProductName(e.target.value)}
-          />
+		<>
+			<div className={classes.root}>
+				<Form>
 
-      </div>
-      <div className="form-group">
-      <label>Selling Price:</label>
-        <input
-            className={classes.input}
-            type="text"
-            value={price}
-            onChange={e => setPrice(e.target.value)}
-          />
-      </div>
-      <div className="form-group">
-      <label>Product Category:</label>
-        <select 
-          className={classes.input}
-          type="text"
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-          >
-            <option selected value="select-category">Select Category</option>
-            <option value="electronics">Electronics</option>
-            <option value="appliances">Appliances</option>
-            <option value="lawn-and-garden">Lawn and Garden</option>
-            <option value="furniture">Furniture</option>
-            <option value="auto-parts">Auto Parts</option>
-            <option value="tools">Tools</option>
-            <option value="video-games">Video Games</option>
-          </select>
-      </div>
-	  <div className="form-group">
-      <label >Product Description:</label>
-        <textarea
-            className={classes.input}
-            type="text"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-      </div>
-	  <div className="form-group">
-      <label >Product Image:</label>
-		<section style={{ maxWidth: "680px", width: "100%" }}>
+					<FormGroup row>
+						<Label>Product Name:</Label>
+						<Input
+							type="text"
+							className={classes.input}
+							value={productName}
+							onChange={e => setProductName(e.target.value)}
+						/>
 
-			<div className="box has-advanced-upload">
-				<div className="box-input" {...getRootProps({className: "dropzone" })}>
-					<svg className="icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43"
-					     viewBox="0 0 50 43">
-						<path d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z"/>
-					</svg>
-					<div style={{ textAlign: "center" }}>
+					</FormGroup>
+					<FormGroup row>
+						<Label>Selling Price:</Label>
+						<Input
+							type="text"
+							className={classes.input}
+							value={price}
+							onChange={e => setPrice(e.target.value)}
+						/>
+					</FormGroup>
+					<FormGroup row>
+						<Label>Product Category:</Label>
+						<Input
+							type="select"
+							className={classes.input}
+							value={category}
+							onChange={e => setCategory(e.target.value)}
+						>
+							<option selected value="select-category">Select Category</option>
+							<option value="electronics">Electronics</option>
+							<option value="appliances">Appliances</option>
+							<option value="lawn-and-garden">Lawn and Garden</option>
+							<option value="furniture">Furniture</option>
+							<option value="auto-parts">Auto Parts</option>
+							<option value="tools">Tools</option>
+							<option value="video-games">Video Games</option>
+						</Input>
+					</FormGroup>
+					<FormGroup row>
+						<Label>Product Description:</Label>
+						<Input
+							type="textarea"
+							className={classes.input}
+							value={description}
+							onChange={e => setDescription(e.target.value)}
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label>Product Image:</Label>
+						<section style={{ marginTop: "30px", maxWidth: "680px", width: "100%"}}>
 
-						{ uploading ? currentlyUploadingView : waitingForUploadView }
+							<div className="box has-advanced-upload">
+								<div className="box-input" {...getRootProps({className: "dropzone"})}>
+									<svg className="icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43"
+									     viewBox="0 0 50 43">
+										<path
+											d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z"/>
+									</svg>
+									<div style={{textAlign: "center"}}>
 
-						{ uploaded && (<>
-							<br/>
-							<strong>Your image was successfully uploaded!</strong>
-						</>) }
+										{uploading ? currentlyUploadingView : waitingForUploadView}
 
-						{ errorMessage.length > 0 && (<>
-							<br/>
-							<strong>{ errorMessage }</strong>
-						</>) }
+										{uploaded && (<>
+											<br/>
+											<strong>Your image was successfully uploaded!</strong>
+										</>)}
 
-					</div>
-				</div>
+										{errorMessage.length > 0 && (<>
+											<br/>
+											<strong>{errorMessage}</strong>
+										</>)}
+
+									</div>
+								</div>
+							</div>
+						</section>
+
+						{acceptedFiles.length > 0 &&
+							<section style={{marginTop: "30px"}}>
+								<h4>Uploaded Files</h4>
+								<ListGroup>
+									{files}
+								</ListGroup>
+							</section>
+						}
+					</FormGroup>
+					<FormGroup row style={{ marginTop: "30px" }}>
+						<Button color="primary" style={{ width: "100%" }} onClick={onSubmit}>Submit</Button>
+					</FormGroup>
+				</Form>
 			</div>
-		</section>
-		</div>
-		</form>
-    </div>
-	</>)
+		</>)
 
 }

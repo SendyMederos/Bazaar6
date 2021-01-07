@@ -8,9 +8,9 @@ const ProductSchema = new Schema({
     default: "none",
     required: true
   },
-  imageData: {
+  productName: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,

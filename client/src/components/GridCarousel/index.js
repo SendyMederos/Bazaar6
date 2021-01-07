@@ -42,8 +42,8 @@ const Arrow = ({ text, className }) => {
 	</div>)
 }
 
-const ArrowLeft = Arrow({ text: <i class="fa fa-arrow-circle-left fa-3x"></i>, className: "arrow-prev" })
-const ArrowRight = Arrow({ text: <i class="fa fa-arrow-circle-right fa-3x"></i>, className: "arrow-next" })
+const ArrowLeft = Arrow({ text: <i className="fa fa-arrow-circle-left fa-3x"/>, className: "arrow-prev" })
+const ArrowRight = Arrow({ text: <i className="fa fa-arrow-circle-right fa-3x"/>, className: "arrow-next" })
 
 const selected = (items[0] || { name: 'item0' }).name
 
