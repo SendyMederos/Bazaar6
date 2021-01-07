@@ -97,7 +97,7 @@ export default function Signing() {
 				prompt: "Successfully, created your user"
 			}])
 
-			setTimeout(() => window.location.href = "/home", 3000)
+			setTimeout(() => window.location.href = "/home", 1500)
 			resetMessages()
 		}
 
@@ -110,7 +110,7 @@ export default function Signing() {
 					<div className="forms">
 						<h1 className="align-center"> BAZAAR6</h1>
 						{messagesView}
-						{isLoggingIn ?
+						{!isLoggingIn ?
 							<Signin
 								handleFinish={onLoginFinish}
 								handleFormChange={onLoginFormChange}

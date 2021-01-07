@@ -81,21 +81,26 @@ module.exports = {
             const findUser = await db.User.findOne({
                 email: req.body.user.email
             }, (err, user) => {
-                    if (!user || !user.validPassword(req.body.user.password)) {
-                        res.status(500).send()
-                    } else {
-                        const { cookie, token } = getUserCredentials(user);
-                        res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
-                        res.status(201).send({
-                            user: { user },
-                            message: { content: "Successfully logged in" },
-                        });
-                    }
-                })
+                if (!user || !user.validPassword(req.body.user.password)) {
+                    res.status(404)
+                    res.json({
+                        message: {
+                            content: "The username or password you entered does not match our records"
+                        }
+                    })
+                    return
+                }
+                const { cookie, token } = getUserCredentials(user);
+                res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
+                res.status(201).send({
+                    user: { user },
+                    message: { content: "Successfully logged in" },
+                });
+            })
         } catch (error) {
             res.status(500).send({
                 message: {
-                    content: "An error occurred logging in",
+                    error: "An error occurred logging in",
                     info: error.message,
                 },
             });
