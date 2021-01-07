@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom"
 export default function Product() {
     const [product, setProduct] = useState({})
     const { id } = useParams()
-    useEffect(() => {
-        getProduct(id)
+    useEffect( async () => {
+        await getProduct(id)
             .then(res => setProduct(res.data))
             .catch(err => console.log(err));
     }, [])
@@ -17,7 +17,7 @@ export default function Product() {
     return (
         <>
             <Paper className="m-2 d-flex">
-                <ProductContent product={product} />
+               { product.image ?  <ProductContent product={product} /> : ""}
             </Paper>
         </>
     )
