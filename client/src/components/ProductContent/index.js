@@ -3,8 +3,6 @@ import PictsSlideshow from "../PictsSlideshow"
 import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
-
-
 const useStyles = makeStyles(() => ({
 
     button: {
@@ -26,12 +24,8 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-
-
 export default function ProductContent({product}) {
     const classes = useStyles();
-    console.log(product.image)
-   console.log(product.image)
 
     return (
 
