@@ -39,16 +39,12 @@ const ArrowRight = Arrow({ text: <i className="fa fa-arrow-circle-right fa-3x"/>
 
 
 
-export const GridCarousel = ({items}) => {
-
+export const GridCarousel = ({items, addToUser}) => {
 	let [ selectedState, setSelectedState ] = useState(selected)
-
 	const selected = (items[0] || { name: 'item0' }).name
-
 	const Grid = (items, selected) => {
 		return items.map( (item, index) => {
-
-			return (<MediaCard key={index} product={item} />)
+			return (<MediaCard key={index} product={item} addToUser={addToUser}  />)
 		});
 	}
 

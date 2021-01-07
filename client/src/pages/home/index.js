@@ -10,9 +10,7 @@ import { MediaCard } from '../../components/Card';
 import { GridCarousel } from "../../components/GridCarousel";
 import { getCategoryProducts, getProducts } from "../../utils/ProductAPI";
 import _ from "underscore";
-
-
-
+import  updateUser  from '../../utils/UserAPI'
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -32,14 +30,21 @@ export default function HomePage() {
     useEffect(() => {
         getGroupedProducts()
     }, [])
-
     let [filterProd, setfilterProd] = useState([]);
-
     const getGroupedProducts = () => {
         getProducts().then(res => {
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
         })
     }
+
+    const  updateId = (id) => {
+		UserAPI.getUser().then(res=> {
+			ids = res.data.wishList
+		}).then(console.log(ids), ids.push(id))
+		.then(UserAPI.updateUser({ "wishList": ids }))
+		alert("This item has been added to your cart")
+	} 
+    
     return (
         <>
             <Grid item xs={10}>
@@ -48,7 +53,7 @@ export default function HomePage() {
 
             {filterProd.map(category => {
                 return <Grid item xs={12}>
-                    <GridCarousel items={category} />
+                    <GridCarousel items={category} addTouser={updateId}/>
                 </Grid>
             })}
 
