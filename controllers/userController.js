@@ -1,6 +1,7 @@
 const db = require("../models")
 const auth = require('../auth')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { query } = require("express");
 
 const jwt_config = {
     algorithm: "HS256",
@@ -40,11 +41,12 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    updateBudget: function (req, res) {
+    updateUser: function (req, res) {
+        let toUpdate = req.body
         db.User
-            .findOneAndUpdate({ _id: req.user_id },
+            .findOneAndUpdate({ _id: req.user_id }, toUpdate,
                 {
-                    budget: parseInt(req.body.budget)
+                    toUpdate
                 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
