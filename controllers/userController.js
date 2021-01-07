@@ -44,7 +44,7 @@ module.exports = {
     updateUser: function (req, res) {
         let toUpdate = req.body
         db.User
-            .findOneAndUpdate({ _id: req.user_id }, toUpdate.wishList || toUpdate.image ? {$push: toUpdate} : toUpdate)
+            .findOneAndUpdate({ _id: req.user_id }, toUpdate.wishList || toUpdate.products || toUpdate.wantedPosts ? {$push: toUpdate} : toUpdate)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
