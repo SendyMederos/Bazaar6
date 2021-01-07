@@ -13,7 +13,13 @@ const ProductSchema = new Schema({
     type: String,
   },
   imageName:  Array,
+<<<<<<< HEAD
+  
   image: Array,
+  
+=======
+  image: Array,
+>>>>>>> d7cb1e407cd4b3e263e7e422c32bf9079b86179f
   category: {
     type: String,
   }
