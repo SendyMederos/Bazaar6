@@ -79,17 +79,15 @@ module.exports = {
     login: async (req, res) => {
         try {
             const findUser = await db.User.findOne({
-                email: req.body.email,
-                password: req.body.password
-            })
-                .then(res => {
-                    if (res === null) {
+                email: req.body.user.email
+            }, (err, user) => {
+                    if (!user || !user.validPassword(req.body.user.password)) {
                         res.status(500).send()
                     } else {
-                        const { cookie, token } = getUserCredentials(findUser);
+                        const { cookie, token } = getUserCredentials(user);
                         res.cookie(cookie.cookie_name, token, { ...cookie.cookie_config });
                         res.status(201).send({
-                            user: { findUser },
+                            user: { user },
                             message: { content: "Successfully logged in" },
                         });
                     }

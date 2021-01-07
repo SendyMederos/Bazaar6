@@ -37,9 +37,7 @@ export default function HomePage() {
 
     const getGroupedProducts = () => {
         getProducts().then(res => {
-            console.log(res)
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
-            console.log(filterProd)
         })
     }
     return (

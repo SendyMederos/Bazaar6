@@ -39,28 +39,33 @@ const UserSchema = new Schema({
     products: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Products"
+            ref: "Products",
+            required: false
         }
     ],
     wantedPosts: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Post"
+            ref: "Post",
+            required: false
         }
     ],
     wishList: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Products"
+            ref: "Products",
+            required: false
         }
     ],
     budget: {
         type: Number,
-        default: 0
+        default: 0,
+        required: false
     },
     amountSpent: {
         type: Number,
-        default: 0
+        default: 0,
+        required: false
     }
 });
 
