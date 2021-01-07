@@ -18,7 +18,6 @@ export const getCategoryProducts = (category) => {
 }
 
 export const getProduct = (id) => {
-  console.log(id)
   return axios.get(`${path}/${id}`)
 }
 
