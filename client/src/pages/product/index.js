@@ -19,7 +19,7 @@ export default function Product() {
     return (
         <>
             <Paper className="m-2 d-flex">
-                <ProductContent product={product} />
+                {product && product.image ? <ProductContent product={product}/> : "" }
             </Paper>
         </>
     )
