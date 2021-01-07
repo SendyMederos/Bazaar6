@@ -22,8 +22,8 @@ export default {
       deleteUser: function(id) {
         return axios.delete("/api/users" + id);
       },
-      updateBudget: function(budget) {
-        return axios.put("/api/users/budget", budget)
+      updateUser: function(query) {
+        return axios.put("/api/users", query)
       },
       getUser: function() {
         return axios.get("/api/users")

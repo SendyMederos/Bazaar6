@@ -8,7 +8,6 @@ export default function Product() {
 
     const [product, setProduct] = useState({})
     const { id } = useParams()
-    
     useEffect(() => {
         getProduct(id)
             .then(res => setProduct(res.data))
@@ -19,7 +18,7 @@ export default function Product() {
     return (
         <>
             <Paper className="m-2 d-flex">
-               { product.image ?  <ProductContent product={product} /> : ""}
+                {product.image ? <ProductContent product={product}/> : "" }
             </Paper>
         </>
     )

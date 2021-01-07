@@ -56,7 +56,6 @@ export default function Signing() {
 
     const onLoginFinish = async () => {
         const response = await login(loginForm)
-        console.log(response)
         if (!response.user) {
             setMessages([{
                 prompt: response.message.content,
@@ -67,7 +66,7 @@ export default function Signing() {
             setMessages([{
                 prompt: "Logging in..."
             }])
-            setTimeout(() => window.location.href = "/home", 3000)
+            setTimeout(() => window.location.href = "/home", 1500)
             resetMessages()
 
         }

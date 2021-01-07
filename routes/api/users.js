@@ -3,6 +3,7 @@ const userController = require("../../controllers/userController");
 
 router.route("/")
     .get(userController.findById)
+    .put(userController.updateUser)
 
 router.route("/:id")
     .get(userController.findById)
@@ -13,8 +14,5 @@ router.route('/signup')
 
 router.route('/login')
     .post(userController.login)
-
-router.route("/budget")
-    .put(userController.updateBudget)
 
 module.exports = router;

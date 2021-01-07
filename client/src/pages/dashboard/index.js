@@ -25,12 +25,14 @@ function Dashboard(props) {
             .then(res => {
                 setBudget(res.data.budget)
                 setSpent(res.data.amountSpent)
+                setWishlist(res.data.wishList)
+                setProducts(res.data.products)
             })
             .catch(err => console.log(err.message))
     }
 
-    const updateBudget = (budget) => {
-        UserAPI.updateBudget({ "budget": parseInt(budget) })
+    const updateUser = (budget) => {
+        UserAPI.updateUser({ "budget": parseInt(budget) })
     }
 
     const handleInputChange = (event) => {
@@ -38,20 +40,10 @@ function Dashboard(props) {
     };
 
     const handleFormSubmit = async () => {
-        await updateBudget(inputBudget)
+        await updateUser(inputBudget)
         getBudget()
     }
-
-    const getWishlist = () => {
-        UserAPI.getWishlist()
-        .then(res => setWishlist(res.data.wishList))
-    }
-
-    const getPostedProducts = () => {
-        UserAPI.getProducts()
-        .then(res => setProducts(res.data.products))
-    }
-
+    
     return (
             <Container maxWidth="xl">
                 <Grid container spacing={5}>
