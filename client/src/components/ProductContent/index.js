@@ -3,8 +3,6 @@ import PictsSlideshow from "../PictsSlideshow"
 import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
-
-
 const useStyles = makeStyles(() => ({
 
     button: {
@@ -26,18 +24,14 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-
-
 export default function ProductContent({product}) {
     const classes = useStyles();
-    console.log(product)
-   
-    
+
     return (
 
         <Grid container spacing={2} className="m-2 ml-2">
             <Grid item  >
-                <PictsSlideshow image={product}/>
+                <PictsSlideshow image={product.image}/>
             </Grid>
             <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={2}>
