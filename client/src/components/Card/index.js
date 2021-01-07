@@ -1,12 +1,8 @@
 import { Domain } from '@material-ui/icons';
 import React from 'react';
 import './style.css';
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
-=======
-import { Link } from 'react-router-dom'
->>>>>>> d7cb1e407cd4b3e263e7e422c32bf9079b86179f
 
 export function MediaCard({product}) {
 	let id = product._id
@@ -22,13 +18,9 @@ export function MediaCard({product}) {
 					<button className="cart"><i className="fa fa-shopping-cart" aria-hidden="true"/>
 						Add to cart
 					</button>
-<<<<<<< HEAD
 					<Link to={"/product/" + product._id}>
 					<button className="more"><i className="fa fa-info" href="" aria-hidden="true"/> More Info</button>
 					</Link>
-=======
-					<Link to={"/product:" + product._id}><button className="more"><i className="fa fa-info" aria-hidden="true"/> More Info</button></Link>
->>>>>>> d7cb1e407cd4b3e263e7e422c32bf9079b86179f
 				</div>
 			</div>
 		</div>
