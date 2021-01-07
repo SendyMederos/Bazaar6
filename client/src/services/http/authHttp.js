@@ -1,16 +1,37 @@
 import http from './index'
 
 export const createUser = async (createdUser) => {
-  console.log("http")
-  const {
-    data: { user },
-  } = await http.post("/users/signup", { user: createdUser });
-  return user;
+
+	try {
+
+		const response = await http.post("/users/signup", {user: createdUser});
+
+		const {
+			data: {user},
+		} = response;
+
+		return user;
+
+	} catch (error) {
+		return error.response.data
+	}
+
 };
 
 export const login = async (loginUser) => {
-  const {
-    data: { user },
-  } = await http.post("/users/login", { user: loginUser });
-  return user;
+
+	try {
+
+		const response = await http.post("/users/login", {user: loginUser});
+
+		const {
+			data: {user},
+		} = response;
+
+		return user;
+
+	} catch (error) {
+		return error.response.data
+	}
+
 };
