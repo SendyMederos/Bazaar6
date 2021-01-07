@@ -22,7 +22,7 @@ export const runSeed = async () => {
                     description: faker.commerce.productDescription(),
                     price: faker.commerce.price(),
                     imageName:[""],
-                    image: faker.image.nature(),
+                    image: faker.image.image(),
                     category: faker.commerce.department(),
                 })
             
