@@ -44,7 +44,8 @@ export const GridCarousel = ({items, addToUser}) => {
 	const selected = (items[0] || { name: 'item0' }).name
 	const Grid = (items, selected) => {
 		return items.map( (item, index) => {
-			return (<MediaCard key={index} product={item} addToUser={addToUser}  />)
+
+			return (<MediaCard key={index} product={item} addToUser={addToUser} />)
 		});
 	}
 

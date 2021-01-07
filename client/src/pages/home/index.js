@@ -13,7 +13,6 @@ import _ from "underscore";
 import UserAPI from '../../utils/UserAPI';
 
 
-let ids =[]
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
@@ -40,10 +39,7 @@ export default function HomePage() {
     }
 
     const  updateId = (id) => {
-		UserAPI.getUser().then(res=> {
-			ids = res.data.wishList
-		}).then(console.log(ids), ids.push(id))
-		.then(UserAPI.updateUser({ "wishList": ids }))
+		UserAPI.updateUser({ "wishList": id })
 		alert("This item has been added to your cart")
 	} 
     
