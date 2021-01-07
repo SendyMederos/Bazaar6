@@ -14,9 +14,8 @@ const ProductSchema = new Schema({
   },
   imageName:  Array,
   
-  image: {
-    type: String,
-  },
+  image: Array,
+  
   category: {
     type: String,
   }

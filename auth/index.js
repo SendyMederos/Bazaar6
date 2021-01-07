@@ -5,9 +5,10 @@ const _ = require("lodash")
 const publicRoutes = [
 	"/api/users/signup",
 	"/api/users/login",
-	"/blob",
+	"/expressUpload",
 	"/favicon.ico",
-	"/api/products"
+	"/api/products",
+	"/api/products:/id"
 ]
 
 const jwt_config = {

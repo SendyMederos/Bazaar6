@@ -110,7 +110,7 @@ export default function Signing() {
 					<div className="forms">
 						<h1 className="align-center"> BAZAAR6</h1>
 						{messagesView}
-						{isLoggingIn ?
+						{!isLoggingIn ?
 							<Signin
 								handleFinish={onLoginFinish}
 								handleFormChange={onLoginFormChange}

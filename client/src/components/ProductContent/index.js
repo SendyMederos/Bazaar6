@@ -28,9 +28,10 @@ const useStyles = makeStyles(() => ({
 
 
 
-export default function ProductContent() {
+export default function ProductContent({product}) {
     const classes = useStyles();
-    //  product context
+   
+    
     return (
 
         <Grid container spacing={2} className="m-2 ml-2">
