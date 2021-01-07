@@ -13,7 +13,6 @@ export const getProducts = () => {
 }
 
 export const getProduct = (id) => {
-  console.log(id)
   return axios.get(`${path}/${id}`)
 }
 
