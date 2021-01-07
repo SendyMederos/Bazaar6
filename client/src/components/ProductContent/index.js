@@ -27,8 +27,6 @@ const useStyles = makeStyles(() => ({
 export default function ProductContent({product}) {
     const classes = useStyles();
 
-    console.log(product)
-
     return (
 
         <Grid container spacing={2} className="m-2 ml-2">
@@ -49,7 +47,7 @@ export default function ProductContent({product}) {
                         <button className={classes.button}
                             onMouseEnter={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
                             onMouseLeave={(e) => { e.target.style.background = "white"; e.target.style.color = "black" }}>
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                              Add to cart
                         </button>
                     </Grid>
@@ -62,7 +60,7 @@ export default function ProductContent({product}) {
                         <button className={classes.button}
                             onMouseEnter={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
                             onMouseLeave={(e) => { e.target.style.background = "white"; e.target.style.color = "black" }}>
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <i className="fa fa-envelope" aria-hidden="true"></i>
                              Contact Seller
                         </button>
                     </Grid>

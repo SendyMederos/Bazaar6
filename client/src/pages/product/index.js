@@ -8,7 +8,7 @@ export default function Product() {
 
     const [product, setProduct] = useState({})
     const { id } = useParams()
-    
+
     useEffect(() => {
         getProduct(id)
             .then(res => setProduct(res.data))
