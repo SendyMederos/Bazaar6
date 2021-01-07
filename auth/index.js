@@ -6,8 +6,8 @@ const publicRoutes = [
 	"/api/users/signup",
 	"/api/users/login",
 	"/blob",
-	"/favicon.ico",
-	"/api/products"
+	"/api/products",
+	"/api/products:/id"
 ]
 
 const jwt_config = {
