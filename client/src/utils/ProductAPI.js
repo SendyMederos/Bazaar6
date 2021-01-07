@@ -12,11 +12,6 @@ export const getProducts = () => {
   return axios.get(`${path}`)
 }
 
-export const getCategoryProducts = (category) => {
-  console.log(category)
-  return axios.get(`${path}/${category}`)
-}
-
 export const getProduct = (id) => {
   console.log(id)
   return axios.get(`${path}/${id}`)

@@ -8,17 +8,6 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    findByCategory: function (req, res) {
-        try{
-        console.log(req.params.category)
-        db.Product
-            .find({ category: req.params.category})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-        } catch {
-            console.log("ERR")
-        }
-    },
     findById: function (req, res) {
         console.log(req.params.id)
         db.Product
