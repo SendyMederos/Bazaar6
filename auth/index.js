@@ -5,8 +5,6 @@ const _ = require("lodash")
 const publicRoutes = [
 	"/api/users/signup",
 	"/api/users/login",
-	"/expressUpload",
-	"/favicon.ico",
 	"/blob",
 	"/api/products",
 	"/api/products:/id"

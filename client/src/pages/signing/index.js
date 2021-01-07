@@ -56,7 +56,8 @@ export default function Signing() {
 
     const onLoginFinish = async () => {
         const response = await login(loginForm)
-        if (response.message.content === "The username or password you entered does not match our records") {
+        console.log(response)
+        if (!response.user) {
             setMessages([{
                 prompt: response.message.content,
                 type: "error"
@@ -66,7 +67,7 @@ export default function Signing() {
             setMessages([{
                 prompt: "Logging in..."
             }])
-            setTimeout(() => window.location.href = "/home", 1500)
+            setTimeout(() => window.location.href = "/home", 3000)
             resetMessages()
 
         }
