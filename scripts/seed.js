@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const db = require ("../models");
 
 
-mongoose.connect(
-    process.env.MONGODB_URI ||
-    "mongodb://localhost/bazaar6"
-  );
+
+let url = process.env.MONGODB_URI ||
+"mongodb://localhost/bazaar6"
+
+mongoose.connect(url, {useUnifiedTopology: true});
+    
 
 export const runSeed = async () => {
     try {
@@ -14,11 +16,12 @@ export const runSeed = async () => {
         const products =[];
         const users=[];
         const quantity = 20;
-        for (let i = 0; i < 100; i++){
+        for (let i = 0; i < 175; i++){
             products.push({
                     productName: faker.commerce.productName(),
                     description: faker.commerce.productDescription(),
                     price: faker.commerce.price(),
+                    imageName:[""],
                     image: faker.image.nature(),
                     category: faker.commerce.department(),
                 })
@@ -44,12 +47,11 @@ export const runSeed = async () => {
         console.log(users)
         console.log(products)
         
-        db.User
-        .remove({})
+      await  db.User
+        .deleteMany({})
         .then(() => db.User.collection.insertMany(users))
         .then(data => {
             console.log(data.result.n + " users inserted!");
-            process.exit(0);
         })
         .catch(err => {
                 console.error(err);
@@ -57,11 +59,10 @@ export const runSeed = async () => {
               });
 
         db.Product
-              .remove({})
+              .deleteMany({})
               .then(() => db.Product.collection.insertMany(products))
               .then(data => {
                   console.log(data.result.n + " products inserted!");
-                  process.exit(0);
               })
               .catch(err => {
                       console.error(err);
