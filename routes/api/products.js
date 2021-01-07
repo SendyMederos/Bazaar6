@@ -5,9 +5,6 @@ router.route("/")
     .post(productController.create)
     .get(productController.findAll);
 
-router.route("/:category")
-    .get(productController.findByCategory)
-
 router.route("/:id")
     .get(productController.findById)
     .put(productController.update)

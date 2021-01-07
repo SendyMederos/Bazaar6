@@ -30,22 +30,23 @@ const useStyles = makeStyles(() => ({
 
 export default function ProductContent({product}) {
     const classes = useStyles();
+    console.log(product)
    
     
     return (
 
         <Grid container spacing={2} className="m-2 ml-2">
             <Grid item  >
-                <PictsSlideshow />
+                <PictsSlideshow image={product}/>
             </Grid>
             <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={2}>
                     <Grid item xs>
                         <Typography variant="h3" color="textPrimary">
-                            Product Name
+                            {product.productName}
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
-                            About product
+                            {product.description}
                         </Typography>
                     </Grid>
                     <Grid item>
@@ -72,7 +73,7 @@ export default function ProductContent({product}) {
                 </Grid>
                 <Grid item >
                     <Typography variant="h4" className="mr-2">
-                        Price : $19.00
+                        Price : ${product.price}
                     </Typography>
                 </Grid>
             </Grid>

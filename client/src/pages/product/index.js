@@ -9,9 +9,7 @@ export default function Product() {
     const { id } = useParams()
     useEffect(() => {
         getProduct(id)
-            .then(res => {
-                console.log(res.data)
-            })
+            .then(res => setProduct(res.data))
             .catch(err => console.log(err));
     }, [])
 
