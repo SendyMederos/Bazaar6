@@ -28,7 +28,7 @@ function App() {
       <Layout>
       <Route path="/home" component={HomePage} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/product" component={Product} />
+      <Route path="/product/:id" component={Product} />
       <Route path="/post-product" component={Posting} />
       <Route path="/post-wanted" component={PostWanted} />
       <Route path="/wanted" component={Wanted} />
