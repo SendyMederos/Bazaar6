@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { MediaCard } from '../../components/Card';
 import { GridCarousel } from "../../components/GridCarousel";
 import { getCategoryProducts, getProducts } from "../../utils/ProductAPI";
+import UserAPI from '../../utils/UserAPI'
 import _ from "underscore";
 
 
@@ -40,6 +41,11 @@ export default function HomePage() {
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
         })
     }
+
+    const addToUser = (id) => {
+        UserAPI.updateUser({"wishList": id})
+    }
+
     return (
         <>
             <Grid item xs={10}>
@@ -48,7 +54,7 @@ export default function HomePage() {
 
             {filterProd.map(category => {
                 return <Grid item xs={12}>
-                    <GridCarousel items={category} />
+                    <GridCarousel items={category} addToUser={addToUser} />
                 </Grid>
             })}
 

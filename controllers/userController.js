@@ -43,13 +43,20 @@ module.exports = {
     },
     updateUser: function (req, res) {
         let toUpdate = req.body
+        if (toUpdate.wishList || toUpdate.image) {
         db.User
-            .findOneAndUpdate({ _id: req.user_id }, toUpdate,
+            .findOneAndUpdate({ _id: req.user_id },
                 {
-                    toUpdate
+                    $push: toUpdate
                 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+        } else {
+            db.User
+            .findOneAndUpdate({ _id: req.user_id }, toUpdate)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+        }
     },
     remove: function (req, res) {
         db.User
