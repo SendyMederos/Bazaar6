@@ -66,7 +66,7 @@ export default function Signing() {
             setMessages([{
                 prompt: "Logging in..."
             }])
-            setTimeout(() => window.location.href = "/home", 3000)
+            setTimeout(() => window.location.href = "/home", 1500)
             resetMessages()
 
         }
