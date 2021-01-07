@@ -10,8 +10,10 @@ import { MediaCard } from '../../components/Card';
 import { GridCarousel } from "../../components/GridCarousel";
 import { getCategoryProducts, getProducts } from "../../utils/ProductAPI";
 import _ from "underscore";
-import  updateUser  from '../../utils/UserAPI'
+import UserAPI from '../../utils/UserAPI';
 
+
+let ids =[]
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
