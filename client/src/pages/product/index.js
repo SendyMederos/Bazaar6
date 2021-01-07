@@ -5,8 +5,10 @@ import { getProduct } from "../../utils/ProductAPI"
 import { useParams } from "react-router-dom"
 
 export default function Product() {
+
     const [product, setProduct] = useState({})
     const { id } = useParams()
+    
     useEffect(() => {
         getProduct(id)
             .then(res => setProduct(res.data))
@@ -17,7 +19,7 @@ export default function Product() {
     return (
         <>
             <Paper className="m-2 d-flex">
-                <ProductContent product={product} />
+                {product && product.image ? <ProductContent product={product}/> : "" }
             </Paper>
         </>
     )
