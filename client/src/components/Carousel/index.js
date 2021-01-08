@@ -34,7 +34,6 @@ function ImgCarousel(props) {
 function Item(props) {
     const classes = useStyles();
     return (
-
         <Paper className={classes.paper}>
             <Container>
                 <Grid container spacing={0}>
@@ -50,7 +49,6 @@ function Item(props) {
                 </Grid>
             </Container>
         </Paper>
-
     )
 }
 

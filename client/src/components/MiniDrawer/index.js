@@ -129,7 +129,11 @@ const useStyles = makeStyles((theme) => ({
       overflowY: "hidden",
       position: "relative",
       marginLeft: "-468px"
+	},
+	logo:{
+		color: "white",
 	}
+
 
 }));
 
@@ -168,7 +172,7 @@ export default function MiniDrawer({children}) {
 						<MenuIcon/>
 					</IconButton>
 					<Typography variant="h4" className="cursor-pointer">
-						Bazaar6
+					<Link className={classes.logo} to={"/home"}>Bazaar6</Link>
 					</Typography>
 
 					<div className={classes.navrightmenu}>
