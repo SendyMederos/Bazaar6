@@ -2,8 +2,8 @@ import axios from "axios";
 
 const path = "/api/wanted"
 
-export const saveWanted = (wantedData) => {
-  return axios.post(`${path}`, wantedData)
+export const saveWanted = (wantedAd) => {
+  return axios.post(`${path}`, wantedAd)
 }
 
 export const getWanted = () => {
