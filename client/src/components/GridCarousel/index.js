@@ -70,5 +70,4 @@ export const GridCarousel = ({items, addToUser}) => {
 			/>
 		</div>
 	</>);
-
 }
