@@ -28,6 +28,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+
 function createData(name, price, id) {
   return { name, price, id };
 }
@@ -57,18 +58,18 @@ const useStyles = makeStyles({
   }
 });
 
-export default function OrdersList({wishlist}) {
+
+export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
 
-  //const rows = wishlist.map(e => createData(e))
-console.log(wishlist)
+  console.log(wishlist)
 
   return (
-    <TableContainer className={classes.table}component={Paper}>
-      <Table  aria-label="customized table">
+    <TableContainer className={classes.table} component={Paper}>
+      <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">YOUR WISHLIST</StyledTableCell>
+            <StyledTableCell align="center">{title}</StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
             <StyledTableCell align="center"></StyledTableCell>
@@ -86,7 +87,7 @@ console.log(wishlist)
               >View Item</button></Link></StyledTableCell>
             </StyledTableRow>
           ))}
-        </TableBody>x`
+        </TableBody>
       </Table>
     </TableContainer>
   );

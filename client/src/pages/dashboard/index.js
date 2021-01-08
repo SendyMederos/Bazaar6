@@ -19,10 +19,10 @@ function Dashboard(props) {
     let inputBudget = ""
 
     useEffect(() => {
-        getBudget()
+        getUserInfo()
     }, [])
 
-    const getBudget = () => {
+    const getUserInfo = () => {
         UserAPI.getUser()
             .then(res => {
                 setBudget(res.data.budget)
@@ -33,8 +33,8 @@ function Dashboard(props) {
             .catch(err => console.log(err.message))
     }
 
-    const updateUser = (budget) => {
-        UserAPI.updateUser({ "budget": parseInt(budget) })
+    const updateBudget = (budget) => {
+        UserAPI.updateBudget({ "budget": parseInt(budget) })
     }
 
     const handleInputChange = (event) => {
@@ -42,10 +42,10 @@ function Dashboard(props) {
     };
 
     const handleFormSubmit = async () => {
-        await updateUser(inputBudget)
-        getBudget()
+        await updateBudget(inputBudget)
+        getUserInfo()
     }
-    
+
     return (
             <Container maxWidth="xl">
                 <Grid container spacing={5}>
@@ -59,9 +59,10 @@ function Dashboard(props) {
                             <Paper align="center">
                                 <GaugeChart
                                     id="gauge-chart5"
-                                    percent={spent / budget}
+                                    percent={((spent / budget) - 1) * -1}
                                     textColor="black"
                                     nrOfLevels={5}
+                                    colors={['#EA4228', '#F5CD19', '#5BE12C']}
                                 />
                                 <BudgetInfo
                                     budget={budget}
@@ -73,20 +74,15 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
-                            {wishlist  ? <OrdersList 
-                                wishlist={wishlist}
-                           /> : "" }
+                            {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}/> : ""}
                         </Paper>
                     </Grid>
                 </Grid>
                 <Grid container spacing={5}>
-                    <Grid item xs={12} md={12} sm={8} lg={8}>
+                    <Grid item xs={12} md={12} sm={12} lg={12}>
                         <Paper>
-                       
+                            {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}/> : ""}
                         </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={12} sm={4} lg={4}>
-                        <BudgetForm />
                     </Grid>
                 </Grid>
             </Container>

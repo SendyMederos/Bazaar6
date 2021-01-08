@@ -2,6 +2,7 @@ const db = require("../models")
 const auth = require('../auth')
 const jwt = require('jsonwebtoken');
 const { query } = require("express");
+const { populate } = require("../models/User");
 
 const jwt_config = {
     algorithm: "HS256",
@@ -39,6 +40,7 @@ module.exports = {
         db.User
             .findById({ _id: req.user_id })
             .populate('wishList')
+            .populate('products')
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -78,7 +80,7 @@ module.exports = {
     },
     login: async (req, res) => {
         try {
-            const findUser = await db.User.findOne({
+            await db.User.findOne({
                 email: req.body.user.email
             }, (err, user) => {
                 if (!user || !user.validPassword(req.body.user.password)) {
