@@ -8,7 +8,6 @@ import BudgetInfo from '../../components/BudgetInfo'
 import OrdersList from '../../components/ProductTable';
 import UserAPI from '../../utils/UserAPI';
 import GaugeChart from 'react-gauge-chart';
-import { Button } from '@material-ui/core';
 
 function Dashboard(props) {
 
@@ -16,7 +15,9 @@ function Dashboard(props) {
     const [spent, setSpent] = useState(0)
     const [wishlist, setWishlist] = useState([])
     const [products, setProducts] = useState([])
+    const [wantedAds, setWantedAds] = useState([])
     let inputBudget = ""
+    let gaugeValue = "Left: "
 
     useEffect(() => {
         getUserInfo()
@@ -29,6 +30,7 @@ function Dashboard(props) {
                 setSpent(res.data.amountSpent)
                 setWishlist(res.data.wishList)
                 setProducts(res.data.products)
+                setWantedAds(res.data.wantedPosts)
             }).then()
             .catch(err => console.log(err.message))
     }
@@ -79,9 +81,14 @@ function Dashboard(props) {
                 </Grid>
             </Grid>
             <Grid container spacing={5}>
-                <Grid item xs={12} md={12} sm={12} lg={12}>
+                <Grid item xs={12} md={12} sm={6} lg={6}>
                     <Paper>
                         {products ? <OrdersList wishlist={products} title={"Your Products For Sale"} /> : ""}
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={12} sm={6} lg={6}>
+                    <Paper>
+                        {products ? <OrdersList wishlist={wantedAds} title={"Your Wanted Ads"} /> : ""}
                     </Paper>
                 </Grid>
             </Grid>
