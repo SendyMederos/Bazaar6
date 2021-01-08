@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveWanted } from '../../utils/WantedAPI';
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
-import updateUser from '../../utils/UserAPI'
+import { Alert, Fade } from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -27,17 +27,34 @@ const useStyles = makeStyles((theme) => ({
 
 export function PostWanted(props) {
   const [wantedAd, setWantedAd] = useState({});
+  const [messages, setMessages] = useState([]);
 
   const classes = useStyles();
 
+  const messagesView = messages.map((message) => (
+    <Fade>
+      <Alert color={message.type === "error" ? "secondary" : "primary"}>
+        {message.prompt}
+      </Alert>
+    </Fade>
+  ))
+
+  const resetMessages = () => setTimeout(() => setMessages([]), 5000)
+
   const handleSubmit = async () => {
-    saveWanted(wantedAd)
+    const response = await saveWanted(wantedAd)
+    setMessages([{
+      prompt: response.data.message.content
+    }])
+    resetMessages()
+    setWantedAd({ productName: "", price: "", category: "", notes: "" })
   }
 
   return (
     <>
       <div className={classes.root}>
         <Form>
+          {messagesView}
           <FormGroup row>
             <Label>Product Name:</Label>
             <Input
