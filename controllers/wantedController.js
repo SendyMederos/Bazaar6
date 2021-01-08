@@ -12,14 +12,27 @@ module.exports = {
         db.Wanted
             .findById(req.user_id)
             .then(dbModel => res.json(dbModel))
+            .then(res.send({
+                message: { content: "Wanted Ad Posted" }
+            }))
             .catch(err => res.status(422).json(err));
     },
     postAd: function (req, res) {
-        db.Wanted
-            .create(req.body)
-            .then(({ _id }) => db.User.findOneAndUpdate({_id: req.user_id}, { $addToSet: { wantedPosts: _id }}))
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        try {
+            db.Wanted
+                .create(req.body)
+                .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user_id }, { $addToSet: { wantedPosts: _id } }))
+                .then(res.status(201).send({
+                    message: { content: "Wanted Ad Posted" }
+                }))
+                .then(dbModel => res.json(dbModel))
+        } catch (err) {
+            res.status(500).send({
+                message: {
+                    content: "An error occurred posting your product, please try again"
+                }
+            })
+        }
     },
     update: function (req, res) {
         db.Wanted
