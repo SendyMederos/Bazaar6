@@ -38,7 +38,6 @@ export default function Signing() {
                 city: city,
                 state: state,
                 postcode: zip,
-
             }
         }
     }
