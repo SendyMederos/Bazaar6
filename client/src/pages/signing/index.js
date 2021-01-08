@@ -79,7 +79,6 @@ export default function Signing() {
                 prompt: response.message.error,
                 type: "error"
             }])
-            console.log(response.message.info)
             resetMessages()
         } else {
             setMessages([{
