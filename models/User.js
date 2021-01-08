@@ -39,7 +39,7 @@ const UserSchema = new Schema({
     products: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Products",
+            ref: "Product",
             required: false
         }
     ],
@@ -53,7 +53,7 @@ const UserSchema = new Schema({
     wishList: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Products",
+            ref: "Product",
             required: false
         }
     ],

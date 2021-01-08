@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Button } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -26,46 +28,43 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, price, id) {
-  return { name, price, id };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-];
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
-    height: 418,
-    maxHeight: 418
+    height: 421,
+    maxHeight: 421
   },
+  button: {
+    color: "forestgreen",
+    backgroundColor: "black",
+  }
 });
 
-export default function OrdersList(props) {
+export default function OrdersList({ wishlist }) {
   const classes = useStyles();
 
-  //const rows = props.wishlist.map(e => createData(e))
+  console.log(wishlist)
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+    <TableContainer className={classes.table} component={Paper}>
+      <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">YOUR WISHLIST</StyledTableCell>
+            <StyledTableCell align="center">YOUR WISHLIST</StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="center">{row.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.price}</StyledTableCell>
-            </StyledTableRow>
+          {wishlist.map((row) => (
+              <StyledTableRow key={row._id}>
+                <StyledTableCell align="center" ><img src={row.image[0]} style={{ width: "100px" }}/></StyledTableCell>
+                <StyledTableCell align="center">{row.productName}</StyledTableCell>
+                <StyledTableCell align="center">${row.price}</StyledTableCell>
+                <StyledTableCell align="center"><Link to={"/product/" + row._id}><Button className={classes.button}>View Item</Button></Link></StyledTableCell>
+              </StyledTableRow>
+            
           ))}
         </TableBody>
       </Table>
