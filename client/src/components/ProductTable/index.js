@@ -33,16 +33,10 @@ function createData(name, price, id) {
   return { name, price, id };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-];
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
-    height: 418,
+    height: 421,
     maxHeight: 421
   },
   button: {
@@ -78,7 +72,7 @@ export default function OrdersList({ wishlist, title }) {
         <TableBody style={{ }}>
           {wishlist.map((row) => (
             <StyledTableRow key={row._id} >
-              <StyledTableCell align="left"><img src={row.image[0]} style={{width:"80px"}} alt="" /></StyledTableCell>
+              <StyledTableCell align="center"><img src={row.image[0]} style={{width:"80px"}} alt="" /></StyledTableCell>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
               <StyledTableCell align="center"><Link to={"/product/" + row._id}><button className={classes.button}
