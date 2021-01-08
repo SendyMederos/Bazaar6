@@ -23,6 +23,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import './style.css'
 import {Link} from "react-router-dom";
 
+
 const drawerWidth = 240;
 
 
@@ -129,6 +130,9 @@ const useStyles = makeStyles((theme) => ({
       overflowY: "hidden",
       position: "relative",
       marginLeft: "-468px"
+	},
+	logo: {
+		color: "white"
 	}
 
 }));
@@ -145,6 +149,10 @@ export default function MiniDrawer({children}) {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
+
+	const changeColor = (e) => {
+		e.target.style.color = 'white'
+	}
 
 	return (
 		<div className={classes.root}>
@@ -167,8 +175,8 @@ export default function MiniDrawer({children}) {
 					>
 						<MenuIcon/>
 					</IconButton>
-					<Typography variant="h4" className="cursor-pointer">
-						Bazaar6
+					<Typography onMouseOver={changeColor} variant="h4" className="cursor-pointer">
+					<Link className={classes.logo} to={"/home"}>Bazaar6</Link>
 					</Typography>
 
 					<div className={classes.navrightmenu}>
