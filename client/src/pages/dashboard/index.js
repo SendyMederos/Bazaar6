@@ -71,16 +71,14 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
-                            {wishlist  ? <OrdersList 
-                                wishlist={wishlist}
-                           /> : "" }
+                            {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}/> : ""}
                         </Paper>
                     </Grid>
                 </Grid>
                 <Grid container spacing={5}>
                     <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
-                       
+                            {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}/> : ""}
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={12} sm={4} lg={4}>

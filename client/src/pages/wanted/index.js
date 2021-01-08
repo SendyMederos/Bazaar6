@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import MiniDrawer from '../../components/MiniDrawer'
-import ProductContent from '../../components/ProductContent'
+import  WantedAccordion  from "../../components/WantedAccordion"
 import Paper from '@material-ui/core/Paper';
 
 export const Wanted = (props) => {
     return (
         <>
-            <Paper className="m-2 d-flex">
-                <ProductContent />
-            </Paper>
+            <div >
+                <WantedAccordion />
+            </div>
         </>
     )
 }
