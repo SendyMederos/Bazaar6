@@ -8,7 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -27,16 +26,6 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
-
-function createData(name, price, id) {
-  return { name, price, id };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-];
 
 const useStyles = makeStyles({
   table: {
@@ -57,18 +46,17 @@ const useStyles = makeStyles({
   }
 });
 
-export default function OrdersList({wishlist}) {
+export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
 
-  //const rows = wishlist.map(e => createData(e))
-console.log(wishlist)
+  console.log(wishlist)
 
   return (
-    <TableContainer className={classes.table}component={Paper}>
-      <Table  aria-label="customized table">
+    <TableContainer className={classes.table} component={Paper}>
+      <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">YOUR WISHLIST</StyledTableCell>
+            <StyledTableCell align="center">{title}</StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
             <StyledTableCell align="center"></StyledTableCell>

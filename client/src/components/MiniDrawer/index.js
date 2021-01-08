@@ -19,6 +19,7 @@ import BallotIcon from '@material-ui/icons/Ballot';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import StorefrontIcon from '@material-ui/icons/Storefront';
+import HomeIcon from '@material-ui/icons/Home';
 import './style.css'
 import {Link} from "react-router-dom";
 
@@ -26,6 +27,11 @@ const drawerWidth = 240;
 
 
 const links = [
+	{
+		name: "Homepage",
+		icon: (<HomeIcon />),
+		to: "/home"
+	},
 	{
 		name: "Account",
 		icon: (<AccountBoxIcon />),

@@ -25,7 +25,7 @@ export default function Signing() {
         city: ''
     });
 
-    const resetMessages = () => setTimeout(() => setMessages([]), 10000)
+    const resetMessages = () => setTimeout(() => setMessages([]), 5000)
 
     const formatData = ({ firstName, lastName, email, password, street, state, zip, city }) => {
         return {
@@ -79,11 +79,10 @@ export default function Signing() {
                 prompt: response.message.error,
                 type: "error"
             }])
-            console.log(response.message.info)
             resetMessages()
         } else {
             setMessages([{
-                prompt: "Successfully, created your user"
+                prompt: "Successfully created your user"
             }])
             setTimeout(() => window.location.href = "/home", 1500)
             resetMessages()
