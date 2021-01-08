@@ -8,7 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -52,7 +51,6 @@ const useStyles = makeStyles({
   }
 });
 
-
 export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
 
@@ -63,7 +61,7 @@ export default function OrdersList({ wishlist, title }) {
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">{title}</StyledTableCell>
+            <StyledTableCell align="center"><h3><b>{title}</b></h3></StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
             <StyledTableCell align="center"></StyledTableCell>

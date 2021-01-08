@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
 import MiniDrawer from '../../components/MiniDrawer/index';
 import Paper from '@material-ui/core/Paper';
 import { Grid, Container } from '@material-ui/core/';
@@ -8,7 +7,6 @@ import BudgetInfo from '../../components/BudgetInfo'
 import OrdersList from '../../components/ProductTable';
 import UserAPI from '../../utils/UserAPI';
 import GaugeChart from 'react-gauge-chart';
-import { Button } from '@material-ui/core';
 
 function Dashboard(props) {
 
@@ -19,10 +17,10 @@ function Dashboard(props) {
     let inputBudget = ""
 
     useEffect(() => {
-        getUserInfo()
+        getBudget()
     }, [])
 
-    const getUserInfo = () => {
+    const getBudget = () => {
         UserAPI.getUser()
             .then(res => {
                 setBudget(res.data.budget)
@@ -33,8 +31,8 @@ function Dashboard(props) {
             .catch(err => console.log(err.message))
     }
 
-    const updateBudget = (budget) => {
-        UserAPI.updateBudget({ "budget": parseInt(budget) })
+    const updateUser = (budget) => {
+        UserAPI.updateUser({ "budget": parseInt(budget) })
     }
 
     const handleInputChange = (event) => {
@@ -42,10 +40,10 @@ function Dashboard(props) {
     };
 
     const handleFormSubmit = async () => {
-        await updateBudget(inputBudget)
-        getUserInfo()
+        await updateUser(inputBudget)
+        getBudget()
     }
-
+    
     return (
         <Container maxWidth="xl">
             <Grid container spacing={5}>
@@ -64,13 +62,13 @@ function Dashboard(props) {
                                 nrOfLevels={5}
                                 colors={['#EA4228', '#F5CD19', '#5BE12C']}
                             />
-                            <BudgetInfo
-                                budget={budget}
-                                spent={spent}
-                                remaining={budget - spent}
-                            />
-                        </Paper>
-                    }
+                                <BudgetInfo
+                                    budget={budget}
+                                    spent={spent}
+                                    remaining={budget - spent}
+                                />
+                          </Paper>
+                      }
                 </Grid>
                 <Grid item xs={12} md={12} sm={8} lg={8}>
                     <Paper>
