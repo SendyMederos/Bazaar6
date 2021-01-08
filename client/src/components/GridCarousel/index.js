@@ -39,12 +39,11 @@ const ArrowRight = Arrow({ text: <i className="fa fa-arrow-circle-right fa-3x"/>
 
 
 
-export const GridCarousel = ({items, addToUser}) => {
+export const GridCarousel = ({items, addToUser, categoryName}) => {
 	let [ selectedState, setSelectedState ] = useState(selected)
 	const selected = (items[0] || { name: 'item0' }).name
 	const Grid = (items, selected) => {
 		return items.map( (item, index) => {
-
 			return (<MediaCard key={index} product={item} addToUser={addToUser} />)
 		});
 	}
@@ -54,7 +53,8 @@ export const GridCarousel = ({items, addToUser}) => {
 	}
 
 	return (<>
-		<div className="grid-carousel">
+		<div className="grid-carousel"  >
+			<h1 style={{color:"black", textShadow: "5px 5px 10px darkolivegreen", paddingLeft: "3%"}}>{categoryName}</h1>
 			<ScrollMenu
 				data={Grid(items, selectedState)}
 				arrowLeft={ArrowLeft}

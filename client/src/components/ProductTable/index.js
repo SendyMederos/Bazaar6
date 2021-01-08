@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Button } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -40,34 +42,51 @@ const useStyles = makeStyles({
   table: {
     minWidth: 700,
     height: 418,
-    maxHeight: 418
+    maxHeight: 421
   },
+  button: {
+    padding: "0.6rem",
+    outline: 'none',
+    border: "none",
+    borderRadius: "3px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    transition: "0.4s ease",
+    color: "forestgreen",
+    backgroundColor: "black",
+  }
 });
 
-export default function OrdersList(props) {
+export default function OrdersList({wishlist}) {
   const classes = useStyles();
 
-  //const rows = props.wishlist.map(e => createData(e))
+  //const rows = wishlist.map(e => createData(e))
+console.log(wishlist)
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+    <TableContainer className={classes.table}component={Paper}>
+      <Table  aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">YOUR WISHLIST</StyledTableCell>
+            <StyledTableCell align="center">YOUR WISHLIST</StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center"></StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="center">{row.name}</StyledTableCell>
+        <TableBody style={{ }}>
+          {wishlist.map((row) => (
+            <StyledTableRow key={row.name} >
+              <StyledTableCell align="left"><img src={row.image[0]} style={{width:"80px"}} alt="" /></StyledTableCell>
+              <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
+              <StyledTableCell align="center"><Link to={"/product/" + row._id}><button className={classes.button}
+              onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white"}}
+              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "forestgreen"}}
+              >View Item</button></Link></StyledTableCell>
             </StyledTableRow>
           ))}
-        </TableBody>
+        </TableBody>x`
       </Table>
     </TableContainer>
   );

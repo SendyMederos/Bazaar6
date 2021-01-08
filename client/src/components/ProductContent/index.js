@@ -10,8 +10,8 @@ const useStyles = makeStyles(() => ({
         outline: 'none',
         border: "none",
         borderRadius: "3px",
-        background: "white",
-        color: "black",
+        background: "black",
+        color: "white",
         fontWeight: "bold",
         cursor: "pointer",
         transition: "0.4s ease"
@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export default function ProductContent({product}) {
+export default function ProductContent({product, addToUser}) {
     const classes = useStyles();
 
     return (
@@ -45,8 +45,9 @@ export default function ProductContent({product}) {
                     </Grid>
                     <Grid item>
                         <button className={classes.button}
-                            onMouseEnter={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
-                            onMouseLeave={(e) => { e.target.style.background = "white"; e.target.style.color = "black" }}>
+                            onClick={() => {addToUser(product._id)}}
+                            onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
+                            onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}>
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                              Add to cart
                         </button>
@@ -58,8 +59,8 @@ export default function ProductContent({product}) {
                             Seller : { }
                         </Typography>
                         <button className={classes.button}
-                            onMouseEnter={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
-                            onMouseLeave={(e) => { e.target.style.background = "white"; e.target.style.color = "black" }}>
+                            onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
+                            onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}>
                             <i className="fa fa-envelope" aria-hidden="true"></i>
                              Contact Seller
                         </button>

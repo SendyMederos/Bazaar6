@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import MiniDrawer from '../../components/MiniDrawer/index';
 import Paper from '@material-ui/core/Paper';
 import { Grid, Container } from '@material-ui/core/';
 import BudgetForm from '../../components/BudgetForm'
 import BudgetInfo from '../../components/BudgetInfo'
-import OrdersList from '../../components/OrdersList';
+import OrdersList from '../../components/ProductTable';
 import UserAPI from '../../utils/UserAPI';
 import GaugeChart from 'react-gauge-chart';
+import { Button } from '@material-ui/core';
 
 function Dashboard(props) {
 
@@ -27,7 +29,7 @@ function Dashboard(props) {
                 setSpent(res.data.amountSpent)
                 setWishlist(res.data.wishList)
                 setProducts(res.data.products)
-            })
+            }).then()
             .catch(err => console.log(err.message))
     }
 
@@ -71,16 +73,16 @@ function Dashboard(props) {
                     </Grid>
                     <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
-                            <OrdersList 
+                            {wishlist  ? <OrdersList 
                                 wishlist={wishlist}
-                            />
+                           /> : "" }
                         </Paper>
                     </Grid>
                 </Grid>
                 <Grid container spacing={5}>
                     <Grid item xs={12} md={12} sm={8} lg={8}>
                         <Paper>
-                            <OrdersList />
+                       
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={12} sm={4} lg={4}>

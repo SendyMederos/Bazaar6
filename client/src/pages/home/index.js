@@ -35,10 +35,11 @@ export default function HomePage() {
     const getGroupedProducts = () => {
         getProducts().then(res => {
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
+            console.log(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
         })
     }
 
-    const  updateId = (id) => {
+    const  addToUser = (id) => {
 		UserAPI.updateUser({ "wishList": id })
 		alert("This item has been added to your cart")
 	} 
@@ -51,7 +52,7 @@ export default function HomePage() {
 
             {filterProd.map(category => {
                 return <Grid item xs={12}>
-                    <GridCarousel items={category} addTouser={updateId}/>
+                    <GridCarousel items={category} addToUser={addToUser} categoryName={category[0].category}/>
                 </Grid>
             })}
 

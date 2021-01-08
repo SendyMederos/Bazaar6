@@ -38,13 +38,14 @@ module.exports = {
     findById: function (req, res) {
         db.User
             .findById({ _id: req.user_id })
+            .populate('wishList')
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     updateUser: function (req, res) {
         let toUpdate = req.body
         db.User
-            .findOneAndUpdate({ _id: req.user_id }, toUpdate.wishList || toUpdate.products || toUpdate.wantedPosts ? {$push: toUpdate} : toUpdate)
+            .findOneAndUpdate({ _id: req.user_id }, toUpdate.wishList || toUpdate.products || toUpdate.wantedPosts ? {$addToSet: toUpdate} : toUpdate)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
