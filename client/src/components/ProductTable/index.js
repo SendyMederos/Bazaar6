@@ -58,13 +58,12 @@ export default function OrdersList({ wishlist, title }) {
         </TableHead>
         <TableBody>
           {wishlist.map((row) => (
-              <StyledTableRow key={row._id}>
-                <StyledTableCell align="center" ><img src={row.image[0]} style={{ width: "100px" }}/></StyledTableCell>
-                <StyledTableCell align="center">{row.productName}</StyledTableCell>
-                <StyledTableCell align="center">${row.price}</StyledTableCell>
-                <StyledTableCell align="center"><Link to={"/product/" + row._id}><Button className={classes.button}>View Item</Button></Link></StyledTableCell>
-              </StyledTableRow>
-            
+            <StyledTableRow key={row._id}>
+              <StyledTableCell align="center" ><img src={row.image[0]} style={{ width: "100px" }} /></StyledTableCell>
+              <StyledTableCell align="center">{row.productName}</StyledTableCell>
+              <StyledTableCell align="center">${row.price}</StyledTableCell>
+              <StyledTableCell align="center"><Link to={"/product/" + row._id}><Button className={classes.button}>View Item</Button></Link></StyledTableCell>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
