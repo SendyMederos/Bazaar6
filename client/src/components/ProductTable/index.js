@@ -77,7 +77,7 @@ export default function OrdersList({ wishlist, title }) {
         </TableHead>
         <TableBody style={{ }}>
           {wishlist.map((row) => (
-            <StyledTableRow key={row.name} >
+            <StyledTableRow key={row._id} >
               <StyledTableCell align="left"><img src={row.image[0]} style={{width:"80px"}} alt="" /></StyledTableCell>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
