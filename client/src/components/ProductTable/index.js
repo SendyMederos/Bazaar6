@@ -28,17 +28,36 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+
+function createData(name, price, id) {
+  return { name, price, id };
+}
+
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+];
+
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
-    height: 421,
+    height: 418,
     maxHeight: 421
   },
   button: {
+    padding: "0.6rem",
+    outline: 'none',
+    border: "none",
+    borderRadius: "3px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    transition: "0.4s ease",
     color: "forestgreen",
     backgroundColor: "black",
   }
 });
+
 
 export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
@@ -56,15 +75,17 @@ export default function OrdersList({ wishlist, title }) {
             <StyledTableCell align="center"></StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody style={{ }}>
           {wishlist.map((row) => (
-              <StyledTableRow key={row._id}>
-                <StyledTableCell align="center" ><img src={row.image[0]} style={{ width: "100px" }}/></StyledTableCell>
-                <StyledTableCell align="center">{row.productName}</StyledTableCell>
-                <StyledTableCell align="center">${row.price}</StyledTableCell>
-                <StyledTableCell align="center"><Link to={"/product/" + row._id}><Button className={classes.button}>View Item</Button></Link></StyledTableCell>
-              </StyledTableRow>
-            
+            <StyledTableRow key={row.name} >
+              <StyledTableCell align="left"><img src={row.image[0]} style={{width:"80px"}} alt="" /></StyledTableCell>
+              <StyledTableCell align="center">{row.productName}</StyledTableCell>
+              <StyledTableCell align="center">{row.price}</StyledTableCell>
+              <StyledTableCell align="center"><Link to={"/product/" + row._id}><button className={classes.button}
+              onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white"}}
+              onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "forestgreen"}}
+              >View Item</button></Link></StyledTableCell>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
