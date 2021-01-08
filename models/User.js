@@ -46,7 +46,7 @@ const UserSchema = new Schema({
     wantedPosts: [
         {
             type: [Schema.Types.ObjectId],
-            ref: "Post",
+            ref: "Wanted",
             required: false
         }
     ],

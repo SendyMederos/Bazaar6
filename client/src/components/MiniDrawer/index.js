@@ -203,7 +203,7 @@ export default function MiniDrawer({children}) {
 				<List >
 					{links.map(link => (
 						<Link to={link.to}>
-							<ListItem button key={link.name}>
+							<ListItem button key={link.name} onClick={handleDrawerClose}>
 								<ListItemIcon>{link.icon}</ListItemIcon>
 								<ListItemText style={{color: 'forestgreen'}} primary={link.name}/>
 							</ListItem>
