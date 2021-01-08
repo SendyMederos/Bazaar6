@@ -1,22 +1,42 @@
-import React from 'react';
-import './style.css';
+import React, { useState } from 'react';
 import axios from 'axios';
+import dotenv from 'dotenv'
 
-export function ProductUpload(props) {
 
-function uploadHandler(e) {
-  const data = new FormData();
-  data.append('file', e.target.files[0]);
-  axios.post('/upload', data).then((res) => {
-    this.setState({ photos: [res.data, ...this.state.photos] });
-});
-}
+function ProductUpload() {
+
+	const config = {
+		headers: { "X-Requested-With": "XMLHttpRequest" }
+	}
+	const [imageSelected, setImageSelected] = useState("")
+
+	const uploadImage = (req, res, files) => {
+		const formData = new FormData()
+		formData.append("file", imageSelected)
+		formData.append("upload_preset", "bazaarimages")
+
+		console.log("hello")
+		try {
+			axios.post(`https://api.cloudinary.com/v1_1/bazaar6/image/upload`, formData, config)
+		} catch {
+			res.status(400).send({ message: { content: "Please upload a valid image" } })
+			console.log(res)
+		}
+	}
+
+
+
 
 	return (
-		<>
-			<div className="card">
-      <input type="file" name="file" onChange={this.uploadHandler}/>
-			</div>
-		</>
+		<div>
+			<input
+				type="file"
+				onChange={(event) => {
+					setImageSelected(event.target.files[0])
+				}}
+			/>
+			<button onClick={uploadImage}>Upload Image</button>
+		</div>
 	);
 }
+export default ProductUpload;
