@@ -44,7 +44,7 @@ module.exports = {
     updateUser: function (req, res) {
         let toUpdate = req.body
         db.User
-            .findOneAndUpdate({ _id: req.user_id }, toUpdate.wishList || toUpdate.image ? {$push: toUpdate} : toUpdate)
+            .findOneAndUpdate({ _id: req.user_id }, toUpdate.wishList || toUpdate.products || toUpdate.wantedPosts ? {$addToSet: toUpdate} : toUpdate)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -77,7 +77,7 @@ module.exports = {
     },
     login: async (req, res) => {
         try {
-            const findUser = await db.User.findOne({
+            await db.User.findOne({
                 email: req.body.user.email
             }, (err, user) => {
                 if (!user || !user.validPassword(req.body.user.password)) {
