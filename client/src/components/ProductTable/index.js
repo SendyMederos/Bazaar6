@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function OrdersList({ wishlist }) {
+export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
 
   console.log(wishlist)
@@ -50,7 +50,7 @@ export default function OrdersList({ wishlist }) {
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">YOUR WISHLIST</StyledTableCell>
+            <StyledTableCell align="center">{title}</StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
             <StyledTableCell align="center"></StyledTableCell>
