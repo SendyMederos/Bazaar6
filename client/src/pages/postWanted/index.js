@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveWanted } from '../../utils/WantedAPI';
+import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
+import updateUser from '../../utils/UserAPI'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -24,83 +26,68 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export function PostWanted(props) {
-  const [productName, setProductName] = useState("");
-  const [targetPrice, setTargetPrice] = useState("");
-  const [category, setCategory] = useState("");
-  const [addNotes, setAddNotes] = useState("");
-  
+  const [wantedAd, setWantedAd] = useState({});
+
   const classes = useStyles();
 
-  const saveWantedAd = (productName, targetPrice, category, addNotes) => {
-    saveWanted({ 
-      "productName": productName,
-      "price": targetPrice,
-      "category": category,
-      "notes": addNotes  
-  })
-}
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    alert(`Submitting Name ${productName}`)
-    saveWantedAd()
-
-
+  const handleSubmit = async () => {
+    saveWanted(wantedAd)
   }
-  return (
-    <div className={classes.root} >
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Product Name:</label>
-        <input
-            className={classes.input}
-            type="text"
-            value={productName}
-            onChange={e => setProductName(e.target.value)}
-          />
 
+  return (
+    <>
+      <div className={classes.root}>
+        <Form>
+          <FormGroup row>
+            <Label>Product Name:</Label>
+            <Input
+              type="text"
+              className={classes.input}
+              value={wantedAd.productName}
+              onChange={e => setWantedAd({ ...wantedAd, productName: e.target.value })}
+            />
+          </FormGroup>
+          <FormGroup row>
+            <Label>Targeted Price:</Label>
+            <Input
+              type="text"
+              className={classes.input}
+              value={wantedAd.price}
+              onChange={e => setWantedAd({ ...wantedAd, price: e.target.value })}
+            />
+          </FormGroup>
+          <FormGroup row>
+            <Label>Product Category:</Label>
+            <Input
+              type="select"
+              className={classes.input}
+              value={wantedAd.category}
+              onChange={e => setWantedAd({ ...wantedAd, category: e.target.value })}
+            >
+              <option selected value="select-category">Select Category</option>
+              <option value="electronics">Electronics</option>
+              <option value="appliances">Appliances</option>
+              <option value="lawn-and-garden">Lawn and Garden</option>
+              <option value="furniture">Furniture</option>
+              <option value="auto-parts">Auto Parts</option>
+              <option value="tools">Tools</option>
+              <option value="video-games">Video Games</option>
+            </Input>
+          </FormGroup>
+          <FormGroup row>
+            <Label>Add Note for Sellers:</Label>
+            <Input
+              type="textarea"
+              className={classes.input}
+              value={wantedAd.notes}
+              onChange={e => setWantedAd({ ...wantedAd, notes: e.target.value })}
+            />
+          </FormGroup>
+          <FormGroup row style={{ marginTop: "30px" }}>
+            <Button color="primary" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
+          </FormGroup>
+        </Form>
       </div>
-      <div className="form-group">
-      <label>Targeted Price:</label>
-          
-        <input
-            className={classes.input}
-            type="text"
-            value={targetPrice}
-            onChange={e => setTargetPrice(e.target.value)}
-          />
-      </div>
-      <div className="form-group">
-      <label>Product Category:</label>
-        <select 
-          className={classes.input}
-          type="text"
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-          >
-            <option selected value="select-category">Select Category</option>
-            <option value="electronics">Electronics</option>
-            <option value="appliances">Appliances</option>
-            <option value="lawn-and-garden">Lawn and Garden</option>
-            <option value="furniture">Furniture</option>
-            <option value="auto-parts">Auto Parts</option>
-            <option value="tools">Tools</option>
-            <option value="video-games">Video Games</option>
-          </select>
-      </div>
-      <div className="form-group">
-      <label >Additional Notes for Sellers:</label>
-        <textarea
-            className={classes.input}
-            type="text"
-            value={addNotes}
-            onChange={e => setAddNotes(e.target.value)}
-          />
-      </div>
-      <div className="form-group">
-        <input type="submit" value="Create Wanted Ad" className="btn btn-success btn-block" />
-      </div>
-    </form>
-    </div>
+    </>
   );
 }

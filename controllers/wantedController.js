@@ -1,7 +1,7 @@
 const db = require("../models")
 
 module.exports = {
-    findAll: function (req, res) {
+    getAds: function (req, res) {
         db.Wanted
             .find(req.query)
             .sort({ date: -1 })
@@ -14,9 +14,10 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    create: function (req, res) {
+    postAd: function (req, res) {
         db.Wanted
-            .create(req.user_id)
+            .create(req.body)
+            .then(({ _id }) => db.User.findOneAndUpdate({_id: req.user_id}, { $addToSet: { wantedPosts: _id }}))
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

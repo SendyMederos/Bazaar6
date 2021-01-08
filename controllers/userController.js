@@ -41,6 +41,7 @@ module.exports = {
             .findById({ _id: req.user_id })
             .populate('wishList')
             .populate('products')
+            .populate('wantedPosts')
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
