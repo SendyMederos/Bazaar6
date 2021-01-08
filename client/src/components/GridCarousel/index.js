@@ -64,8 +64,9 @@ export const GridCarousel = ({items, addToUser}) => {
 				arrowRight={ArrowRight}
 				selected={selectedState}
 				onSelect={onSelect}
-				translate={-1}
+				translate={-2}
 				wheel={false}
+
 			/>
 		</div>
 	</>);
