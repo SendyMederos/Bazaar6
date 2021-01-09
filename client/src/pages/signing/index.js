@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Signup, Signin } from '../../components/SignForms';
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';

@@ -22,6 +22,8 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import HomeIcon from '@material-ui/icons/Home';
 import './style.css'
 import {Link} from "react-router-dom";
+import Axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -140,6 +142,7 @@ export default function MiniDrawer({children}) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
+	const [toHome, setToHome] = React.useState(false)
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -149,8 +152,14 @@ export default function MiniDrawer({children}) {
 		setOpen(false);
 	};
 
+	const logOut = () => {
+		return Axios.get('/logout')
+		.then(setTimeout(() => setToHome(true), 1500))
+	}
+
 	return (
 		<div className={classes.root}>
+			{toHome ? <Redirect to="/" /> : ""}
 			<CssBaseline/>
 			<AppBar
 				position="fixed"
@@ -177,7 +186,7 @@ export default function MiniDrawer({children}) {
 					</Link>
 
 					<div className={classes.navrightmenu}>
-						
+						<h2 onClick={logOut}>Logout</h2>
 					</div>
 
 				</Toolbar>
