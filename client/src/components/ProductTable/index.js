@@ -54,8 +54,6 @@ const useStyles = makeStyles({
 export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
 
-  console.log(wishlist)
-
   return (
     <TableContainer className={classes.table} component={Paper}>
       <Table aria-label="customized table">
@@ -70,7 +68,7 @@ export default function OrdersList({ wishlist, title }) {
         <TableBody style={{ }}>
           {wishlist.map((row) => (
             <StyledTableRow key={row._id} >
-              <StyledTableCell align="center"><img src={row.image[0]} style={{width:"80px"}} alt="" /></StyledTableCell>
+              <StyledTableCell align="center"><img src={row.image ? row.image[0] : ""} style={{width:"80px"}} alt="" /></StyledTableCell>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
               <StyledTableCell align="center"><Link to={"/product/" + row._id}><button className={classes.button}

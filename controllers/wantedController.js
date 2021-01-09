@@ -3,7 +3,7 @@ const db = require("../models")
 module.exports = {
     getAds: function (req, res) {
         db.Wanted
-            .find(req.query)
+            .find({})
             .sort({ date: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -29,6 +29,7 @@ module.exports = {
         } catch (err) {
             res.status(500).send({
                 message: {
+                    type: err,
                     content: "An error occurred posting your product, please try again"
                 }
             })

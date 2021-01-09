@@ -14,7 +14,9 @@ function Dashboard(props) {
     const [spent, setSpent] = useState(0)
     const [wishlist, setWishlist] = useState([])
     const [products, setProducts] = useState([])
+    const [wantedAds, setWantedAds] = useState([])
     let inputBudget = ""
+    let gaugeValue = "Left: "
 
     useEffect(() => {
         getBudget()
@@ -27,6 +29,7 @@ function Dashboard(props) {
                 setSpent(res.data.amountSpent)
                 setWishlist(res.data.wishList)
                 setProducts(res.data.products)
+                setWantedAds(res.data.wantedPosts)
             }).then()
             .catch(err => console.log(err.message))
     }
@@ -62,13 +65,13 @@ function Dashboard(props) {
                                 nrOfLevels={5}
                                 colors={['#EA4228', '#F5CD19', '#5BE12C']}
                             />
-                                <BudgetInfo
-                                    budget={budget}
-                                    spent={spent}
-                                    remaining={budget - spent}
-                                />
-                          </Paper>
-                      }
+                            <BudgetInfo
+                                budget={budget}
+                                spent={spent}
+                                remaining={budget - spent}
+                            />
+                        </Paper>
+                    }
                 </Grid>
                 <Grid item xs={12} md={12} sm={8} lg={8}>
                     <Paper>
@@ -77,9 +80,14 @@ function Dashboard(props) {
                 </Grid>
             </Grid>
             <Grid container spacing={5}>
-                <Grid item xs={12} md={12} sm={12} lg={12}>
+                <Grid item xs={12} md={12} sm={6} lg={6}>
                     <Paper>
                         {products ? <OrdersList wishlist={products} title={"Your Products For Sale"} /> : ""}
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={12} sm={6} lg={6}>
+                    <Paper>
+                        {products ? <OrdersList wishlist={wantedAds} title={"Your Wanted Ads"} /> : ""}
                     </Paper>
                 </Grid>
             </Grid>
