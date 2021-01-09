@@ -81,14 +81,18 @@ export function PostWanted(props) {
               value={wantedAd.category}
               onChange={e => setWantedAd({ ...wantedAd, category: e.target.value })}
             >
-              <option selected value="select-category">Select Category</option>
-              <option value="electronics">Electronics</option>
-              <option value="appliances">Appliances</option>
-              <option value="lawn-and-garden">Lawn and Garden</option>
-              <option value="furniture">Furniture</option>
-              <option value="auto-parts">Auto Parts</option>
-              <option value="tools">Tools</option>
-              <option value="video-games">Video Games</option>
+							<option selected value="select-category">Select Category</option>
+							<option value="electronics">Electronics</option>
+							<option value="appliances">Appliances</option>
+							<option value="lawn-and-garden">Lawn and Garden</option>
+							<option value="furniture">Furniture</option>
+							<option value="auto-parts">Auto Parts</option>
+							<option value="tools">Tools</option>
+							<option value="video-games">Video Games</option>
+							<option value="sports">Sports</option>
+							<option value="industrial">Industrial</option>
+							<option value="baby">Baby</option>
+							<option value="clothing">Clothing</option>
             </Input>
           </FormGroup>
           <FormGroup row>
