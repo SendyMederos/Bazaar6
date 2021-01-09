@@ -67,42 +67,9 @@ function Dashboard(props) {
                                 spent={spent}
                                 remaining={budget - spent}
                             />
-<<<<<<< HEAD
-                            :
-                            <Paper align="center">
-                                <GaugeChart
-                                    id="gauge-chart5"
-                                    percent={spent / budget}
-                                    textColor="black"
-                                    nrOfLevels={5}
-                                />
-                                <BudgetInfo
-                                    budget={budget}
-                                    spent={spent}
-                                    remaining={budget - spent}
-                                />
-                            </Paper>
-                        }
-                    </Grid>
-                    <Grid item xs={12} md={12} sm={8} lg={8}>
-                        <Paper>
-                            {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}/> : ""}
-=======
->>>>>>> d49ee546df10256e461198b4967a775e5ee70220
                         </Paper>
                     }
                 </Grid>
-<<<<<<< HEAD
-                <Grid container spacing={5}>
-                    <Grid item xs={12} md={12} sm={8} lg={8}>
-                        <Paper>
-                            {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}/> : ""}
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={12} sm={4} lg={4}>
-                        <BudgetForm />
-                    </Grid>
-=======
                 <Grid item xs={12} md={12} sm={8} lg={8}>
                     <Paper>
                         {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"} /> : ""}
@@ -114,7 +81,6 @@ function Dashboard(props) {
                     <Paper>
                         {products ? <OrdersList wishlist={products} title={"Your Products For Sale"} /> : ""}
                     </Paper>
->>>>>>> d49ee546df10256e461198b4967a775e5ee70220
                 </Grid>
             </Grid>
         </Container>
