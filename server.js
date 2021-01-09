@@ -24,6 +24,8 @@ app.use(bodyParser.json())
 app.use(validateUser)
 app.use(routes)
 
+
+
 // static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

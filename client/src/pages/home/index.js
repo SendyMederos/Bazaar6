@@ -24,7 +24,9 @@ export default function HomePage() {
     useEffect(() => {
         getGroupedProducts()
     }, [])
+
     let [filterProd, setfilterProd] = useState([]);
+    
     const getGroupedProducts = () => {
         getProducts().then(res => {
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
