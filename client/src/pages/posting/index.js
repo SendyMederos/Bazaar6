@@ -3,8 +3,6 @@ import ProductUpload from './../../components/ProductUpload'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
-
-import "../../styles/upload.css"
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
