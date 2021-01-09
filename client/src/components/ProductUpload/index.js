@@ -25,10 +25,7 @@ function ProductUpload() {
 			console.log(res)
 		}
 	}
-
-
-
-
+	
 	return (
 		<div>
 			<input

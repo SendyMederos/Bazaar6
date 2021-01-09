@@ -114,8 +114,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3),
-
+		padding: theme.spacing(2),
 	},
 	navrightmenu: {
 		marginLeft: "auto",
@@ -132,10 +131,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	logo:{
 		color: "white",
-		'&:hover': {
-			textDecoration: 'underline',
-			color: "green"
-		}
 	},
 
 
@@ -175,7 +170,7 @@ export default function MiniDrawer({children}) {
 					>
 						<MenuIcon/>
 					</IconButton>
-					<Link to={"/home"}>
+					<Link to={"/home"} style={{color:"white"}}>
 					<Typography className={classes.logo} variant="h4" className="cursor-pointer">
 						Bazaar6
 					</Typography>
