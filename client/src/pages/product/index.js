@@ -21,7 +21,7 @@ export default function Product() {
 	} 
     return (
         <>
-            <Paper className="m-2 d-flex">
+            <Paper className="m-2 d-flex ">
                 {product.image ? <ProductContent product={product} addToUser={addToUser}/> : "" }
             </Paper>
         </>

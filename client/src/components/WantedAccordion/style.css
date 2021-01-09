@@ -14,11 +14,25 @@
 }
 #heading {
     
-    background: rgba(85, 107, 47, 0.747);
+    background: rgba(143, 156, 121, 0.747);
     border-radius: 10px ;
   }
 
 #heading :hover {
-    background: rgba(85, 107, 47);
+    background: rgb(128, 141, 107);
     border-radius: 10px ;
+}
+#botones {
+  float:right;
+  margin-top: 5%;
+  padding: 0.6rem;
+  outline: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  background-color:rgba(143, 156, 121, 0.747);;
+}
+#ad {
+  text-shadow: 2px 2px 5px white ;
 }

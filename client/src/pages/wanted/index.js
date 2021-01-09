@@ -5,7 +5,7 @@ import { getWanted } from '../../utils/WantedAPI'
 
 const useStyles = makeStyles(() => ({
     root: {
-        display:"flex",
+      display:"flex",
       alignItems:"center",
       height:"100%"
     }

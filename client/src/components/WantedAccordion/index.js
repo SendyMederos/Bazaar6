@@ -11,7 +11,7 @@ export default function WantedAccordion({ wantedAds }) {
 
   console.log(wantedAds)
   return (
-    <div id="root">
+    <div id="contenedor">
       <h1 id="title"> ~  Wanted Ads  ~</h1>
       {wantedAds.map((wanteds, i) => {
         return (<div className="mb-2">
@@ -27,11 +27,16 @@ export default function WantedAccordion({ wantedAds }) {
                     <h1><b>{moment(wanteds.createdAt).format("DD")}</b></h1>
                   </div>
                 </div>
-                <div className="col-4 ">
-                  <h3>{wanteds.productName} </h3>
+                <div className="col-4">
+                  <h3 id="ad">{wanteds.productName} </h3>
                 </div>
                 <div className="col-4">
-                  <h4>posted by  or contact buyer </h4>
+                  <h4>
+                    <button id="botones"
+                    onMouseLeave={(e) => { e.target.style.background = "rgb(128, 141, 107)"; e.target.style.color = "black" }}
+                    onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}
+                    >Contact The Owner</button> 
+                  </h4>
                 </div>
               </div>
             </AccordionSummary>
