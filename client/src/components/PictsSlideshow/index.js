@@ -6,9 +6,8 @@ import 'react-slideshow-image/dist/styles.css'
 
 export default function PictsSlideshow({ image }) {
 
-
     return (
-        <div className="slide-container" style={{width:"500px", height:"400px", borderRadius:"30px", boxShadow:"5px 5px 10px gray" }}>
+        <div className="slide-container" style={{width:"500px", height:"400px", borderRadius:"30px", boxShadow:"5px 5px 10px gray"}}>
             <Fade>
                 {image.map(img =>
                     <div className="each-fade">
