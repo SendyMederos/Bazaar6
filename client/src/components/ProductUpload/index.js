@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import dotenv from 'dotenv'
+import { Button } from "reactstrap";
+
 
 
 function ProductUpload() {
@@ -15,7 +17,7 @@ function ProductUpload() {
 		formData.append("file", imageSelected)
 		formData.append("upload_preset", "bazaarimages")
 
-		console.log("hello")
+		console.log(imageSelected)
 		try {
 			axios.post(`https://api.cloudinary.com/v1_1/bazaar6/image/upload`, formData, config)
 		} catch {
@@ -35,7 +37,7 @@ function ProductUpload() {
 					setImageSelected(event.target.files[0])
 				}}
 			/>
-			<button onClick={uploadImage}>Upload Image</button>
+			<Button onClick={uploadImage}>Upload Image</Button>
 		</div>
 	);
 }
