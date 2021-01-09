@@ -65,13 +65,13 @@ function Dashboard(props) {
                                 nrOfLevels={5}
                                 colors={['#EA4228', '#F5CD19', '#5BE12C']}
                             />
-                                <BudgetInfo
-                                    budget={budget}
-                                    spent={spent}
-                                    remaining={budget - spent}
-                                />
-                          </Paper>
-                      }
+                            <BudgetInfo
+                                budget={budget}
+                                spent={spent}
+                                remaining={budget - spent}
+                            />
+                        </Paper>
+                    }
                 </Grid>
                 <Grid item xs={12} md={12} sm={8} lg={8}>
                     <Paper>

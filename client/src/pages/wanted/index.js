@@ -1,13 +1,37 @@
 import React, { useEffect, useState } from "react";
-import  WantedAccordion  from "../../components/WantedAccordion"
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import WantedAccordion from "../../components/WantedAccordion"
+import { getWanted } from '../../utils/WantedAPI'
 
-export const Wanted = (props) => {
+const useStyles = makeStyles(() => ({
+    root: {
+      alignContent:"center",
+    }
+  }));
+
+export function Wanted() {
+    const classes = useStyles();
+
+    const [wantedAds, setWantedAds] = useState({})
+    useEffect(() => {
+        getWantedAdds()
+    }, [])
+    function getWantedAdds() {
+        getWanted()
+            .then(res => {
+                setWantedAds(res.data)
+                console.log(res.data)
+            }).then()
+            .catch(err => console.log(err.message))
+    }
+
     return (
-        <>
-            <div >
-                <WantedAccordion />
+        
+            <div className="container-fluid" >
+                <div className={classes.root}>
+                { wantedAds.length >= 1 ?  <WantedAccordion wantedAds={wantedAds} /> : <h1 style={{textShadow: "2px 2px 15px darkolivegreen", textAlign:"center"}}><b>There are NOT Ads to Show </b> </h1>}
             </div>
-        </>
+            </div >
+    
     )
 }
