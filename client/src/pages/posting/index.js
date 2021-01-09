@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveProduct } from '../../utils/ProductAPI';

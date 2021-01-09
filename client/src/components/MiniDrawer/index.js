@@ -186,7 +186,7 @@ export default function MiniDrawer({children}) {
 					</Link>
 
 					<div className={classes.navrightmenu}>
-						<h2 onClick={logOut}>Logout</h2>
+						<h4 onClick={logOut}>Logout</h4>
 					</div>
 
 				</Toolbar>
