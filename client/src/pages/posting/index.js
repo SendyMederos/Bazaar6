@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import axios from 'axios';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
@@ -33,6 +34,7 @@ export const Posting = (props) => {
 		image: []
 
 	});
+
 	const [messages, setMessages] = useState([]);
 
 	const classes = useStyles();
@@ -76,18 +78,11 @@ export const Posting = (props) => {
 	const handleSubmit = async () => {
 		const response = await saveProduct(productPost)
 		console.log("WE MADE IT")
-		// setMessages([{
-		// 	prompt: response.data.message.content
-		// }])
-		// resetMessages()
-		// setProductPost({
-		// 	productName: "",
-		// 	description: "",
-		// 	price: "",
-		// 	category: "",
-		// 	image: []
-
-		// })
+		setMessages([{
+			prompt: response.data.message.content
+		}])
+		resetMessages()
+		setProductPost({ productName: "", description: "", price: "", category: "", image: [] })
 	}
 
 	return (

@@ -2,8 +2,6 @@ import React from 'react';
 import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 
-
-
 export default function PictsSlideshow({ image }) {
 
     return (
