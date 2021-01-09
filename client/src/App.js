@@ -16,8 +16,6 @@ import { Posting } from "./pages/posting";
 
 
 function App() {
-
-
   // The app will not render correctly until you setup a Route component.
   // Refer to the Basic Example documentation if you need to.
   // (https://reacttraining.com/react-router/web/example/basic)
