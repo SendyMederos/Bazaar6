@@ -22,7 +22,7 @@ export default function WantedAccordion({ wantedAds }) {
             >
               <div className="row">
                 <div className="col-4">
-                  <div className="ml-3">
+                  <div className="ml-3 headers">
                     <h2> <b>{moment(wanteds.createdAt).format("MMM")}</b></h2>
                     <h1><b>{moment(wanteds.createdAt).format("DD")}</b></h1>
                   </div>
