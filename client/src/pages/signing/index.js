@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Signup, Signin } from '../../components/SignForms';
+import Axios from 'axios'
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';
 import { Alert, Fade } from "reactstrap";
+import {Redirect} from 'react-router-dom';
 
 export default function Signing() {
 
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [messages, setMessages] = useState([])
+    const [cookie, setCookie] = useState(false)
+
+    useEffect(() => {
+        checkCookie()
+    }, [])
+
+    const checkCookie = () => {
+		return Axios.get('/checkcookie')
+		.then(res => res.data ? setCookie(true) : "")
+	}
+
 
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -91,6 +104,7 @@ export default function Signing() {
 
     return (
         <div style={{ width: "100%" }}>
+            {cookie ? <Redirect to="/home" /> : ""}
             <div className="row">
                 <div className="col-12 backbox">
                     <div className="forms">
