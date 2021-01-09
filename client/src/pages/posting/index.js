@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import ProductUpload from './../../components/ProductUpload'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
@@ -109,7 +108,6 @@ export const Posting = (props) => {
 						/>
 					</FormGroup>
 					<FormGroup row>
-						<ProductUpload />
 					</FormGroup>
 				</Form>
 			</div>
