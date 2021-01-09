@@ -2,7 +2,7 @@ const router = require("express").Router();
 const productController = require("../../controllers/productController");
 
 router.route("/")
-    .post(productController.create)
+    .post(productController.postProduct)
     .get(productController.findAll);
 
 router.route("/:id")
