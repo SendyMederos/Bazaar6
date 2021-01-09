@@ -8,7 +8,7 @@ router.get("/logout", function(req, res) {
     return res.sendStatus(200);
 })
 router.get("/checkcookie", function(req, res) {
-    return req.cookies.bazaar6_cookie ? res.sendStatus(200) : "false"
+    return req.cookies.bazaar6_cookie ? res.sendStatus(200) : false
 })
 
 module.exports = router;
