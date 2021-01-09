@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveWanted } from '../../utils/WantedAPI';
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
 import { Alert, Fade } from "reactstrap";
+import '../posting/style.css'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -51,8 +52,11 @@ export function PostWanted(props) {
   }
 
   return (
-    <>
-      <div className={classes.root}>
+    <div style={{width: "100%", height:"100%"}}>
+    <div id="cont">
+    <h1 id="title"> Post your Ads </h1>
+    <h4><b>Let the community know what you are looking for</b></h4>	
+    <div className="formbox">
         <Form>
           {messagesView}
           <FormGroup row>
@@ -105,10 +109,11 @@ export function PostWanted(props) {
             />
           </FormGroup>
           <FormGroup row style={{ marginTop: "30px" }}>
-            <Button color="primary" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
+            <Button className="botonesubmit" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
           </FormGroup>
         </Form>
-      </div>
-    </>
-  );
+        </div>
+			</div>
+		</div>)
+
 }

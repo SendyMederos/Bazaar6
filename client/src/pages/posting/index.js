@@ -1,29 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
-
+import "./style.css"
+import { Height } from "@material-ui/icons";
 const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
-const useStyles = makeStyles((theme) => ({
 
-	root: {
-		display: 'flex',
-		marginLeft: "auto",
-		marginRight: "auto",
-		textAlign: "center",
-		boxSizing: "border-box",
-		backgroundColor: "white",
-		border: "10%",
-		borderRadius: "10%",
-		padding: "10%",
-		fontFamily: "Arial, Helvetica"
-	},
-	input: {
-		width: "100%"
-	}
-}))
 
 export const Posting = (props) => {
 	const [productPost, setProductPost] = useState({
@@ -37,7 +20,7 @@ export const Posting = (props) => {
 
 	const [messages, setMessages] = useState([]);
 
-	const classes = useStyles();
+	
 	const config = {
 		headers: { "X-Requested-With": "XMLHttpRequest" }
 	}
@@ -86,33 +69,36 @@ export const Posting = (props) => {
 	}
 
 	return (
-		<>
-			<div className={classes.root}>
+		<div style={{width: "100%", height:"100%"}}>
+			<div id="cont">
+			<h1 id="title"> Post a Product to Sell </h1>
+			<h4><b>Make Da' Money</b></h4>	
+			<div className="formbox">
 				<Form>
 					{messagesView}
 					<FormGroup row>
-						<Label>Product Name:</Label>
+						<Label>Product Name:</Label><br/>
 						<Input
 							type="text"
-							className={classes.input}
+							className="input"
 							value={productPost.productName}
 							onChange={e => setProductPost({ ...productPost, productName: e.target.value })}
 						/>
 					</FormGroup>
 					<FormGroup row>
-						<Label>Selling Price:</Label>
+						<Label>Selling Price:</Label><br/>
 						<Input
 							type="text"
-							className={classes.input}
+							className="input"
 							value={productPost.price}
 							onChange={e => setProductPost({ ...productPost, price: e.target.value })}
 						/>
 					</FormGroup>
 					<FormGroup row>
-						<Label>Product Category:</Label>
+						<Label>Product Category:</Label><br/>
 						<Input
 							type="select"
-							className={classes.input}
+							className="input"
 							value={productPost.category}
 							onChange={e => setProductPost({ ...productPost, category: e.target.value })}
 						>
@@ -131,28 +117,31 @@ export const Posting = (props) => {
 						</Input>
 					</FormGroup>
 					<FormGroup row>
-						<Label>Product Description:</Label>
+						<Label>Product Description:</Label><br/>
 						<Input
 							type="textarea"
-							className={classes.input}
+							className="input"
 							value={productPost.notes}
 							onChange={e => setProductPost({ ...productPost, description: e.target.value })}
 						/>
 					</FormGroup>
 					<FormGroup row>
+					
 						<input
 							type="file"
 							onChange={(event) => {
 								setImageSelected(event.target.files[0])
 							}}
-						/><br />
-						<Button onClick={uploadImage}>Upload Image</Button>
+						/> 
+						<Button className="botonupload" onClick={uploadImage}>Upload Image</Button>
+						
 					</FormGroup>
 					<FormGroup row style={{ marginTop: "30px" }}>
-						<Button color="primary" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
+						<Button className="botonesubmit" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
 					</FormGroup>
 				</Form>
+				</div>
 			</div>
-		</>)
+		</div>)
 
 }
