@@ -21,7 +21,6 @@ export const runSeed = async () => {
                     productName: faker.commerce.productName(),
                     description: faker.commerce.productDescription(),
                     price: faker.commerce.price(),
-                    imageName:[""],
                     image: [faker.image.image(), faker.image.image(),faker.image.image()],
                     category: faker.commerce.department(),
                 })

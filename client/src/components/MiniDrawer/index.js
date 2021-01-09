@@ -132,7 +132,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 	logo:{
 		color: "white",
-	}
+		'&:hover': {
+			textDecoration: 'underline',
+			color: "green"
+		}
+	},
 
 
 }));
@@ -171,9 +175,11 @@ export default function MiniDrawer({children}) {
 					>
 						<MenuIcon/>
 					</IconButton>
-					<Typography variant="h4" className="cursor-pointer">
-					<Link className={classes.logo} to={"/home"}>Bazaar6</Link>
+					<Link to={"/home"}>
+					<Typography className={classes.logo} variant="h4" className="cursor-pointer">
+						Bazaar6
 					</Typography>
+					</Link>
 
 					<div className={classes.navrightmenu}>
 						
