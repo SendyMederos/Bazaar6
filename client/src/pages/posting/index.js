@@ -2,8 +2,8 @@ import React, { useCallback, useState } from "react";
 import ProductUpload from './../../components/ProductUpload'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { saveProduct } from '../../utils/ProductAPI';
-import axios from 'axios';
-import { Alert, Fade, Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
+import { Alert, Fade } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
 
 const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
 const useStyles = makeStyles((theme) => ({

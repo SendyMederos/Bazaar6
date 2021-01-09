@@ -11,42 +11,47 @@ export default function WantedAccordion({ wantedAds }) {
 
   console.log(wantedAds)
   return (
-    <div id="root">
-       <h1 id="title"> Wanted Ads </h1> 
-        {wantedAds.map((wanteds, i) => {
-          return ( <div className="mb-2">
-            <Accordion key={i} id="heading">
-              <AccordionSummary
-                aria-controls={"panel" + i + "a-content"}
-                id={"panel" + i + "a-header"}
-              >
-                <div className="row">
-                  <div className="col-4">
-
+    <div id="contenedor">
+      <h1 id="title"> ~  Wanted Ads  ~</h1>
+      {wantedAds.map((wanteds, i) => {
+        return (<div className="mb-2">
+          <Accordion key={i} id="heading">
+            <AccordionSummary
+              aria-controls={"panel" + i + "a-content"}
+              id={"panel" + i + "a-header"}
+            >
+              <div className="row">
+                <div className="col-4">
+                  <div className="ml-3 headers">
                     <h2> <b>{moment(wanteds.createdAt).format("MMM")}</b></h2>
                     <h1><b>{moment(wanteds.createdAt).format("DD")}</b></h1>
-
-                  </div>
-                  <div className="col-4">
-                    <h3>{wanteds.productName} </h3>
-                  </div>
-                  <div className="col-4">
-                    <h4>posted by  or contact buyer </h4>
                   </div>
                 </div>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <b>
-                    Max Price: $ {wanteds.price} <br />
+                <div className="col-4">
+                  <h3 id="ad">{wanteds.productName} </h3>
+                </div>
+                <div className="col-4">
+                  <h4>
+                    <button id="botones"
+                    onMouseLeave={(e) => { e.target.style.background = "rgb(128, 141, 107)"; e.target.style.color = "black" }}
+                    onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}
+                    >Contact The Owner</button> 
+                  </h4>
+                </div>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="ml-5">
+                <b>
+                  Max Price: $ {wanteds.price} <br />
                 Category: {wanteds.category}<br />
                 Description: {wanteds.notes}<br />
-                  </b>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            </div>)
-        })}
-      </div>
+                </b>
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </div>)
+      })}
+    </div>
   );
 }
