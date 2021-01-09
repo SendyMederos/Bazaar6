@@ -5,6 +5,7 @@ import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
 
+const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
 const useStyles = makeStyles((theme) => ({
 
 	root: {
@@ -18,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: "10%",
 		padding: "10%",
 		fontFamily: "Arial, Helvetica"
-
-
 	},
 	input: {
 		width: "100%"
@@ -27,10 +26,43 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const Posting = (props) => {
-	const [productPost, setProductPost] = useState({});
+	const [productPost, setProductPost] = useState({
+		productName: "",
+		description: "",
+		price: "",
+		category: "",
+		image: []
+
+	});
 	const [messages, setMessages] = useState([]);
 
 	const classes = useStyles();
+	const config = {
+		headers: { "X-Requested-With": "XMLHttpRequest" }
+	}
+	const [imageSelected, setImageSelected] = useState("")
+
+	const uploadImage = (req, res, files) => {
+		const formData = new FormData()
+		formData.append("file", imageSelected)
+		formData.append("upload_preset", "bazaarimages")
+
+		console.log(imageSelected)
+		try {
+			axios.post(`https://api.cloudinary.com/v1_1/bazaar6/image/upload`, formData, config)
+				.then(function (response) {
+					console.log(response.data.url);
+					let newObject = productPost
+					newObject.image.push(response.data.url)
+					setProductPost(newObject)
+					console.log(productPost)
+				})
+		} catch {
+			res.status(400).send({ message: { content: "Please upload a valid image" } })
+			console.log(res)
+
+		}
+	}
 
 	const messagesView = messages.map((message) => (
 		<Fade>
@@ -44,18 +76,19 @@ export const Posting = (props) => {
 
 	const handleSubmit = async () => {
 		const response = await saveProduct(productPost)
-		setMessages([{
-			prompt: response.data.message.content
-		}])
-		resetMessages()
-		setProductPost({
-			productName: "",
-			description: "",
-			price: "",
-			category: "",
-			image: [""]
+		console.log("WE MADE IT")
+		// setMessages([{
+		// 	prompt: response.data.message.content
+		// }])
+		// resetMessages()
+		// setProductPost({
+		// 	productName: "",
+		// 	description: "",
+		// 	price: "",
+		// 	category: "",
+		// 	image: []
 
-		})
+		// })
 	}
 
 	return (
@@ -97,6 +130,10 @@ export const Posting = (props) => {
 							<option value="auto-parts">Auto Parts</option>
 							<option value="tools">Tools</option>
 							<option value="video-games">Video Games</option>
+							<option value="sports">Sports</option>
+							<option value="industrial">Industrial</option>
+							<option value="baby">Baby</option>
+							<option value="clothing">Clothing</option>
 						</Input>
 					</FormGroup>
 					<FormGroup row>
@@ -105,11 +142,20 @@ export const Posting = (props) => {
 							type="textarea"
 							className={classes.input}
 							value={productPost.notes}
-							onChange={e => setProductPost({ ...productPost, notes: e.target.value })}
+							onChange={e => setProductPost({ ...productPost, description: e.target.value })}
 						/>
 					</FormGroup>
 					<FormGroup row>
-						<ProductUpload />
+						<input
+							type="file"
+							onChange={(event) => {
+								setImageSelected(event.target.files[0])
+							}}
+						/><br />
+						<Button onClick={uploadImage}>Upload Image</Button>
+					</FormGroup>
+					<FormGroup row style={{ marginTop: "30px" }}>
+						<Button color="primary" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
 					</FormGroup>
 				</Form>
 			</div>
