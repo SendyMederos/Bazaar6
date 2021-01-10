@@ -21,21 +21,21 @@ import UserAPI from '../../utils/UserAPI';
 
 export default function HomePage() {
     // const classes = useStyles();
+
+    let [filterProd, setfilterProd] = useState([]);
+
     useEffect(() => {
         getGroupedProducts()
     }, [])
 
-    let [filterProd, setfilterProd] = useState([]);
-    
     const getGroupedProducts = () => {
         getProducts().then(res => {
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
         })
     }
 
-    const  addToUser = (id) => {
-		UserAPI.updateUser({ "wishList": id })
-		alert("This item has been added to your cart")
+    const addToUser = (id) => {
+        UserAPI.updateUser({ "wishList": id })
 	} 
     
     return (
