@@ -152,7 +152,9 @@ export const Posting = (props) => {
 
 						</FormGroup>
 						<FormGroup row>
+							<div>
 							{uploadedImagesView}
+							</div>
 						</FormGroup>
 						<FormGroup row style={{ marginTop: "30px" }}>
 							<Button className="botonesubmit" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
