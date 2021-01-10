@@ -43,15 +43,9 @@ export default function HomePage() {
 
     const searchProduct = () => {
         getProducts().then(res => {
-<<<<<<< HEAD
-            console.log(res.data)
-            setSearchProd(res.data.filter(prod => prod.productName.toLowerCase().includes(search.toLowerCase())))
-            setIsSearch(true)     
-=======
             setSearchProd(res.data.filter(prod => prod.productName.toLowerCase().includes(search.toLowerCase())))
             setIsSearch(true)
             setSearch("")
->>>>>>> 98a917aef5dab8714aa52f79055e784f83166598
         })
     }
 
@@ -91,12 +85,6 @@ export default function HomePage() {
                         <GridCarousel items={category} addToUser={addToUser} categoryName={category[0].category} />
                     </Grid>
                 })}
-<<<<<<< HEAD
-            </div> 
-            : searchedProd.map((item, index) => {
-                    return <div className="flex row-wrap" > <MediaCard key={index} product={item} addToUser={addToUser}/> </div>
-            })} 
-=======
             </div>
                 :
                 <>
@@ -110,7 +98,6 @@ export default function HomePage() {
                     </Grid>
                 </>
             }
->>>>>>> 98a917aef5dab8714aa52f79055e784f83166598
 
             {/*<div className={classes.root}>
                 <Grid container spacing={3}>
