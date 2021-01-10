@@ -7,7 +7,7 @@ import UserAPI from '../../utils/UserAPI';
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
 import "../home/style.css";
 import { Next } from "react-bootstrap/esm/PageItem";
-import {MediaCard} from "../../components/Card"
+import { MediaCard } from "../../components/Card"
 
 
 
@@ -24,7 +24,7 @@ import {MediaCard} from "../../components/Card"
 // }));
 
 export default function HomePage() {
-    // const classes = useStyles();
+
     let [filterProd, setfilterProd] = useState([]);
     let [isSearch, setIsSearch] = useState(false);
     let [search, setSearch] = useState("");
@@ -40,11 +40,18 @@ export default function HomePage() {
             setfilterProd(_.toArray(_.groupBy(res.data, "category")).sort((a, b) => b.length - a.length).slice(0, 5))
         })
     }
+
     const searchProduct = () => {
         getProducts().then(res => {
+<<<<<<< HEAD
             console.log(res.data)
             setSearchProd(res.data.filter(prod => prod.productName.toLowerCase().includes(search.toLowerCase())))
             setIsSearch(true)     
+=======
+            setSearchProd(res.data.filter(prod => prod.productName.toLowerCase().includes(search.toLowerCase())))
+            setIsSearch(true)
+            setSearch("")
+>>>>>>> 98a917aef5dab8714aa52f79055e784f83166598
         })
     }
 
@@ -71,7 +78,7 @@ export default function HomePage() {
                         <Input
                             type="text"
                             className="homeinput"
-                            //value={product}
+                            value={search}
                             onChange={e => setSearch(e.target.value)}
                         />
                         <Button className="botonesubmithome" onClick={searchProduct}>Search</Button>
@@ -84,10 +91,26 @@ export default function HomePage() {
                         <GridCarousel items={category} addToUser={addToUser} categoryName={category[0].category} />
                     </Grid>
                 })}
+<<<<<<< HEAD
             </div> 
             : searchedProd.map((item, index) => {
                     return <div className="flex row-wrap" > <MediaCard key={index} product={item} addToUser={addToUser}/> </div>
             })} 
+=======
+            </div>
+                :
+                <>
+                    <Button onClick={() => setIsSearch(false)}>Back to Categories</Button>
+                    <Grid container spacing={2}>
+                        {searchedProd.map((item, index) => {
+                            return <Grid xs={12} sm={6} md={4} lg={3} className="mt-4 mb-4" align="center">
+                                <MediaCard key={index} product={item} addToUser={addToUser} />
+                            </Grid>
+                        })}
+                    </Grid>
+                </>
+            }
+>>>>>>> 98a917aef5dab8714aa52f79055e784f83166598
 
             {/*<div className={classes.root}>
                 <Grid container spacing={3}>
