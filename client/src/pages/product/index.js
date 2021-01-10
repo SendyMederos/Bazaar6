@@ -29,7 +29,5 @@ export default function Product() {
                         src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />   
                     </div>
             </div>
-        
-
     )
 }

@@ -76,17 +76,17 @@ function Dashboard(props) {
                 </Grid>
                 <Grid item xs={12} md={12} sm={6} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"} /> : ""}
+                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"} /> : <h1>You have no items on your wishlist</h1>}
                     </Paper>
                 </Grid>
             </Grid>
             <Grid container spacing={3}>
-                <Grid item xs={12} md={12} sm={6} lg={6} style={{ paddingRight: "50px" }}>
+                <Grid item xs={12} md={12} sm={8} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
                         {products ? <OrdersList wishlist={products} title={"Your Products For Sale"} /> : ""}
                     </Paper>
                 </Grid>
-                <Grid item xs={12} md={12} sm={6} lg={6} style={{ paddingRight: "50px" }}>
+                <Grid item xs={12} md={12} sm={4} lg={4} style={{ paddingRight: "50px" }}>
                     <Paper>
                         {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"} /> : ""}
                     </Paper>
