@@ -61,7 +61,7 @@ export default function HomePage() {
             <Grid className="formholder" item xs={10}>
                 <Form className="ml-5">
                     <FormGroup row >
-                        <Label><h1 className="homesearchtitle"> Search Product : </h1></Label>
+                        <Label><h1 className="homesearchtitle"> Search for a Product : </h1></Label>
                         <Input
                             type="text"
                             className="homeinput"

@@ -9,7 +9,6 @@ httpConfig.interceptors.request.use((req) => {
     req.baseURL = 'http://localhost:8080/api';
     req.headers = {
         ...req.headers,
-        //Authorization: Bearer ${token},
     };
     return req;
 });

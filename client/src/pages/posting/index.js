@@ -9,6 +9,7 @@ const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
 
 
 export const Posting = (props) => {
+
 	const [productPost, setProductPost] = useState({
 		productName: "",
 		description: "",
@@ -156,5 +157,4 @@ export const Posting = (props) => {
 				</div>
 			</div>
 		</div>)
-
 }

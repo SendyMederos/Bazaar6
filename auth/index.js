@@ -10,7 +10,7 @@ const publicRoutes = [
 
 const jwt_config = {
 	algorithm: "HS256",
-	expiresIn: "1h",
+	expiresIn: "2h",
 };
 
 const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
@@ -18,7 +18,7 @@ const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key"
 const cookie = {
 	cookie_name: "bazaar6_cookie",
 	cookie_config: {
-		maxAge: 24 * 60 * 60 * 60,
+		maxAge: 2 * 1000 * 60 * 60,
 		httpOnly: true,
 		secure: false,
 	}
