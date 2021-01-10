@@ -26,12 +26,13 @@ import {MediaCard} from "../../components/Card"
 export default function HomePage() {
     // const classes = useStyles();
     let [filterProd, setfilterProd] = useState([]);
-    let [isSearch, setIsSearch] = useState();
+    let [isSearch, setIsSearch] = useState(false);
     let [search, setSearch] = useState("");
     let [searchedProd, setSearchProd] = useState([]);
 
     useEffect(() => {
         getGroupedProducts()
+        setIsSearch(false)
     }, [])
 
     const getGroupedProducts = () => {
@@ -42,10 +43,16 @@ export default function HomePage() {
     const searchProduct = () => {
         getProducts().then(res => {
             console.log(res.data)
-            setSearchProd(res.data.filter(prod => prod.productName.includes(search) === true))
-            console.log(searchedProd)
+            setSearchProd(res.data.filter(prod => prod.productName.toLowerCase().includes(search.toLowerCase())))
+            setIsSearch(true)     
         })
     }
+
+    // const searchProduct = () => {
+    //     getProducts().then(res => {
+           
+    //     })
+    // }
 
     const addToUser = (id) => {
         UserAPI.updateUser({ "wishList": id })
@@ -79,7 +86,7 @@ export default function HomePage() {
                 })}
             </div> 
             : searchedProd.map((item, index) => {
-                    return <MediaCard key={index} product={item} addToUser={addToUser}/>
+                    return <div className="flex row-wrap" > <MediaCard key={index} product={item} addToUser={addToUser}/> </div>
             })} 
 
             {/*<div className={classes.root}>
