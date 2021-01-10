@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import {Signup, Signin} from '../SignForms'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -12,28 +11,23 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'darkolivegreen',
     border: '2px solid #000',
     boxShadow: theme.shadows[10],
     padding: theme.spacing(2, 4, 3),
+    borderRadius: '15px',
+    color: 'white'
   },
 }));
 
-export default function TransitionsModal({children}) {
+export default function TransitionsModal({children, addToUser, product}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [signin, setSignin] = React.useState(false);
 
-  const handleSigninTrue = () => {
-      setSignin(true)
-      handleOpen()
-  }
-  const handleSigninFalse = () => {
-    setSignin(false)
-    handleOpen()
-}
   const handleOpen = () => {
+    addToUser(product)
     setOpen(true);
+    setTimeout(() => handleClose(), 700)
   };
 
   const handleClose = () => {
@@ -42,10 +36,9 @@ export default function TransitionsModal({children}) {
 
   return (
     <div>
-      <ul className= "nav justify-content-end">
-        <li className= "mr-5" type="button" onClick={handleSigninTrue} >Log In</li>
-        <li className= "mr-5" type="button" onClick={handleSigninFalse}>Sign Up</li>
-      </ul>
+      <button className="cart" onClick={handleOpen}><i className="fa fa-shopping-cart" aria-hidden="true"/>
+						Add to cart
+					</button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -60,7 +53,7 @@ export default function TransitionsModal({children}) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-           {signin ? <Signin/> : <Signup/>}
+            Item Added to Wishlist
           </div>
         </Fade>
       </Modal>
