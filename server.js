@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors())
+app.use(cors(corsVar))
 app.use(cookieParser())
 app.use(bodyParser.raw({ limit: "100mb" }))
 app.use(bodyParser.json())
