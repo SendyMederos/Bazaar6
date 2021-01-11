@@ -11,11 +11,6 @@ import { Layout } from "./components/Layout";
 import { Posting } from "./pages/posting";
 import Axios from 'axios'
 
-// import API from "./utils/API";
-// import LocalAPI from "./utils/LocalAPI";
-
-
-
 function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(false)
@@ -70,13 +65,10 @@ function App() {
       {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
-
         <Route exact path="/checkout" component={Checkout} /> */}
     </Switch>
   </Router>
   )
 };
-
-
 
 export default App;

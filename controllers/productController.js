@@ -39,10 +39,10 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
-        db.Product
-            .findById({ _id: req.params.id })
-            .then(dbModel => dbModel.remove())
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        console.log(req.params.id)
+            db.Product
+                .deleteOne({_id: req.params})
+                .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user_id }, { $pull: { products: _id } }))
+                .then(dbModel => res.json(dbModel))
     }
-};
+}
