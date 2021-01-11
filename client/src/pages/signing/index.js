@@ -123,7 +123,7 @@ export default function Signing() {
                 </div>
                 <div className="col-2 right">
                     <img className=""
-                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />
+                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" alt="bg155"/>
                 </div>
             </div>
         </div>
