@@ -14,53 +14,21 @@ import http from './services/http'
 function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(false)
-
-  useEffect(() => {
-    checkCookie()
-  }, [])
-
-  const checkCookie = () => {
-    return http.get('/checkcookie')
-      .then(res => res.data ? setUserLoggedIn(true) : "")
-  }
-// basename={process.env.BASE_URL}
   return (<Router >
     <Switch>
-      <Route path="/signing" component={Signing} />
-      <Route exact path="/" component={Signing} />
-      <Layout>
-        <Route path="/home" render={() => {
-          return userLoggedIn
-            ? <Home />
-            : <Redirect to="/signing" />
-        }} />
-        <Route path="/dashboard" render={() => {
-          return userLoggedIn
-            ? <Dashboard />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/product/:id" render={() => {
-          return userLoggedIn
-            ? <Product />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/post-product" render={() => {
-          return userLoggedIn
-            ? <Posting />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/post-wanted" render={() => {
-          return userLoggedIn
-            ? <PostWanted />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/wanted" render={() => {
-          return userLoggedIn
-            ? <Wanted />
-            : <Redirect to="/" />
-        }} />
-      </Layout>
-      <Route path="/*" component={Error404} />
+      <Switch>
+        <Route exact path="/" component={Signing} />
+        <Route path="/signing" component={Signing} />
+        <Layout>
+          <Route path="/home" component={Home} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/post-product" component={Posting} />
+          <Route path="/post-wanted" component={PostWanted} />
+          <Route path="/wanted" component={Wanted} />
+        </Layout>
+        <Route path="/*" component={Error404} />
+      </Switch>
     </Switch>
   </Router>
   )
