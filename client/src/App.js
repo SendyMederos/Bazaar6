@@ -24,12 +24,11 @@ function App() {
       .then(res => res.data ? setUserLoggedIn(true) : "")
   }
 
-  return (<Router>
+  return (<Router basename={process.env.BASE_URL}>
     <Switch>
       <Route exact path="/" component={Signing} />
       <Route path="/signing" component={Signing} />
       <Layout>
-        <Route path="/home" />
         <Route path="/home" render={() => {
           return userLoggedIn
             ? <Home />
