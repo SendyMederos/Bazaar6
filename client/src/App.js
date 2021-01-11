@@ -23,17 +23,16 @@ function App() {
     return http.get('/checkcookie')
       .then(res => res.data ? setUserLoggedIn(true) : "")
   }
-
-  return (<Router>
+// basename={process.env.BASE_URL}
+  return (<Router >
     <Switch>
-      <Route exact path="/" component={Signing} />
       <Route path="/signing" component={Signing} />
+      <Route exact path="/" component={Signing} />
       <Layout>
-        <Route path="/home" />
         <Route path="/home" render={() => {
           return userLoggedIn
             ? <Home />
-            : <Redirect to="/" />
+            : <Redirect to="/signing" />
         }} />
         <Route path="/dashboard" render={() => {
           return userLoggedIn
