@@ -4,6 +4,7 @@ import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
 import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
 import "./style.css"
+import {Redirect} from 'react-router-dom';
 import { Height } from "@material-ui/icons";
 const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
 
@@ -22,6 +23,8 @@ export const Posting = (props) => {
 	const [messages, setMessages] = useState([]);
 	// Uploaded Images State
 	const [uploadedImages, setUploadedImages] = useState([])
+	// State to track when submit has fired
+	const [submitted, setSubmitted] = useState(false)
 
 
 	const config = {
@@ -63,7 +66,7 @@ export const Posting = (props) => {
 		</Fade>
 	))
 
-	const uploadedImagesView = uploadedImages.map(item => <li>{item}</li>)
+	const uploadedImagesView = uploadedImages.map(item => <li className="imageList">{item}</li>)
 
 	const resetMessages = () => setTimeout(() => setMessages([]), 5000)
 
@@ -77,10 +80,12 @@ export const Posting = (props) => {
 		setProductPost({ productName: "", description: "", price: "", category: "", image: [] })
 		setUploadedImages([])
 		setImageSelected('')
+		setTimeout(() => setSubmitted(true), 1500)
 	}
 
 	return (
 		<div style={{ width: "100%", height: "100%" }}>
+			{submitted ? <Redirect to="/dashboard" /> : ""}
 			<div id="cont">
 				<h1 id="title"> Post a Product to Sell </h1>
 				<h4><b>Make Da' Money</b></h4>
@@ -148,7 +153,9 @@ export const Posting = (props) => {
 
 						</FormGroup>
 						<FormGroup row>
+							<div>
 							{uploadedImagesView}
+							</div>
 						</FormGroup>
 						<FormGroup row style={{ marginTop: "30px" }}>
 							<Button className="botonesubmit" style={{ width: "100%" }} onClick={handleSubmit}>Submit</Button>
