@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ProductContent from '../../components/ProductContent'
-import Paper from '@material-ui/core/Paper';
 import { getProduct } from "../../utils/ProductAPI"
 import { useParams } from "react-router-dom"
 import UserAPI from "../../utils/UserAPI"
@@ -21,13 +20,12 @@ export default function Product() {
         alert("This item has been added to your cart")
     }
     return (
-
         <div className="m-5 d-flex productcard">
-                    {product.image ? <ProductContent product={product} addToUser={addToUser} /> : ""}
-                    <div className="bgcard">
-                    <img className=""
-                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />   
-                    </div>
+            {product.image ? <ProductContent product={product} addToUser={addToUser} /> : ""}
+            <div className="bgcard">
+                <img className=""
+                    src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />
             </div>
+        </div>
     )
 }

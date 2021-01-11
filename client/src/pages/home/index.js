@@ -83,12 +83,6 @@ export default function HomePage() {
                     </Grid>
                 </>
             }
-
-            {/*<div className={classes.root}>
-                <Grid container spacing={3}>
-
-                </Grid>
-            </div>*/}
         </div>
     )
 }

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({addToUser, product}) {
+export default function TransitionsModal({ addToUser, product }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -36,7 +36,7 @@ export default function TransitionsModal({addToUser, product}) {
 
   return (
     <div>
-      <button className="cart" onClick={handleOpen}><i className="fa fa-shopping-cart" aria-hidden="true"/>
+      <button className="cart" onClick={handleOpen}><i className="fa fa-shopping-cart" aria-hidden="true" />
 						Add to cart
 					</button>
       <Modal

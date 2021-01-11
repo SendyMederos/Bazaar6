@@ -14,9 +14,11 @@ const useStyles = makeStyles(() => ({
 export function Wanted() {
     const classes = useStyles();
     const [wantedAds, setWantedAds] = useState({})
+
     useEffect(() => {
         getWantedAdds()
     }, [])
+
     function getWantedAdds() {
         getWanted()
             .then(res => {

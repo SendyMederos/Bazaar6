@@ -9,15 +9,15 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
         backgroundColor: theme.palette.grey[200]
-    },
+    }
 }));
 
-export default function BudgetInfo({remaining, spent, budget}) {
+export default function BudgetInfo({ remaining, spent, budget }) {
     const classes = useStyles();
 
     return (
         <List component="nav" className={classes.root} aria-label="mailbox folders">
-            <ListItem alignItems="center "button>
+            <ListItem alignItems="center " button>
                 <li alignText="center">Remaining Left To Spend: ${remaining}</li>
             </ListItem>
             <Divider />

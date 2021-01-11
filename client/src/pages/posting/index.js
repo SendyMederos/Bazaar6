@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
-import { Button, Form, FormGroup, Input, Label} from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import "./style.css"
-import {Redirect} from 'react-router-dom';
-const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
+import { Redirect } from 'react-router-dom';
 
-
-export const Posting = (props) => {
+export const Posting = () => {
 
 	const [productPost, setProductPost] = useState({
 		productName: "",
@@ -43,15 +41,12 @@ export const Posting = (props) => {
 		try {
 			axios.post(`https://api.cloudinary.com/v1_1/bazaar6/image/upload`, formData, config)
 				.then(function (response) {
-					console.log(response.data.url);
 					let newObject = productPost
 					newObject.image.push(response.data.url)
 					setProductPost(newObject)
-					console.log(productPost)
 				})
 		} catch {
 			res.status(400).send({ message: { content: "Please upload a valid image" } })
-			console.log(res)
 		}
 	}
 
@@ -69,7 +64,6 @@ export const Posting = (props) => {
 
 	const handleSubmit = async () => {
 		const response = await saveProduct(productPost)
-		console.log("WE MADE IT")
 		setMessages([{
 			prompt: response.data.message.content
 		}])
@@ -151,7 +145,7 @@ export const Posting = (props) => {
 						</FormGroup>
 						<FormGroup row>
 							<div>
-							{uploadedImagesView}
+								{uploadedImagesView}
 							</div>
 						</FormGroup>
 						<FormGroup row style={{ marginTop: "30px" }}>

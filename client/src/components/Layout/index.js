@@ -1,7 +1,7 @@
 import React from "react";
 import MiniDrawer from "../MiniDrawer";
-import {makeStyles} from "@material-ui/core/styles";
-import {Grid} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -24,7 +24,7 @@ export const Layout = ({ children }) => {
 
 		<div className={classes.root} style={{ marginLeft: "100px" }}>
 			<Grid container spacing={3}>
-				{ children }
+				{children}
 			</Grid>
 		</div>
 

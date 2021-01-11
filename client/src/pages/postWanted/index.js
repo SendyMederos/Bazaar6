@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { saveWanted } from '../../utils/WantedAPI';
-import { Button, Form, FormGroup, Input, Label} from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Alert, Fade } from "reactstrap";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import '../posting/style.css'
 
 const useStyles = makeStyles(() => ({
@@ -51,7 +51,6 @@ export function PostWanted() {
     setWantedAd({ productName: "", price: "", category: "", notes: "" })
     setTimeout(() => setSubmitted(true), 2000)
   }
-
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -118,5 +117,4 @@ export function PostWanted() {
         </div>
       </div>
     </div>)
-
 }

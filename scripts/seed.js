@@ -1,22 +1,17 @@
 import faker from "faker";
 const mongoose = require("mongoose");
 const db = require ("../models");
+require('dotenv').config({ path: '../.env' })
 
-
-
-let url = process.env.MONGODB_URI ||
-"mongodb://localhost/bazaar6"
-
-mongoose.connect(url, {useUnifiedTopology: true});
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     
-
 export const runSeed = async () => {
     try {
         console.log("working")
         const products =[];
         const users=[];
         const quantity = 20;
-        for (let i = 0; i < 175; i++){
+        for (let i = 0; i < 250; i++){
             products.push({
                     productName: faker.commerce.productName(),
                     description: faker.commerce.productDescription(),
@@ -27,7 +22,7 @@ export const runSeed = async () => {
             
         }
 
-        for (let i = 0; i < quantity; i++){
+        for (let i = 0; i < 20; i++){
             users.push( 
                     {
                     firstName: faker.name.firstName(),
