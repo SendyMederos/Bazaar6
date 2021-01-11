@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { saveWanted } from '../../utils/WantedAPI';
-import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Alert, Fade } from "reactstrap";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import '../posting/style.css'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 
   root: {
     display: 'flex',
@@ -19,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10%",
     padding: "10%",
     fontFamily: "Arial, Helvetica"
-
-
   },
   input: {
     width: "100%"
@@ -53,7 +51,6 @@ export function PostWanted(props) {
     setWantedAd({ productName: "", price: "", category: "", notes: "" })
     setTimeout(() => setSubmitted(true), 2000)
   }
-
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -120,5 +117,4 @@ export function PostWanted(props) {
         </div>
       </div>
     </div>)
-
 }

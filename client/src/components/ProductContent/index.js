@@ -4,7 +4,6 @@ import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-
     button: {
         padding: "0.6rem",
         outline: 'none',
@@ -19,19 +18,18 @@ const useStyles = makeStyles(() => ({
     middlebottom: {
         position: "absolute",
         margin: "auto",
-        left:-50,
+        left: -50,
         bottom: 0,
     }
 }));
 
-export default function ProductContent({product, addToUser}) {
+export default function ProductContent({ product, addToUser }) {
     const classes = useStyles();
 
     return (
-
         <Grid container spacing={2} className="m-2 ml-2">
             <Grid item  >
-                <PictsSlideshow image={product.image}/>
+                <PictsSlideshow image={product.image} />
             </Grid>
             <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={2}>
@@ -45,7 +43,7 @@ export default function ProductContent({product, addToUser}) {
                     </Grid>
                     <Grid item>
                         <button className={classes.button}
-                            onClick={() => {addToUser(product._id)}}
+                            onClick={() => { addToUser(product._id) }}
                             onMouseLeave={(e) => { e.target.style.background = "black"; e.target.style.color = "white" }}
                             onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}>
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>

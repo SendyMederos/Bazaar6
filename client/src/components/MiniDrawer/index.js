@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,16 +18,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import BallotIcon from '@material-ui/icons/Ballot';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import StorefrontIcon from '@material-ui/icons/Storefront';
 import HomeIcon from '@material-ui/icons/Home';
 import QueueIcon from '@material-ui/icons/Queue';
 import './style.css'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const drawerWidth = 240;
-
 
 const links = [
 	{
@@ -52,7 +50,7 @@ const links = [
 	},
 	{
 		name: "Post Wanted Ad",
-		icon: (<PostAddIcon  />),
+		icon: (<PostAddIcon />),
 		to: "/post-wanted"
 	}
 ]
@@ -111,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		padding: theme.spacing(0, 1),
-		// necessary for content to be below app bar
 		...theme.mixins.toolbar,
 
 	},
@@ -127,19 +124,17 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "black",
 	},
 	bottomDrawer: {
-	 overflowX: "hidden",
-      overflowY: "hidden",
-      position: "relative",
-      marginLeft: "-468px"
+		overflowX: "hidden",
+		overflowY: "hidden",
+		position: "relative",
+		marginLeft: "-468px"
 	},
-	logo:{
+	logo: {
 		color: "white",
-	},
-
-
+	}
 }));
 
-export default function MiniDrawer({children}) {
+export default function MiniDrawer({ children }) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -155,13 +150,13 @@ export default function MiniDrawer({children}) {
 
 	const logOut = () => {
 		return Axios.get('/logout')
-		.then(setTimeout(() => setToHome(true), 1500))
+			.then(setTimeout(() => setToHome(true), 1500))
 	}
 
 	return (
 		<div className={classes.root}>
 			{toHome ? <Redirect to="/" /> : ""}
-			<CssBaseline/>
+			<CssBaseline />
 			<AppBar
 				position="fixed"
 				className={clsx(classes.appBar, {
@@ -178,18 +173,17 @@ export default function MiniDrawer({children}) {
 							[classes.hide]: open,
 						})}
 					>
-						<MenuIcon/>
+						<MenuIcon />
 					</IconButton>
-					<Link to={"/home"} style={{color:"white"}}>
-					<Typography className={classes.logo} variant="h4" className="cursor-pointer">
-						Bazaar6
+					<Link to={"/home"} style={{ color: "white" }}>
+						<Typography className={classes.logo} variant="h4" className="cursor-pointer">
+							Bazaar6
 					</Typography>
 					</Link>
 
 					<div className={classes.navrightmenu}>
 						<h4 onClick={logOut}>Logout</h4>
 					</div>
-
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -207,28 +201,26 @@ export default function MiniDrawer({children}) {
 			>
 				<div className={classes.toolbar}>
 					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+						{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
 					</IconButton>
 				</div>
-				<Divider/>
+				<Divider />
 				<List >
 					{links.map(link => (
 						<Link to={link.to}>
 							<ListItem button key={link.name} onClick={handleDrawerClose}>
 								<ListItemIcon>{link.icon}</ListItemIcon>
-								<ListItemText style={{color: 'forestgreen'}} primary={link.name}/>
+								<ListItemText style={{ color: 'forestgreen' }} primary={link.name} />
 							</ListItem>
 						</Link>
 					))}
 				</List>
 				<div className={classes.bottomDrawer}>
-					<img src="https://i.pinimg.com/originals/2f/0a/01/2f0a017d4e120c6fd8c3f062554c27ea.jpg" alt=""/>
+					<img src="https://i.pinimg.com/originals/2f/0a/01/2f0a017d4e120c6fd8c3f062554c27ea.jpg" alt="" />
 				</div>
 			</Drawer>
 			<main className={classes.content}>
-
-				<div className={classes.toolbar}/>
-
+				<div className={classes.toolbar} />
 				{children}
 			</main>
 		</div>
