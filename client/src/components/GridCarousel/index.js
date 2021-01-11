@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import { MediaCard } from "../Card";
 
-import "./carousel.css";
+import "./style.css";
 
 const items = [
 	{ name: "item0" },
@@ -19,14 +19,6 @@ const items = [
 	{ name: "item11" },
 	{ name: "item12" },
 ];
-
-// const GridItem = ({ text, selected }) => {
-// 	return (<div className={`grid-item ${selected ? 'active' : ''}`}>
-// 		{text}
-// 	</div>)
-// };
-
-
 
 const Arrow = ({ text, className }) => {
 	return (<div className={className}>

@@ -18,7 +18,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import BallotIcon from '@material-ui/icons/Ballot';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import StorefrontIcon from '@material-ui/icons/Storefront';
 import HomeIcon from '@material-ui/icons/Home';
 import QueueIcon from '@material-ui/icons/Queue';
 import './style.css'
@@ -135,8 +134,6 @@ const useStyles = makeStyles((theme) => ({
 	logo:{
 		color: "white",
 	},
-
-
 }));
 
 export default function MiniDrawer({children}) {

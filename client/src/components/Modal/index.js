@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({children, addToUser, product}) {
+export default function TransitionsModal({addToUser, product}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 

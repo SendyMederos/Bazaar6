@@ -10,9 +10,6 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         backgroundColor: theme.palette.grey[200]
     },
-    top: {
-
-    }
 }));
 
 export default function BudgetInfo({remaining, spent, budget}) {

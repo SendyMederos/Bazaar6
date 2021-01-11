@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
-import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label} from "reactstrap";
 import "./style.css"
 import {Redirect} from 'react-router-dom';
-import { Height } from "@material-ui/icons";
 const baseUrl = 'https://api.cloudinary.com/v1_1/bazaar6'
 
 
@@ -17,7 +16,6 @@ export const Posting = (props) => {
 		price: "",
 		category: "",
 		image: []
-
 	});
 
 	const [messages, setMessages] = useState([]);
@@ -54,7 +52,6 @@ export const Posting = (props) => {
 		} catch {
 			res.status(400).send({ message: { content: "Please upload a valid image" } })
 			console.log(res)
-
 		}
 	}
 

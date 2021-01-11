@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MiniDrawer from '../../components/MiniDrawer/index';
 import Paper from '@material-ui/core/Paper';
 import { Grid, Container } from '@material-ui/core/';
 import BudgetForm from '../../components/BudgetForm'
@@ -8,8 +7,6 @@ import OrdersList from '../../components/ProductTable';
 import WantedAdList from '../../components/WantedAdTable'
 import UserAPI from '../../utils/UserAPI';
 import GaugeChart from 'react-gauge-chart';
-import { deleteProduct } from '../../utils/ProductAPI';
-import { Row } from "reactstrap";
 
 function Dashboard(props) {
 
@@ -77,25 +74,24 @@ function Dashboard(props) {
                 </Grid>
                 <Grid item xs={12} md={12} sm={6} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}/> : <h1>You have no items on your wishlist</h1>}
+                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"} /> : <h1>You have no items on your wishlist</h1>}
                     </Paper>
                 </Grid>
             </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={12} sm={8} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}/> : ""}
+                        {products ? <OrdersList wishlist={products} title={"Your Products For Sale"} /> : ""}
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={12} sm={4} lg={4} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"}/> : ""}
+                        {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"} /> : ""}
                     </Paper>
                 </Grid>
             </Grid>
         </Container>
     );
 }
-
 
 export default Dashboard;

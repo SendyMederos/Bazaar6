@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,8 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ClearIcon from '@material-ui/icons/Clear';
-import {deleteProduct} from '../../utils/ProductAPI'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -50,7 +47,6 @@ const useStyles = makeStyles({
 
 export default function WantedAdList({ wantedAd, title }) {
   const classes = useStyles();
-
   return (
     <TableContainer className={classes.table} component={Paper}>
       <Table aria-label="customized table">
@@ -60,8 +56,8 @@ export default function WantedAdList({ wantedAd, title }) {
             <StyledTableCell align="center">Price</StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody style={{ }}>
-          {wantedAd.map((row) => ( 
+        <TableBody style={{}}>
+          {wantedAd.map((row) => (
             <StyledTableRow key={row._id}>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>

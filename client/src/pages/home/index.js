@@ -4,24 +4,9 @@ import { GridCarousel } from "../../components/GridCarousel";
 import { getProducts } from "../../utils/ProductAPI";
 import _ from "underscore";
 import UserAPI from '../../utils/UserAPI';
-import { Button, Form, FormGroup, Input, Label, ListGroup, ListGroupItem } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import "../home/style.css";
-import { Next } from "react-bootstrap/esm/PageItem";
 import { MediaCard } from "../../components/Card"
-
-
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         flexGrow: 1,
-//     },
-//     imgCarousel: {
-//         padding: theme.spacing(0),
-//         justifyContent: 'center',
-//         textAlign: 'center',
-//         color: theme.palette.text.secondary,
-//     },
-// }));
 
 export default function HomePage() {
 
