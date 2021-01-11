@@ -1,30 +1,8 @@
 import React, { useState } from "react";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import { MediaCard } from "../Card";
-<<<<<<< HEAD
-
 import "./style.css";
 
-const items = [
-	{ name: "item0" },
-	{ name: "item1" },
-	{ name: "item2" },
-	{ name: "item3" },
-	{ name: "item4" },
-	{ name: "item5" },
-	{ name: "item6" },
-	{ name: "item7" },
-	{ name: "item8" },
-	{ name: "item9" },
-	{ name: "item10" },
-	{ name: "item11" },
-	{ name: "item12" },
-];
-
-=======
-import "./style.css";
-
->>>>>>> 45cc43aff8eb7ab1b194a954d4d2209ba3df460d
 const Arrow = ({ text, className }) => {
 	return (<div className={className}>
 		{text}
