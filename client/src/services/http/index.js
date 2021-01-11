@@ -6,7 +6,7 @@ const httpConfig = axios.create({
 });
 
 httpConfig.interceptors.request.use((req) => {
-    req.baseURL = 'http://localhost:8080/api';
+    req.baseURL = 'https://blooming-garden-49666.herokuapp.com/api';
     req.headers = {
         ...req.headers,
     };

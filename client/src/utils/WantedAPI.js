@@ -1,15 +1,15 @@
-import axios from "axios";
+import http from '../services/http';
 
 const path = "/api/wanted"
 
 export const saveWanted = (wantedAd) => {
-  return axios.post(`${path}`, wantedAd)
+  return http.post(`${path}`, wantedAd)
 }
 
 export const getWanted = () => {
-  return axios.get(`${path}`)
+  return http.get(`${path}`)
 }
 
 export const deleteWanted = (id) => {
-  return axios.delete(`${path}/${id}`)
+  return http.delete(`${path}/${id}`)
 }
