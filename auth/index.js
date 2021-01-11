@@ -5,7 +5,9 @@ require('dotenv').config({ silent: true })
 const publicRoutes = [
 	"/api/users/signup",
 	"/api/users/login",
-	"/checkcookie"
+	"/checkcookie",
+	"/",
+	"/signing"
 ]
 
 const jwt_config = {
