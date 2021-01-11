@@ -6,7 +6,7 @@ const httpConfig = axios.create({
 });
 
 httpConfig.interceptors.request.use((req) => {
-    req.baseURL = 'https://dry-ocean-76403.herokuapp.com/api';
+    req.baseURL = 'https://bazaar6.herokuapp.com/api';
     req.headers = {
         ...req.headers,
     };
