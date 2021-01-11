@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { Error404 } from "./pages/errors/404";
 import { Layout } from "./components/Layout";
 import { Posting } from "./pages/posting";
-import Axios from 'axios'
+import http from './services/http'
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   const checkCookie = () => {
-    return Axios.get('/checkcookie')
+    return http.get('/checkcookie')
       .then(res => res.data ? setUserLoggedIn(true) : "")
   }
 // basename={process.env.BASE_URL}

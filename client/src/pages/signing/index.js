@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Signup, Signin } from '../../components/SignForms';
-import Axios from 'axios'
+import http from '../../services/http'
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';
 import { Alert, Fade } from "reactstrap";
@@ -17,7 +17,7 @@ export default function Signing() {
     }, [])
 
     const checkCookie = () => {
-        return Axios.get('/checkcookie')
+        return http.get('/checkcookie')
             .then(res => res.data ? setCookie(true) : "")
     }
 

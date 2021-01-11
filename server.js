@@ -10,10 +10,6 @@ const PORT = process.env.PORT || 8080;
 
 require('dotenv').config({ silent: true })
 require('./auth')
-const corsVar = {
-  credentials: true,
-  origin: ["https://bazaar6.herokuapp.com/", "http://localhost:3000"],
-}
 
 // static assets
 if (process.env.NODE_ENV === "production") {
@@ -22,7 +18,10 @@ if (process.env.NODE_ENV === "production") {
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors(corsVar))
+app.use(cors({
+  credentials: true,
+  origin: true,
+}))
 app.use(cookieParser())
 app.use(bodyParser.raw({ limit: "100mb" }))
 app.use(bodyParser.json())
