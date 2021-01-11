@@ -65,10 +65,6 @@ export default function WantedAdList({ wantedAd, title }) {
             <StyledTableRow key={row._id}>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
-<<<<<<< HEAD
-              <StyledTableCell align="right">{<ClearIcon style={{fill: "red"}}  onClick={onClick(row._id)}/>}</StyledTableCell>
-=======
->>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
             </StyledTableRow>
           ))}
         </TableBody>

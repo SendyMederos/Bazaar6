@@ -49,14 +49,6 @@ function Dashboard(props) {
         getBudget()
     }
 
-<<<<<<< HEAD
-    const deleteProducts = (id) => {
-//id.preventDefault()
-        deleteProduct(id)
-      }
-
-=======
->>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
     return (
         <Container maxWidth="xl">
             <Grid container spacing={3}>
@@ -85,31 +77,19 @@ function Dashboard(props) {
                 </Grid>
                 <Grid item xs={12} md={12} sm={6} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-<<<<<<< HEAD
-                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}  onClick={deleteProducts } /> : <h1>You have no items on your wishlist</h1>}
-=======
                         {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}/> : <h1>You have no items on your wishlist</h1>}
->>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
                     </Paper>
                 </Grid>
             </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={12} sm={8} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-<<<<<<< HEAD
-                        {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}  onClick={deleteProducts} /> : ""}
-=======
                         {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}/> : ""}
->>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={12} sm={4} lg={4} style={{ paddingRight: "50px" }}>
                     <Paper>
-<<<<<<< HEAD
-                        {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"}  onClick={deleteProducts} /> : ""}
-=======
                         {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"}/> : ""}
->>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
                     </Paper>
                 </Grid>
             </Grid>
