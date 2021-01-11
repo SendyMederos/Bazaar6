@@ -40,9 +40,5 @@ module.exports = {
     },
     remove: function (req, res) {
         console.log(req.params.id)
-            db.Product
-                .deleteOne({_id: req.params})
-                .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user_id }, { $pull: { products: _id } }))
-                .then(dbModel => res.json(dbModel))
     }
 }

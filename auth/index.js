@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
-const User = require('../models/User.js')
 const _ = require("lodash")
+require('dotenv').config({ silent: true })
 
 const publicRoutes = [
 	"/api/users/signup",
@@ -13,7 +13,7 @@ const jwt_config = {
 	expiresIn: "2h",
 };
 
-const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
+const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY
 
 const cookie = {
 	cookie_name: "bazaar6_cookie",
