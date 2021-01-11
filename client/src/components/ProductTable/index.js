@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function OrdersList({ wishlist, title }) {
+export default function OrdersList({ wishlist, title, onClick }) {
   const classes = useStyles();
 
   return (
@@ -61,13 +61,13 @@ export default function OrdersList({ wishlist, title }) {
             <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody style={{ }}>
-          {wishlist.map((row) => ( 
+        <TableBody style={{}}>
+          {wishlist.map((row) => (
             <StyledTableRow key={row._id}>
-              <StyledTableCell component={Link} to={"/product/" + row._id} align="center"><img src={row.image ? row.image[0] : ""} style={{width:"80px"}} alt="" /></StyledTableCell>
+              <StyledTableCell component={Link} to={"/product/" + row._id} align="center"><img src={row.image ? row.image[0] : ""} style={{ width: "80px" }} alt="" /></StyledTableCell>
               <StyledTableCell component={Link} to={"/product/" + row._id} align="center">{row.productName}</StyledTableCell>
               <StyledTableCell component={Link} to={"/product/" + row._id} align="center">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{<ClearIcon style={{fill: "red"}} onClick={console.log("clicked")}/>}</StyledTableCell>
+              <StyledTableCell align="right">{<ClearIcon style={{ fill: "red" }} onClick={onClick(row._id)} />}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

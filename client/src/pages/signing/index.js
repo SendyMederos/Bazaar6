@@ -99,7 +99,6 @@ export default function Signing() {
             setTimeout(() => window.location.href = "/home", 1500)
             resetMessages()
         }
-
     }
 
     return (

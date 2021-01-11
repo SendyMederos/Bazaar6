@@ -11,11 +11,6 @@ import { Layout } from "./components/Layout";
 import { Posting } from "./pages/posting";
 import Axios from 'axios'
 
-// import API from "./utils/API";
-// import LocalAPI from "./utils/LocalAPI";
-
-
-
 function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(false)
@@ -76,6 +71,9 @@ function App() {
   )
 };
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a7d8094fd182aef65d8f873c57a31e9d4516a3f2
 export default App;

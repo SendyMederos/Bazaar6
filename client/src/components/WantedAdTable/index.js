@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function WantedAdList({ wantedAd, title }) {
+export default function WantedAdList({ wantedAd, title, onClick }) {
   const classes = useStyles();
 
   const deleteItem = (id) => {
@@ -69,7 +69,7 @@ export default function WantedAdList({ wantedAd, title }) {
             <StyledTableRow key={row._id}>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{<ClearIcon style={{fill: "red"}} onClick={console.log("clicked")}/>}</StyledTableCell>
+              <StyledTableCell align="right">{<ClearIcon style={{fill: "red"}} onClick={onClick(row._id)}/>}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
