@@ -8,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ClearIcon from '@material-ui/icons/Clear';
+import {deleteProduct} from '../../utils/ProductAPI'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -47,8 +47,12 @@ const useStyles = makeStyles({
   }
 });
 
-export default function OrdersList({ wishlist, title, onClick }) {
+export default function OrdersList({ wishlist, title }) {
   const classes = useStyles();
+
+  const deleteItem = (id) => {
+    deleteProduct(id)
+  }
 
   return (
     <TableContainer className={classes.table} component={Paper}>
@@ -58,7 +62,6 @@ export default function OrdersList({ wishlist, title, onClick }) {
             <StyledTableCell align="center"><h3><b>{title}</b></h3></StyledTableCell>
             <StyledTableCell align="center">Item Name</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody style={{}}>
@@ -67,7 +70,6 @@ export default function OrdersList({ wishlist, title, onClick }) {
               <StyledTableCell component={Link} to={"/product/" + row._id} align="center"><img src={row.image ? row.image[0] : ""} style={{ width: "80px" }} alt="" /></StyledTableCell>
               <StyledTableCell component={Link} to={"/product/" + row._id} align="center">{row.productName}</StyledTableCell>
               <StyledTableCell component={Link} to={"/product/" + row._id} align="center">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{<ClearIcon style={{ fill: "red" }} onClick={onClick(row._id)} />}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
