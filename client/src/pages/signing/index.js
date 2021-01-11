@@ -37,6 +37,8 @@ export default function Signing() {
         city: ''
     });
 
+    const [redir, setRedir] = useState(false);
+
     const resetMessages = () => setTimeout(() => setMessages([]), 5000)
 
     const formatData = ({ firstName, lastName, email, password, street, state, zip, city }) => {
@@ -77,7 +79,7 @@ export default function Signing() {
             setMessages([{
                 prompt: "Logging in..."
             }])
-            setTimeout(() => window.location.href = "/home", 1500)
+            setTimeout(() =>setRedir(true), 1500)
             resetMessages()
 
         }
@@ -95,14 +97,14 @@ export default function Signing() {
             setMessages([{
                 prompt: "Successfully created your user"
             }])
-            setTimeout(() => window.location.href = "/home", 1500)
+            setTimeout(() => setRedir(true), 1500)
             resetMessages()
         }
     }
 
     return (
         <div style={{ width: "100%" }}>
-            {cookie ? <Redirect to="/home" /> : ""}
+            {cookie || redir ? <Redirect to="/home" /> : ""}
             <div className="row">
                 <div className="col-12 backbox">
                     <div className="forms">
