@@ -12,7 +12,7 @@ require('dotenv').config({ silent: true })
 require('./auth')
 const corsVar = {
   credentials: true,
-  origin: ["https://bazaar6.herokuapp.com/"],
+  origin: ["https://bazaar6.herokuapp.com/", "http://localhost:3000"],
 }
 
 // static assets
@@ -33,7 +33,7 @@ app.use(routes)
 
 
 // connect to MongoDB
-mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 // start the server
 app.listen(PORT, function () {
