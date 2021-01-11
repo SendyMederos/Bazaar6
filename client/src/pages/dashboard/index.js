@@ -9,6 +9,7 @@ import WantedAdList from '../../components/WantedAdTable'
 import UserAPI from '../../utils/UserAPI';
 import GaugeChart from 'react-gauge-chart';
 import { deleteProduct } from '../../utils/ProductAPI';
+import { Row } from "reactstrap";
 
 function Dashboard(props) {
 
@@ -49,6 +50,7 @@ function Dashboard(props) {
     }
 
     const deleteProducts = (id) => {
+//id.preventDefault()
         deleteProduct(id)
       }
 
@@ -80,19 +82,19 @@ function Dashboard(props) {
                 </Grid>
                 <Grid item xs={12} md={12} sm={6} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"} onClick={deleteProducts} /> : <h1>You have no items on your wishlist</h1>}
+                        {wishlist ? <OrdersList wishlist={wishlist} title={"Your Wishlist"}  onClick={deleteProducts } /> : <h1>You have no items on your wishlist</h1>}
                     </Paper>
                 </Grid>
             </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={12} sm={8} lg={8} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {products ? <OrdersList wishlist={products} title={"Your Products For Sale"} onClick={deleteProducts} /> : ""}
+                        {products ? <OrdersList wishlist={products} title={"Your Products For Sale"}  onClick={deleteProducts} /> : ""}
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={12} sm={4} lg={4} style={{ paddingRight: "50px" }}>
                     <Paper>
-                        {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"} onClick={deleteProducts} /> : ""}
+                        {products ? <WantedAdList wantedAd={wantedAds} title={"Your Wanted Ads"}  onClick={deleteProducts} /> : ""}
                     </Paper>
                 </Grid>
             </Grid>

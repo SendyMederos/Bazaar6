@@ -71,9 +71,4 @@ function App() {
   )
 };
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a7d8094fd182aef65d8f873c57a31e9d4516a3f2
 export default App;
