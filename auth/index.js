@@ -7,7 +7,10 @@ const publicRoutes = [
 	"/api/users/login",
 	"/checkcookie",
 	"/",
-	"/signing"
+	"/signing",
+	"/static/*",
+	"/favicon.ico",
+	"/manifest.json"
 ]
 
 const jwt_config = {
