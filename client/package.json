@@ -2,7 +2,11 @@
   "name": "mern",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "proxy": "https://still-dusk-53137.herokuapp.com/",
+=======
+  "proxy": "http://localhost:3000",
+>>>>>>> 1c5ff1391a5c4e90af52ddaf2db3dc0514d50d6a
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
