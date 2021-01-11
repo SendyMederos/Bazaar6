@@ -40,10 +40,13 @@ module.exports = {
     },
     remove: function (req, res) {
         console.log(req.params.id)
+<<<<<<< HEAD
             // db.Product
             //     .findById({ _id: req.params.id })
             //     .then(dbModel => dbModel.remove())
             //     .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user_id }, { $pull: { products: _id } }))
             //     .then(dbModel => res.json(dbModel))
+=======
+>>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
     }
 }

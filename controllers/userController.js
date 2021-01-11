@@ -1,15 +1,14 @@
 const db = require("../models")
 const auth = require('../auth')
 const jwt = require('jsonwebtoken');
-const { query } = require("express");
-const { populate } = require("../models/User");
+require('dotenv').config({ silent: true })
 
 const jwt_config = {
     algorithm: "HS256",
     expiresIn: "2h",
 };
 
-const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY || "My encryption key";
+const jwt_encryption_key = process.env.JWT_ENCRYPTION_KEY
 
 const authCookie = {
     cookie_name: "bazaar6_cookie",

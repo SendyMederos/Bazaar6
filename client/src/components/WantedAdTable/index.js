@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ClearIcon from '@material-ui/icons/Clear';
+import {deleteProduct} from '../../utils/ProductAPI'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function WantedAdList({ wantedAd, title, onClick }) {
+export default function WantedAdList({ wantedAd, title }) {
   const classes = useStyles();
 
   return (
@@ -57,7 +58,6 @@ export default function WantedAdList({ wantedAd, title, onClick }) {
           <TableRow>
             <StyledTableCell align="center"><h3><b>{title}</b></h3></StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody style={{ }}>
@@ -65,7 +65,10 @@ export default function WantedAdList({ wantedAd, title, onClick }) {
             <StyledTableRow key={row._id}>
               <StyledTableCell align="center">{row.productName}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
+<<<<<<< HEAD
               <StyledTableCell align="right">{<ClearIcon style={{fill: "red"}}  onClick={onClick(row._id)}/>}</StyledTableCell>
+=======
+>>>>>>> 323384b941f1130cb736d3ddeb9e3f52c1f83584
             </StyledTableRow>
           ))}
         </TableBody>
