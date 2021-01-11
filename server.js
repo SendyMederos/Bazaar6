@@ -10,24 +10,27 @@ const PORT = process.env.PORT || 8080;
 
 require('dotenv').config({ silent: true })
 require('./auth')
+const corsVar = {
+  credentials: true,
+  origin: ["https://bazaar6.herokuapp.com/"],
+}
 
+// static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-  credentials: true,
-  origin: ["https://bazaar6.herokuapp.com/"],
-}))
+app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.raw({ limit: "100mb" }))
 app.use(bodyParser.json())
 app.use(validateUser)
 app.use(routes)
 
-// static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+
+
 
 // connect to MongoDB
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
