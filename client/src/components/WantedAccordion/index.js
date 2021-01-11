@@ -6,10 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment'
 import './style.css'
 
-
 export default function WantedAccordion({ wantedAds }) {
 
-  console.log(wantedAds)
   return (
     <div id="contenedor">
       <h1 id="title"> ~  Wanted Ads  ~</h1>
@@ -33,9 +31,9 @@ export default function WantedAccordion({ wantedAds }) {
                 <div className="col-4">
                   <h4>
                     <button id="botones"
-                    onMouseLeave={(e) => { e.target.style.background = "rgb(128, 141, 107)"; e.target.style.color = "black" }}
-                    onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}
-                    >Contact The Owner</button> 
+                      onMouseLeave={(e) => { e.target.style.background = "rgb(128, 141, 107)"; e.target.style.color = "black" }}
+                      onMouseEnter={(e) => { e.target.style.background = "darkolivegreen"; e.target.style.color = "white" }}
+                    >Contact The Owner</button>
                   </h4>
                 </div>
               </div>

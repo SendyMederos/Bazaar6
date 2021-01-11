@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import Home from './pages/home'
 import Dashboard from "./pages/dashboard";
 import Signing from "./pages/signing";
@@ -31,41 +31,37 @@ function App() {
       <Layout>
         <Route path="/home" />
         <Route path="/home" render={() => {
-						return userLoggedIn
-							? <Home/>
-							: <Redirect to="/" />
-					}} />
-          <Route path="/dashboard" render={() => {
-						return userLoggedIn
-							? <Dashboard/>
-							: <Redirect to="/" />
-					}} />
-          <Route path="/product/:id" render={() => {
-						return userLoggedIn
-							? <Product/>
-							: <Redirect to="/" />
-					}} />
-          <Route path="/post-product" render={() => {
-						return userLoggedIn
-							? <Posting/>
-							: <Redirect to="/" />
-					}} />
-          <Route path="/post-wanted" render={() => {
-						return userLoggedIn
-							? <PostWanted/>
-							: <Redirect to="/" />
-					}} />
-          <Route path="/wanted" render={() => {
-						return userLoggedIn
-							? <Wanted/>
-							: <Redirect to="/" />
-					}} />
+          return userLoggedIn
+            ? <Home />
+            : <Redirect to="/" />
+        }} />
+        <Route path="/dashboard" render={() => {
+          return userLoggedIn
+            ? <Dashboard />
+            : <Redirect to="/" />
+        }} />
+        <Route path="/product/:id" render={() => {
+          return userLoggedIn
+            ? <Product />
+            : <Redirect to="/" />
+        }} />
+        <Route path="/post-product" render={() => {
+          return userLoggedIn
+            ? <Posting />
+            : <Redirect to="/" />
+        }} />
+        <Route path="/post-wanted" render={() => {
+          return userLoggedIn
+            ? <PostWanted />
+            : <Redirect to="/" />
+        }} />
+        <Route path="/wanted" render={() => {
+          return userLoggedIn
+            ? <Wanted />
+            : <Redirect to="/" />
+        }} />
       </Layout>
       <Route path="/*" component={Error404} />
-      {/* <Route exact path="/posting" component={Posting} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/checkout" component={Checkout} /> */}
     </Switch>
   </Router>
   )

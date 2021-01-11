@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // connect to MongoDB
-mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // start the server
 app.listen(PORT, function () {

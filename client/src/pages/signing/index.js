@@ -4,7 +4,7 @@ import Axios from 'axios'
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';
 import { Alert, Fade } from "reactstrap";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export default function Signing() {
 
@@ -17,10 +17,9 @@ export default function Signing() {
     }, [])
 
     const checkCookie = () => {
-		return Axios.get('/checkcookie')
-		.then(res => res.data ? setCookie(true) : "")
-	}
-
+        return Axios.get('/checkcookie')
+            .then(res => res.data ? setCookie(true) : "")
+    }
 
     const [loginForm, setLoginForm] = useState({
         email: '',
