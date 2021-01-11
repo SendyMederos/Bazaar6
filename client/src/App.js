@@ -70,7 +70,6 @@ function App() {
       {/* <Route exact path="/posting" component={Posting} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/signup" component={Signup} />
-
         <Route exact path="/checkout" component={Checkout} /> */}
     </Switch>
   </Router>
