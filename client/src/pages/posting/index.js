@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import http from '../../services/http';
 import { saveProduct } from '../../utils/ProductAPI';
 import { Alert, Fade } from "reactstrap";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
@@ -39,7 +39,7 @@ export const Posting = () => {
 
 		console.log(imageSelected)
 		try {
-			axios.post(`https://api.cloudinary.com/v1_1/bazaar6/image/upload`, formData, config)
+			http.post(`https://api.cloudinary.com/v1_1/bazaar6/image/upload`, formData, config)
 				.then(function (response) {
 					let newObject = productPost
 					newObject.image.push(response.data.url)

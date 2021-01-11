@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Signup, Signin } from '../../components/SignForms';
-import Axios from 'axios'
+import http from '../../services/http'
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';
 import { Alert, Fade } from "reactstrap";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 export default function Signing() {
 
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [messages, setMessages] = useState([])
     const [cookie, setCookie] = useState(false)
-
+    const history = useHistory()
     useEffect(() => {
         checkCookie()
     }, [])
 
     const checkCookie = () => {
-        return Axios.get('/checkcookie')
+        return http.get('/checkcookie')
             .then(res => res.data ? setCookie(true) : "")
     }
 
@@ -77,7 +77,7 @@ export default function Signing() {
             setMessages([{
                 prompt: "Logging in..."
             }])
-            setTimeout(() => window.location.href = "/home", 1500)
+            setTimeout(() => history.push("home"), 1500)
             resetMessages()
 
         }
@@ -95,7 +95,7 @@ export default function Signing() {
             setMessages([{
                 prompt: "Successfully created your user"
             }])
-            setTimeout(() => window.location.href = "/home", 1500)
+            setTimeout(() => history.push("home"), 1500)
             resetMessages()
         }
     }

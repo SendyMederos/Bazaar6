@@ -9,59 +9,26 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { Error404 } from "./pages/errors/404";
 import { Layout } from "./components/Layout";
 import { Posting } from "./pages/posting";
-import Axios from 'axios'
+import http from './services/http'
 
 function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(false)
-
-  useEffect(() => {
-    checkCookie()
-  }, [])
-
-  const checkCookie = () => {
-    return Axios.get('/checkcookie')
-      .then(res => res.data ? setUserLoggedIn(true) : "")
-  }
-
-  return (<Router>
+  return (<Router >
     <Switch>
-      <Route exact path="/" component={Signing} />
-      <Route path="/signing" component={Signing} />
-      <Layout>
-        <Route path="/home" />
-        <Route path="/home" render={() => {
-          return userLoggedIn
-            ? <Home />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/dashboard" render={() => {
-          return userLoggedIn
-            ? <Dashboard />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/product/:id" render={() => {
-          return userLoggedIn
-            ? <Product />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/post-product" render={() => {
-          return userLoggedIn
-            ? <Posting />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/post-wanted" render={() => {
-          return userLoggedIn
-            ? <PostWanted />
-            : <Redirect to="/" />
-        }} />
-        <Route path="/wanted" render={() => {
-          return userLoggedIn
-            ? <Wanted />
-            : <Redirect to="/" />
-        }} />
-      </Layout>
-      <Route path="/*" component={Error404} />
+      <Switch>
+        <Route exact path="/" component={Signing} />
+        <Route path="/signing" component={Signing} />
+        <Layout>
+          <Route path="/home" component={Home} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/post-product" component={Posting} />
+          <Route path="/post-wanted" component={PostWanted} />
+          <Route path="/wanted" component={Wanted} />
+        </Layout>
+        <Route path="/*" component={Error404} />
+      </Switch>
     </Switch>
   </Router>
   )
