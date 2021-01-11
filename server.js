@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
   credentials: true,
-  origin: ["http://localhost:3000"],
+  origin: ["https://bazaar6.herokuapp.com/"],
 }))
 app.use(cookieParser())
 app.use(bodyParser.raw({ limit: "100mb" }))
