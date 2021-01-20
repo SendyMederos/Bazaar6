@@ -6,8 +6,7 @@ const httpConfig = axios.create({
 });
 
 httpConfig.interceptors.request.use((req) => {
-    console.log(window.location)
-    req.baseURL = `${window.location}/api`;
+    req.baseURL = 'http://localhost:8080/';
     req.headers = {
         ...req.headers,
     };

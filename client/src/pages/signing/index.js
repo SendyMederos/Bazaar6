@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Signup, Signin } from '../../components/SignForms';
-import Axios from 'axios'
+import http from '../../services/http'
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';
 import { Alert, Fade } from "reactstrap";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 export default function Signing() {
 
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [messages, setMessages] = useState([])
     const [cookie, setCookie] = useState(false)
-
+    const history = useHistory()
     useEffect(() => {
         checkCookie()
     }, [])
 
     const checkCookie = () => {
-        return Axios.get('/checkcookie')
+        return http.get('/checkcookie')
             .then(res => res.data ? setCookie(true) : "")
     }
 
@@ -79,7 +79,11 @@ export default function Signing() {
             setMessages([{
                 prompt: "Logging in..."
             }])
+<<<<<<< HEAD
             setTimeout(() =>setRedir(true), 1500)
+=======
+            setTimeout(() => history.push("home"), 1500)
+>>>>>>> c8817f9924635650ef1817826cc15630ca580a83
             resetMessages()
 
         }
@@ -97,7 +101,11 @@ export default function Signing() {
             setMessages([{
                 prompt: "Successfully created your user"
             }])
+<<<<<<< HEAD
             setTimeout(() => setRedir(true), 1500)
+=======
+            setTimeout(() => history.push("home"), 1500)
+>>>>>>> c8817f9924635650ef1817826cc15630ca580a83
             resetMessages()
         }
     }
@@ -125,7 +133,7 @@ export default function Signing() {
                 </div>
                 <div className="col-2 right">
                     <img className=""
-                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />
+                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" alt="bg155"/>
                 </div>
             </div>
         </div>

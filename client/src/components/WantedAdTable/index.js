@@ -47,7 +47,6 @@ const useStyles = makeStyles({
 
 export default function WantedAdList({ wantedAd, title }) {
   const classes = useStyles();
-
   return (
     <TableContainer className={classes.table} component={Paper}>
       <Table aria-label="customized table">

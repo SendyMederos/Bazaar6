@@ -13,7 +13,6 @@ const useStyles = makeStyles(() => ({
 
 export function Wanted() {
     const classes = useStyles();
-
     const [wantedAds, setWantedAds] = useState({})
 
     useEffect(() => {
@@ -28,7 +27,6 @@ export function Wanted() {
             }).then()
             .catch(err => console.log(err.message))
     }
-
     return (
         <div className="container-fluid" >
             <div className={classes.root}>
