@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Signup, Signin } from '../../components/SignForms';
-import http from '../../services/http'
+import Axios from 'axios'
 import "./style.css"
 import { createUser, login } from '../../services/http/authHttp';
 import { Alert, Fade } from "reactstrap";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { useDispatch,  } from "react-redux";
+import { loginUserRedux } from "../../redux/actions/loginactions"
+
 
 export default function Signing() {
-
+    const dispatch = useDispatch()
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [messages, setMessages] = useState([])
     const [cookie, setCookie] = useState(false)
-    const history = useHistory()
+    
+
     useEffect(() => {
         checkCookie()
     }, [])
 
     const checkCookie = () => {
-        return http.get('/checkcookie')
+        return Axios.get('/checkcookie')
             .then(res => res.data ? setCookie(true) : "")
     }
-
+    
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: '',
@@ -36,8 +40,6 @@ export default function Signing() {
         zip: '',
         city: ''
     });
-
-    const [redir, setRedir] = useState(false);
 
     const resetMessages = () => setTimeout(() => setMessages([]), 5000)
 
@@ -76,14 +78,12 @@ export default function Signing() {
             }])
             resetMessages()
         } else {
+            console.log(response.user)
+            dispatch(loginUserRedux(response.user))
             setMessages([{
                 prompt: "Logging in..."
             }])
-<<<<<<< HEAD
-            setTimeout(() =>setRedir(true), 1500)
-=======
-            setTimeout(() => history.push("home"), 1500)
->>>>>>> c8817f9924635650ef1817826cc15630ca580a83
+            setTimeout(() => window.location.href = "/home", 1500)
             resetMessages()
 
         }
@@ -101,18 +101,14 @@ export default function Signing() {
             setMessages([{
                 prompt: "Successfully created your user"
             }])
-<<<<<<< HEAD
-            setTimeout(() => setRedir(true), 1500)
-=======
-            setTimeout(() => history.push("home"), 1500)
->>>>>>> c8817f9924635650ef1817826cc15630ca580a83
+            setTimeout(() => window.location.href = "/home", 1500)
             resetMessages()
         }
     }
 
     return (
         <div style={{ width: "100%" }}>
-            {cookie || redir ? <Redirect to="/home" /> : ""}
+            {cookie ? <Redirect to="/home" /> : ""}
             <div className="row">
                 <div className="col-12 backbox">
                     <div className="forms">
@@ -133,7 +129,7 @@ export default function Signing() {
                 </div>
                 <div className="col-2 right">
                     <img className=""
-                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" alt="bg155"/>
+                        src="https://i.pinimg.com/originals/b0/63/e6/b063e69aec55ee699cf38c757cabaae3.jpg" />
                 </div>
             </div>
         </div>
