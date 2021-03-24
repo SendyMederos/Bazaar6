@@ -11,10 +11,6 @@ const PORT = process.env.PORT || 8080;
 require('dotenv').config({ silent: true })
 require('./auth')
 
-// static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -28,11 +24,13 @@ app.use(bodyParser.json())
 app.use(validateUser)
 app.use(routes)
 
-
-
+// static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 // connect to MongoDB
-mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // start the server
 app.listen(PORT, function () {

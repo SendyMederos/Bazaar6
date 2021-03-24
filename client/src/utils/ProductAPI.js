@@ -1,20 +1,20 @@
 import { Search, SearchRounded } from "@material-ui/icons";
-import http from '../services/http';
+import axios from "axios";
 
 const path = "/api/products"
 
 export const saveProduct = (productData) => {
-  return http.post(`${path}`, productData)
+  return axios.post(`${path}`, productData)
 }
 
 export const getProducts = () => {
-  return http.get(`${path}`)
+  return axios.get(`${path}`)
 }
 
 export const getProduct = (id) => {
-  return http.get(`${path}/${id}`)
+  return axios.get(`${path}/${id}`)
 }
 
 export const deleteProduct = (id) => {
-  return http.delete(`${path}/${id}`)
+  return axios.delete(`${path}/${id}`)
 }
