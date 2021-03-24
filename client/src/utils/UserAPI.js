@@ -1,15 +1,15 @@
-import http from '../services/http';
+import axios from "axios";
 
 export default {
 
    /// saves a user 
     saveUser: function(userData) {
       console.log("running")
-      return http.post("/api/users", userData);
+      return axios.post("/api/users", userData);
     },
       // Gets all users
       getUsers: function() {
-        return http.get("/api/users/");
+        return axios.get("/api/users/");
       },
       
       // Gets the user with the given id
@@ -20,12 +20,12 @@ export default {
 
       // Deletes the user with the given id
       deleteUser: function(id) {
-        return http.delete("/api/users" + id);
+        return axios.delete("/api/users" + id);
       },
       updateUser: function(query) {
-        return http.put("/api/users", query)
+        return axios.put("/api/users", query)
       },
       getUser: function() {
-        return http.get("/api/users")
+        return axios.get("/api/users")
       }
 };

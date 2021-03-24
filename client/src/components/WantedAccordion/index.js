@@ -7,6 +7,7 @@ import moment from 'moment'
 import './style.css'
 
 export default function WantedAccordion({ wantedAds }) {
+
   return (
     <div id="contenedor">
       <h1 id="title"> ~  Wanted Ads  ~</h1>

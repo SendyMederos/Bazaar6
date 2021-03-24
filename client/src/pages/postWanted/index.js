@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export function PostWanted() {
+export function PostWanted(props) {
   const [wantedAd, setWantedAd] = useState({});
   const [messages, setMessages] = useState([]);
   const [submitted, setSubmitted] = useState(false)
