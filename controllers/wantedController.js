@@ -2,7 +2,6 @@ const db = require("../models")
 
 module.exports = {
     getAds: function (req, res) {
-        console.log("HELLO")
         db.Wanted
             .find({})
             .sort({ date: -1 })
@@ -19,7 +18,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     postAd: function (req, res) {
-        console.log(req.user_id)
         try {
             db.Wanted
                 .create(req.body)

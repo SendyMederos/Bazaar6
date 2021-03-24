@@ -17,7 +17,6 @@ export default function HomePage() {
 
     useEffect(() => {
         getGroupedProducts()
-        setIsSearch(false)
     }, [])
 
     const getGroupedProducts = () => {
@@ -33,12 +32,6 @@ export default function HomePage() {
             setSearch("")
         })
     }
-
-    // const searchProduct = () => {
-    //     getProducts().then(res => {
-           
-    //     })
-    // }
 
     const addToUser = (id) => {
         UserAPI.updateUser({ "wishList": id })

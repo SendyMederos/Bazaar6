@@ -22,7 +22,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import QueueIcon from '@material-ui/icons/Queue';
 import './style.css'
 import { Link } from "react-router-dom";
-import http from '../../services/http';
+import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -149,7 +149,7 @@ export default function MiniDrawer({ children }) {
 	};
 
 	const logOut = () => {
-		return http.get('/logout')
+		return Axios.get('/logout')
 			.then(setTimeout(() => setToHome(true), 1500))
 	}
 
